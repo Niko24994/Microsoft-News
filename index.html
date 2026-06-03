@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260526d" />
+  <link rel="stylesheet" href="style.css?v=20260526e" />
 </head>
 <body>
   <header>
@@ -32,6 +32,7 @@
     <button class="tab"        role="tab" aria-selected="false" data-tab="fabricroadmap" aria-controls="panel-fabricroadmap">Fabric Roadmap</button>
     <button class="tab"        role="tab" aria-selected="false" data-tab="copilot"       aria-controls="panel-copilot">Microsoft Copilot</button>
     <button class="tab"        role="tab" aria-selected="false" data-tab="agents"        aria-controls="panel-agents">Microsoft Agents</button>
+    <button class="tab"        role="tab" aria-selected="false" data-tab="saved"         aria-controls="panel-saved">Gespeichert</button>
   </nav>
 
   <main>
@@ -40,6 +41,7 @@
     <div id="panel-fabricroadmap" class="tab-panel"        role="tabpanel"></div>
     <div id="panel-copilot"       class="tab-panel"        role="tabpanel"></div>
     <div id="panel-agents"        class="tab-panel"        role="tabpanel"></div>
+    <div id="panel-saved"         class="tab-panel"        role="tabpanel"></div>
     <div id="errorBox"        class="error-box hidden"></div>
     <div id="loadingSpinner"  class="spinner hidden" aria-live="polite" aria-label="Wird geladen…">
       <span class="spinner-ring"></span>
@@ -50,6 +52,7 @@
     <span>Data from public Microsoft RSS feeds · Hosted on GitHub Pages · Internal tool · Not a public offering</span>
   </footer>
 
-  <script src="app.js?v=20260526d"></script>
+  <button id="backToTop" class="back-to-top" aria-label="Scroll to top">↑</button>
+  <script src="app.js?v=20260526e"></script>
 </body>
 </html>

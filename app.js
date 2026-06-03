@@ -1,10 +1,55 @@
 (() => {
   'use strict';
 
-  const INDEX_URL = './public/news/index.json';
-  const cache = {};
-  let currentDate = null;
-  let currentTab  = 'summary';
+  const INDEX_URL    = './public/news/index.json';
+  const FAVS_KEY     = 'msroadmap_favorites';
+  const cache        = {};
+  let currentDate    = null;
+  let currentTab     = 'summary';
+
+  // ── Favourites (localStorage) ────────────────────────────────
+  // Stored as a Map: articleId (url|title) → full article object
+  let favorites = new Map();
+
+  function loadFavorites() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(FAVS_KEY) || '[]');
+      favorites = new Map(stored.map(a => [a.url || a.title, a]));
+    } catch { favorites = new Map(); }
+  }
+
+  function saveFavorites() {
+    try {
+      localStorage.setItem(FAVS_KEY, JSON.stringify([...favorites.values()]));
+    } catch { /* storage full – fail silently */ }
+  }
+
+  function isFavorite(id) { return favorites.has(id); }
+
+  function toggleFavorite(article, isRoadmap) {
+    const id = article.url || article.title;
+    if (favorites.has(id)) {
+      favorites.delete(id);
+    } else {
+      favorites.set(id, { ...article, _isRoadmap: isRoadmap });
+    }
+    saveFavorites();
+    // Refresh every star button for this article (may appear in multiple tabs)
+    document.querySelectorAll('.fav-btn').forEach(btn => {
+      if (btn.dataset.favId === id) syncStarBtn(btn);
+    });
+    // Keep Gespeichert panel current
+    renderFavoritesPanel();
+  }
+
+  function syncStarBtn(btn) {
+    const saved = isFavorite(btn.dataset.favId);
+    btn.classList.toggle('fav-btn--saved', saved);
+    btn.setAttribute('aria-pressed', String(saved));
+    btn.title = saved ? 'Remove from saved' : 'Save';
+  }
+
+  loadFavorites();
 
   // Tabs with real M365 Roadmap data → status filter + search
   const ROADMAP_TABS  = new Set(['copilot', 'agents']);
@@ -25,6 +70,7 @@
     agents:        $('panel-agents'),
     releasenotes:  $('panel-releasenotes'),
     fabricroadmap: $('panel-fabricroadmap'),
+    saved:         $('panel-saved'),
   };
 
   // ── Date helpers ─────────────────────────────────────────
@@ -152,6 +198,23 @@
       link.textContent = 'Read more';
       card.appendChild(link);
     }
+
+    // Star / favourite button
+    const favId  = article.url || article.title;
+    const saved  = isFavorite(favId);
+    const favBtn = document.createElement('button');
+    favBtn.className       = 'fav-btn' + (saved ? ' fav-btn--saved' : '');
+    favBtn.dataset.favId   = favId;
+    favBtn.setAttribute('aria-pressed', String(saved));
+    favBtn.setAttribute('aria-label', 'Save article');
+    favBtn.title           = saved ? 'Remove from saved' : 'Save';
+    favBtn.textContent     = '★';
+    favBtn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleFavorite(article, isRoadmap);
+    });
+    card.appendChild(favBtn);
 
     return card;
   }
@@ -416,6 +479,30 @@
     fillGrid(grid, articles, isRoadmap);
   }
 
+  // ── Favourites panel ─────────────────────────────────────
+  function renderFavoritesPanel() {
+    const panel = panels.saved;
+    if (!panel) return;
+    panel.innerHTML = '';
+
+    const articles = [...favorites.values()].reverse();
+
+    if (!articles.length) {
+      const p = document.createElement('p');
+      p.className = 'empty-state';
+      p.textContent = 'No saved articles yet. Click ★ on any card to save it here.';
+      panel.appendChild(p);
+      return;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'card-grid';
+    for (const a of articles) {
+      grid.appendChild(createCard(a, !!a._isRoadmap));
+    }
+    panel.appendChild(grid);
+  }
+
   // ── Render all tabs ──────────────────────────────────────
   function renderDay(dayData) {
     const tabs = dayData.tabs || {};
@@ -507,6 +594,20 @@
     currentDate = latest;
     await loadDay(latest);
   }
+
+  // ── Back-to-top ───────────────────────────────────────────
+  const backToTopBtn = $('backToTop');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('back-to-top--visible', window.scrollY > 300);
+    }, { passive: true });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Initial render of favourites panel (shows empty state on first visit)
+  renderFavoritesPanel();
 
   init();
 })();
