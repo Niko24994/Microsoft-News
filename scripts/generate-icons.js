@@ -37,9 +37,6 @@ function makeHtml(size) {
   const gap = Math.round(size * 0.048);   // gap between squares
   const r   = Math.round(sq * 0.065);     // corner radius on each square
 
-  // "M" font-size: ~42 % of icon size feels balanced
-  const fs  = Math.round(size * 0.425);
-
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -71,23 +68,6 @@ function makeHtml(size) {
   .sq-blue       { background:#00A4EF; }
   .sq-yellow     { background:#FFB900; }
 
-  /* White bold M centred over the grid */
-  .letter {
-    position:absolute;
-    top:50%; left:50%;
-    transform:translate(-50%, -48%);
-    font-family:'Segoe UI Black','Arial Black','Impact',Arial,sans-serif;
-    font-weight:900;
-    font-size:${fs}px;
-    color:#ffffff;
-    line-height:1;
-    /* subtle drop-shadow so edges read against any colour */
-    text-shadow:0 2px ${Math.round(size*0.04)}px rgba(0,0,0,0.55);
-    user-select:none;
-    pointer-events:none;
-    z-index:2;
-    letter-spacing:-0.03em;
-  }
 </style>
 </head>
 <body>
@@ -98,7 +78,6 @@ function makeHtml(size) {
     <div class="sq sq-blue"></div>
     <div class="sq sq-yellow"></div>
   </div>
-  <span class="letter">M</span>
 </div>
 </body>
 </html>`;
