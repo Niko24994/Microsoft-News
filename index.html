@@ -7,6 +7,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- iOS Web App -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MS News" />
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152.png" />
+
+  <!-- Theme colour (Android Chrome + Safari tab bar) -->
+  <meta name="theme-color" content="#0078d4" />
+
   <link rel="stylesheet" href="style.css?v=20260526e" />
 </head>
 <body>
@@ -54,5 +71,13 @@
 
   <button id="backToTop" class="back-to-top" aria-label="Scroll to top">↑</button>
   <script src="app.js?v=20260526e"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () =>
+        navigator.serviceWorker.register('./sw.js')
+          .catch(err => console.warn('SW registration failed:', err))
+      );
+    }
+  </script>
 </body>
 </html>
