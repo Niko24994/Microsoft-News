@@ -497,18 +497,187 @@ footer {
   letter-spacing: .02em;
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
-@media (min-width: 640px) {
+/* ── Mobile date toggle button (hidden on desktop) ────────── */
+.date-toggle-btn {
+  display: none; /* shown only via mobile media query */
+  align-items: center;
+  gap: .35rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: .78rem;
+  font-weight: 500;
+  padding: .35rem .6rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color .15s;
+  flex-shrink: 0;
+}
+.date-toggle-btn:hover { border-color: var(--accent); }
+
+/* ── Date picker bottom sheet (mobile only) ───────────────── */
+.date-sheet {
+  display: none; /* block on mobile via media query */
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+}
+.date-sheet.open      { pointer-events: auto; }
+
+.date-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .65);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.date-sheet.open .date-sheet-backdrop { opacity: 1; }
+
+.date-sheet-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+  padding: .75rem 1.25rem 1.25rem;
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform .28s cubic-bezier(.32, 0, .67, 0);
+}
+.date-sheet.open .date-sheet-panel {
+  transform: translateY(0);
+  transition-timing-function: cubic-bezier(.33, 1, .68, 1);
+}
+
+.date-sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 0 auto .875rem;
+}
+
+.date-sheet-title {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-secondary);
+  margin-bottom: .75rem;
+}
+
+.date-sheet-body .date-picker {
+  max-width: 100%;
+  width: 100%;
+  font-size: .9rem;
+  padding: .65rem .75rem;
+}
+
+/* ── Responsive: card grid columns ───────────────────────── */
+@media (min-width: 768px) {
   .card-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .card-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* ── Mobile (≤ 640px) ─────────────────────────────────────── */
-@media (max-width: 640px) {
-  /* Filter bar: scroll horizontally instead of wrapping into multiple rows */
+/* ── Mobile (≤ 767px) — bottom nav, bottom sheet, layout ─── */
+@media (max-width: 767px) {
+
+  /* ─ Activate date sheet ─ */
+  .date-sheet { display: block; }
+
+  /* ─ Header ─ */
+  .header-inner { padding: 0 1rem; }
+  .updated-label    { display: none; }
+  .date-picker-wrap { display: none; }   /* select lives in bottom sheet */
+  .date-toggle-btn  { display: flex; }   /* show calendar icon */
+
+  /* ─ Bottom navigation bar ─ */
+  .tabs {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 100;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--bg-header);
+    border-top: 1px solid var(--border);
+    border-bottom: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+    display: flex;
+    gap: 0;
+    /* remove the border-radius from desktop scroll overflow */
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex: 1;
+    min-width: 52px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 4px;
+    min-height: 56px;
+    /* Kill desktop underline indicator */
+    border-bottom: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    /* Hide long desktop label text */
+    font-size: 0;
+    color: var(--text-secondary);
+    transition: color .15s;
+  }
+
+  /* Icon (from data-icon attr) */
+  .tab::before {
+    content: attr(data-icon);
+    font-size: 1.2rem;
+    line-height: 1;
+    display: block;
+  }
+
+  /* Short label (from data-short attr) */
+  .tab::after {
+    content: attr(data-short);
+    font-size: .57rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: .01em;
+    display: block;
+  }
+
+  .tab.active          { color: var(--accent); border-bottom: none; }
+  .tab:hover           { color: var(--text-primary); }
+
+  /* ─ Main: clear bottom-nav height + safe area ─ */
+  main {
+    padding: 1rem .875rem calc(56px + env(safe-area-inset-bottom) + 1rem);
+  }
+
+  /* ─ Cards: larger tap targets, readable text ─ */
+  .card {
+    padding: 1rem 1.125rem;
+    padding-right: 2.6rem;
+    gap: .65rem;
+  }
+  .card-grid    { gap: .875rem; }
+  .card-title   { font-size: .95rem; }
+  .card-summary { font-size: .84rem; }
+  .card-meta    { gap: .375rem; }
+
+  /* ─ Filter bar: horizontal scroll ─ */
   .status-filter {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -517,40 +686,41 @@ footer {
     -webkit-overflow-scrolling: touch;
   }
   .status-filter::-webkit-scrollbar { display: none; }
+  .status-btn { white-space: nowrap; }
 
-  /* Search: input fills full width, count sits below */
-  .search-wrap { flex-wrap: wrap; gap: .4rem; }
+  /* ─ Search ─ */
+  .search-wrap  { flex-wrap: wrap; gap: .4rem; }
   .search-input { max-width: 100%; }
 
-  /* Cards: slightly less padding */
-  .card { padding: .875rem 1rem; }
-  .card-title { font-size: .9rem; }
-  .card-summary { font-size: .8rem; }
-  .card-meta { gap: .375rem; }
-}
-
-/* ── Small phones (≤ 480px) ───────────────────────────────── */
-@media (max-width: 480px) {
-  .brand-name { display: none; }
-  .updated-label { display: none; }
-  .date-picker { max-width: 130px; }
-  .header-inner { padding: 0 .75rem; }
-  main { padding: 1rem .75rem 2rem; }
-  .tabs { padding: 0 .75rem; }
-
-  /* Tighter card spacing */
-  .card { padding: .75rem .875rem; gap: .5rem; }
-  .card-title { font-size: .875rem; }
-  .card-summary { font-size: .78rem; line-height: 1.55; }
-
-  /* Badges slightly smaller */
+  /* ─ Badges ─ */
   .status-badge, .product-badge, .planned-badge, .new-badge {
-    font-size: .6rem;
+    font-size: .62rem;
     padding: .08rem .45rem;
   }
-  .card-source { font-size: .65rem; }
-  .card-date   { font-size: .67rem; }
+  .card-source { font-size: .68rem; }
+  .card-date   { font-size: .68rem; }
+
+  /* ─ Summary grid ─ */
+  .summary-grid {
+    grid-template-columns: 1fr;
+    padding: .875rem;
+    gap: .875rem;
+  }
+
+  /* ─ Back-to-top: above bottom nav ─ */
+  .back-to-top {
+    bottom: calc(56px + env(safe-area-inset-bottom) + .75rem);
+    right: 1rem;
+  }
+
+  /* ─ Footer: pad so it's not hidden behind bottom nav ─ */
+  footer {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom) + .5rem);
+  }
 }
+
+/* Prevent body scroll when bottom sheet is open */
+body.sheet-open { overflow: hidden; }
 
 /* ── Summary panel (This Month) ──────────────────────────────── */
 .summary-grid {

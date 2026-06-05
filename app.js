@@ -60,10 +60,14 @@
   const searchQueries  = {};   // search string per tab
 
   const $ = id => document.getElementById(id);
-  const datePicker   = $('datePicker');
-  const updatedLabel = $('updatedLabel');
-  const errorBox     = $('errorBox');
-  const spinner      = $('loadingSpinner');
+  const datePicker      = $('datePicker');
+  const updatedLabel    = $('updatedLabel');
+  const errorBox        = $('errorBox');
+  const spinner         = $('loadingSpinner');
+  const dateToggleBtn   = $('dateToggleBtn');
+  const dateToggleLabel = $('dateToggleLabel');
+  const dateSheetEl     = $('dateSheet');
+  const dateSheetBody   = $('dateSheetBody');
   const panels = {
     summary:       $('panel-summary'),
     copilot:       $('panel-copilot'),
@@ -72,6 +76,55 @@
     fabricroadmap: $('panel-fabricroadmap'),
     saved:         $('panel-saved'),
   };
+
+  // ── Mobile date bottom sheet ─────────────────────────────
+  const isMobileView = () => window.matchMedia('(max-width: 767px)').matches;
+
+  function openDateSheet() {
+    if (!dateSheetEl) return;
+    dateSheetEl.classList.add('open');
+    document.body.classList.add('sheet-open');
+    dateToggleBtn?.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDateSheet() {
+    if (!dateSheetEl) return;
+    dateSheetEl.classList.remove('open');
+    document.body.classList.remove('sheet-open');
+    dateToggleBtn?.setAttribute('aria-expanded', 'false');
+  }
+
+  function updateDateToggleLabel() {
+    if (!dateToggleLabel || !currentDate) return;
+    const [y, m, d] = currentDate.split('-').map(Number);
+    dateToggleLabel.textContent = new Date(y, m - 1, d)
+      .toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  }
+
+  // Move the <select> element between header and bottom-sheet depending on viewport
+  function positionDatePicker() {
+    const wrap = document.querySelector('.date-picker-wrap');
+    if (!wrap || !dateSheetBody) return;
+    if (isMobileView()) {
+      if (!dateSheetBody.contains(datePicker)) dateSheetBody.appendChild(datePicker);
+    } else {
+      if (!wrap.contains(datePicker)) wrap.appendChild(datePicker);
+      closeDateSheet();
+    }
+  }
+
+  // Wire up bottom-sheet interactions
+  dateToggleBtn?.addEventListener('click', openDateSheet);
+  dateSheetEl?.addEventListener('click', e => {
+    if (e.target === dateSheetEl || e.target === $('dateSheetBackdrop')) closeDateSheet();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDateSheet(); });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(positionDatePicker, 150);
+  });
 
   // ── Date helpers ─────────────────────────────────────────
   function formatDateLong(iso) {
@@ -564,7 +617,12 @@
 
   datePicker.addEventListener('change', async () => {
     const d = datePicker.value;
-    if (d && d !== currentDate) { currentDate = d; await loadDay(d); }
+    if (d && d !== currentDate) {
+      currentDate = d;
+      updateDateToggleLabel();
+      closeDateSheet();
+      await loadDay(d);
+    }
   });
 
   // ── Bootstrap ────────────────────────────────────────────
@@ -592,6 +650,8 @@
 
     buildDatePicker(dates, latest);
     currentDate = latest;
+    positionDatePicker();    // move select to sheet on mobile, header on desktop
+    updateDateToggleLabel(); // set initial short date on mobile toggle button
     await loadDay(latest);
   }
 

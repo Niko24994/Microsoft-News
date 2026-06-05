@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover enables env(safe-area-inset-*) for iPhone X notch -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Microsoft Roadmaps & Releases</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <!-- PWA manifest -->
   <link rel="manifest" href="manifest.json" />
 
@@ -21,10 +23,10 @@
   <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152.png" />
 
-  <!-- Theme colour (Android Chrome + Safari tab bar) -->
+  <!-- Theme colour -->
   <meta name="theme-color" content="#0078d4" />
 
-  <link rel="stylesheet" href="style.css?v=20260526e" />
+  <link rel="stylesheet" href="style.css?v=20260526f" />
 </head>
 <body>
   <header>
@@ -35,21 +37,49 @@
       </div>
       <div class="header-controls">
         <span class="updated-label" id="updatedLabel"></span>
+
+        <!-- Desktop: normal date select -->
         <div class="date-picker-wrap">
           <label for="datePicker" class="sr-only">Datum auswählen</label>
           <select id="datePicker" class="date-picker" aria-label="Datum auswählen"></select>
         </div>
+
+        <!-- Mobile only: calendar icon button that opens the bottom sheet -->
+        <button class="date-toggle-btn" id="dateToggleBtn"
+                aria-label="Select date" aria-expanded="false" aria-controls="dateSheet">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x=".75" y="2" width="13.5" height="12.25" rx="2" stroke="currentColor" stroke-width="1.4"/>
+            <line x1=".75" y1="6" x2="14.25" y2="6" stroke="currentColor" stroke-width="1.4"/>
+            <line x1="4.75" y1=".75" x2="4.75" y2="3.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="10.25" y1=".75" x2="10.25" y2="3.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span id="dateToggleLabel">Date</span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Tabs: data-icon / data-short drive the mobile bottom nav icons & labels -->
   <nav class="tabs" role="tablist" aria-label="Roadmap areas">
-    <button class="tab active" role="tab" aria-selected="true"  data-tab="summary"       aria-controls="panel-summary">This Month</button>
-    <button class="tab"        role="tab" aria-selected="false" data-tab="releasenotes"  aria-controls="panel-releasenotes">Release Notes</button>
-    <button class="tab"        role="tab" aria-selected="false" data-tab="fabricroadmap" aria-controls="panel-fabricroadmap">Fabric Roadmap</button>
-    <button class="tab"        role="tab" aria-selected="false" data-tab="copilot"       aria-controls="panel-copilot">Microsoft Copilot</button>
-    <button class="tab"        role="tab" aria-selected="false" data-tab="agents"        aria-controls="panel-agents">Microsoft Agents</button>
-    <button class="tab"        role="tab" aria-selected="false" data-tab="saved"         aria-controls="panel-saved">Gespeichert</button>
+    <button class="tab active" role="tab" aria-selected="true"
+            data-tab="summary"       data-icon="◉" data-short="Month"
+            aria-controls="panel-summary">This Month</button>
+    <button class="tab"        role="tab" aria-selected="false"
+            data-tab="releasenotes"  data-icon="◆" data-short="Releases"
+            aria-controls="panel-releasenotes">Release Notes</button>
+    <button class="tab"        role="tab" aria-selected="false"
+            data-tab="fabricroadmap" data-icon="◈" data-short="Fabric"
+            aria-controls="panel-fabricroadmap">Fabric Roadmap</button>
+    <button class="tab"        role="tab" aria-selected="false"
+            data-tab="copilot"       data-icon="⊕" data-short="Copilot"
+            aria-controls="panel-copilot">Microsoft Copilot</button>
+    <button class="tab"        role="tab" aria-selected="false"
+            data-tab="agents"        data-icon="⚙" data-short="Agents"
+            aria-controls="panel-agents">Microsoft Agents</button>
+    <button class="tab"        role="tab" aria-selected="false"
+            data-tab="saved"         data-icon="★" data-short="Saved"
+            aria-controls="panel-saved">Gespeichert</button>
   </nav>
 
   <main>
@@ -59,18 +89,28 @@
     <div id="panel-copilot"       class="tab-panel"        role="tabpanel"></div>
     <div id="panel-agents"        class="tab-panel"        role="tabpanel"></div>
     <div id="panel-saved"         class="tab-panel"        role="tabpanel"></div>
-    <div id="errorBox"        class="error-box hidden"></div>
-    <div id="loadingSpinner"  class="spinner hidden" aria-live="polite" aria-label="Wird geladen…">
+    <div id="errorBox"       class="error-box hidden"></div>
+    <div id="loadingSpinner" class="spinner hidden" aria-live="polite" aria-label="Wird geladen…">
       <span class="spinner-ring"></span>
     </div>
   </main>
 
   <footer>
-    <span>Data from public Microsoft RSS feeds · Hosted on GitHub Pages · Internal tool · Not a public offering</span>
+    <span>Data from public Microsoft RSS feeds · Hosted on GitHub Pages · Internal tool</span>
   </footer>
 
+  <!-- Mobile date picker bottom sheet -->
+  <div id="dateSheet" class="date-sheet" role="dialog" aria-modal="true" aria-label="Select date">
+    <div class="date-sheet-backdrop" id="dateSheetBackdrop"></div>
+    <div class="date-sheet-panel">
+      <div class="date-sheet-handle"></div>
+      <p class="date-sheet-title">Select Date</p>
+      <div id="dateSheetBody" class="date-sheet-body"></div>
+    </div>
+  </div>
+
   <button id="backToTop" class="back-to-top" aria-label="Scroll to top">↑</button>
-  <script src="app.js?v=20260526e"></script>
+  <script src="app.js?v=20260526f"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () =>
