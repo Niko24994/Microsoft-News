@@ -594,18 +594,40 @@ footer {
   /* ─ Activate date sheet ─ */
   .date-sheet { display: block; }
 
-  /* ─ Header ─ */
-  .header-inner { padding: 0 1rem; }
-  .updated-label    { display: none; }
-  .date-picker-wrap { display: none; }   /* select lives in bottom sheet */
-  .date-toggle-btn  { display: flex; }   /* show calendar icon */
+  /* ─ Header: brand truncated, updated label compact ─ */
+  .header-inner     { padding: 0 1rem; }
+  .brand            { min-width: 0; overflow: hidden; }
+  .brand-name       { display: none; }          /* icon only on mobile */
+  .date-picker-wrap { display: none; }          /* select lives in bottom sheet */
+  .date-toggle-btn  { display: flex; }          /* calendar icon button */
+
+  /* Updated label: stacked under calendar button, small */
+  .header-controls {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .1rem;
+  }
+  .updated-label {
+    display: block;
+    font-size: .6rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
 
   /* ─ Bottom navigation bar ─ */
   .tabs {
     position: fixed;
-    inset: auto 0 0 0;
-    z-index: 100;
+    /* explicit props instead of inset shorthand for iOS ≤14 compat */
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 200;                             /* above header (100) */
     max-width: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
     padding-bottom: env(safe-area-inset-bottom);
@@ -616,12 +638,12 @@ footer {
     scrollbar-width: none;
     display: flex;
     gap: 0;
-    /* remove the border-radius from desktop scroll overflow */
     -webkit-overflow-scrolling: touch;
   }
   .tabs::-webkit-scrollbar { display: none; }
 
   .tab {
+    display: flex;                            /* ← was missing, needed for column layout */
     flex: 1;
     min-width: 52px;
     flex-direction: column;
@@ -631,7 +653,7 @@ footer {
     padding: 6px 4px;
     min-height: 56px;
     /* Kill desktop underline indicator */
-    border-bottom: none;
+    border-bottom: none !important;
     border-radius: 0;
     margin-bottom: 0;
     /* Hide long desktop label text */
@@ -640,7 +662,7 @@ footer {
     transition: color .15s;
   }
 
-  /* Icon (from data-icon attr) */
+  /* Icon */
   .tab::before {
     content: attr(data-icon);
     font-size: 1.2rem;
@@ -648,7 +670,7 @@ footer {
     display: block;
   }
 
-  /* Short label (from data-short attr) */
+  /* Short label */
   .tab::after {
     content: attr(data-short);
     font-size: .57rem;
@@ -658,8 +680,8 @@ footer {
     display: block;
   }
 
-  .tab.active          { color: var(--accent); border-bottom: none; }
-  .tab:hover           { color: var(--text-primary); }
+  .tab.active { color: var(--accent); border-bottom: none !important; }
+  .tab:hover  { color: var(--text-primary); }
 
   /* ─ Main: clear bottom-nav height + safe area ─ */
   main {

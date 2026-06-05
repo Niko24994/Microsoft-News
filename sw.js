@@ -1,7 +1,7 @@
 // Service Worker – Microsoft Roadmaps & Releases
 // Strategy: network-first for JSON data, cache-first for static shell assets.
 
-const CACHE   = 'ms-news-v1';
+const CACHE   = 'ms-news-v2';
 const SHELL   = [
   './',
   './index.html',
