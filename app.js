@@ -428,6 +428,20 @@
     }
   });
 
+  // ── Keep filter bar pinned directly below the masthead ────
+  // The masthead's height varies (mobile vs desktop, text wrapping, font
+  // load reflow), so a hardcoded `top` offset drifts out of sync — measure
+  // it live instead and feed it to the filter bar's sticky `top` via a
+  // CSS custom property.
+  const mastheadEl = document.querySelector('.masthead');
+  if (mastheadEl && 'ResizeObserver' in window) {
+    const syncMastheadHeight = () => {
+      document.documentElement.style.setProperty('--masthead-h', mastheadEl.offsetHeight + 'px');
+    };
+    new ResizeObserver(syncMastheadHeight).observe(mastheadEl);
+    syncMastheadHeight();
+  }
+
   // ── Back-to-top ───────────────────────────────────────────
   const backToTopBtn = $('backToTop');
   if (backToTopBtn) {

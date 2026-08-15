@@ -291,7 +291,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 /* ============ FILTER BAR ============ */
 .filterbar {
   position: sticky;
-  top: 73px; /* below masthead */
+  /* set by JS to the masthead's real rendered height — avoids overlap
+     when its content wraps or its height otherwise differs from a guess */
+  top: var(--masthead-h, 73px);
   z-index: 40;
   background: color-mix(in srgb, var(--ground) 90%, transparent);
   backdrop-filter: blur(10px);
@@ -585,8 +587,6 @@ body.sheet-open { overflow: hidden; }
   .masthead-meta    { display: none; }
   .date-picker-wrap { display: none; }
   .date-toggle-btn  { display: flex; }
-
-  .filterbar { top: 61px; }
 
   .digest-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.75rem 0 1.5rem; }
   .digest-month { font-size: 1.6rem; }
