@@ -152,6 +152,45 @@
     } catch { return false; }
   }
 
+  // "Qx YYYY" → current calendar quarter, e.g. August 2026 → "Q3 2026".
+  // Fabric has no real per-item date, so this is used both to sort Fabric
+  // tiles and to count "this quarter" items for the digest.
+  function getCurrentQuarterLabel() {
+    const now = new Date();
+    const q = Math.floor(now.getMonth() / 3) + 1;
+    return `Q${q} ${now.getFullYear()}`;
+  }
+
+  // Turns "Q3 2026" (or a bare "2026") into a comparable number, farthest-out first.
+  function quarterSortKey(q) {
+    if (!q) return 0;
+    const m = q.match(/Q([1-4])\s*(\d{4})/i);
+    if (m) return parseInt(m[2], 10) * 10 + parseInt(m[1], 10);
+    const y = q.match(/(\d{4})/);
+    return y ? parseInt(y[1], 10) * 10 : 0;
+  }
+
+  // Fabric has no meaningful "date added", so it sorts by status (Planned
+  // before Try Now) and, within Planned, by target quarter — farthest out
+  // first, working toward the nearest quarter. Try Now items keep their
+  // original relative order (Array#sort is stable).
+  function compareFabricItems(a, b) {
+    const rankA = a.status === 'Planned' ? 0 : 1;
+    const rankB = b.status === 'Planned' ? 0 : 1;
+    if (rankA !== rankB) return rankA - rankB;
+    if (rankA !== 0) return 0; // both Try Now — leave as-is
+    return quarterSortKey(b.previewDate || b.gaDate) - quarterSortKey(a.previewDate || a.gaDate);
+  }
+
+  // All other articles keep normal newest-first date sorting. Only items
+  // actually sourced from the Fabric Roadmap API use the status/quarter
+  // rule — Fabric *blog* posts share the same "fabric" filter line but have
+  // a real publish date, so they're excluded from this special case.
+  function compareArticles(a, b) {
+    if (a.source === 'Fabric Roadmap' && b.source === 'Fabric Roadmap') return compareFabricItems(a, b);
+    return new Date(b.date) - new Date(a.date);
+  }
+
   // ── UI helpers ───────────────────────────────────────────
   function showError(msg) { errorBox.textContent = msg; errorBox.classList.remove('hidden'); spinner.classList.add('hidden'); }
   function clearError()   { errorBox.classList.add('hidden'); errorBox.textContent = ''; }
@@ -284,9 +323,14 @@
     const actions = document.createElement('div');
     actions.className = 'tile-actions';
 
+    // Fabric Roadmap items have no real "date added" — show their target
+    // quarter instead. Fabric blog posts (same filter line, different
+    // source) still have a real publish date, so they keep it.
     const date = document.createElement('span');
     date.className = 'date';
-    date.textContent = formatArticleDate(article.date);
+    date.textContent = article.source === 'Fabric Roadmap'
+      ? (article.previewDate || article.gaDate || '')
+      : formatArticleDate(article.date);
     actions.appendChild(date);
 
     const favId = article.url || article.title;
@@ -315,9 +359,18 @@
     const now = new Date();
     digestMonthName.textContent = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
 
-    const monthly = articles.filter(a => isThisMonth(a.date));
+    // Fabric Roadmap items have no real "date added" — excluded here and
+    // counted separately below by target quarter instead. Fabric blog
+    // posts (same filter line, real dates) count normally.
+    const monthly = articles.filter(a => a.source !== 'Fabric Roadmap' && isThisMonth(a.date));
     const counts = Object.fromEntries(LINES.map(l => [l.key, 0]));
     for (const a of monthly) if (counts[a.line] !== undefined) counts[a.line]++;
+
+    const currentQuarter = getCurrentQuarterLabel();
+    const fabricRoadmapThisQuarter = articles.filter(a =>
+      a.source === 'Fabric Roadmap' && (a.previewDate === currentQuarter || a.gaDate === currentQuarter)
+    ).length;
+    counts.fabric += fabricRoadmapThisQuarter;
 
     digestStatsEl.innerHTML = '';
     for (const line of LINES) {
@@ -379,7 +432,7 @@
   // ── Render one loaded day ─────────────────────────────────
   function renderDay(dayData) {
     unifiedArticles = buildUnifiedArticles(dayData);
-    unifiedArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    unifiedArticles.sort(compareArticles);
 
     renderDigest(unifiedArticles);
     renderGrid();

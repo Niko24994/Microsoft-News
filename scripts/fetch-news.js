@@ -378,9 +378,12 @@ function updateIndex(today) {
 // underlying data has NO per-feature "date added" field (checked directly —
 // only ReleaseDate, which is the target ship quarter, e.g. "Q3 2026"). Real
 // per-item dates are carried forward from previous runs in main() instead.
+// Scoped to the categories we originally tracked — "SQL database" is
+// Microsoft's current name for the former "Databases" category, so it
+// stays; "Conversational Analytics" is a genuinely new category and is
+// intentionally left out.
 const FABRIC_PRODUCTS = [
   { name: 'Administration, Governance and Security', id: '796a0af7-2dc7-ee11-9079-000d3a3419a8' },
-  { name: 'Conversational Analytics',                id: '951b64e0-a663-f111-a826-6045bd00f798' },
   { name: 'Cosmos DB',                                id: '0e17459c-141b-f011-998a-00224804b6c3' },
   { name: 'Data Engineering',                         id: 'a731518f-36ca-ee11-9079-000d3a341a60' },
   { name: 'Data Factory',                             id: 'a821f83f-dbd6-ee11-9079-000d3a310f67' },
