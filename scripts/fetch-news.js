@@ -175,6 +175,23 @@ function loadUrlSet(filePath) {
   } catch { return new Set(); }
 }
 
+// Fabric Roadmap has no real "date added" per feature — the site only
+// exposes status + preview/GA quarter, not a creation timestamp. Without
+// this, every item would get re-stamped with today's date on every run.
+// Instead, carry the previously-seen date forward day to day so each
+// feature's date reflects when we first saw it, not when we last scraped it.
+function loadFabricDateMap(filePath) {
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const map = new Map();
+    for (const a of data.tabs?.fabricroadmap || []) {
+      const key = a.url || a.title;
+      if (key && a.date) map.set(key, a.date);
+    }
+    return map;
+  } catch { return new Map(); }
+}
+
 async function fetchFeed(url) {
   const timeout = new Promise((_, reject) =>
     setTimeout(() => reject(new Error('Timeout after 8s')), 8000)
@@ -609,6 +626,7 @@ async function main() {
   yesterday.setDate(yesterday.getDate() - 1);
   const yesterdayPath = path.join(NEWS_DIR, `${yesterday.toISOString().slice(0, 10)}.json`);
   const yesterdayUrls = loadUrlSet(yesterdayPath);
+  const yesterdayFabricDates = loadFabricDateMap(yesterdayPath);
   console.log(`  [NEW] Comparing against ${yesterdayUrls.size} articles from yesterday`);
 
   // Fetch in priority order — release plan last so it can't block main data
@@ -628,6 +646,11 @@ async function main() {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const fabricItems = await fetchFabricRoadmap();
+  for (const item of fabricItems) {
+    const key = item.url || item.title;
+    const priorDate = yesterdayFabricDates.get(key);
+    if (priorDate) item.date = priorDate; // seen before — keep its original first-seen date
+  }
 
   const tabs = {
     copilot:       copilotItems,
