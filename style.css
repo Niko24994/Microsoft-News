@@ -1,66 +1,8 @@
 /* ============ TOKENS ============ */
+/* Single fixed dark palette — intentionally does not follow the device's
+   light/dark setting, so the site looks the same on every device. */
 :root {
-  --ground:        #f6f5f2;
-  --surface:       #ffffff;
-  --surface-2:     #f0efea;
-  --edge:          #ddd9d0;
-  --edge-strong:   #c7c2b6;
-  --ink:           #17181a;
-  --ink-muted:     #6b6a63;
-  --ink-faint:     #9c9a90;
-  --accent:        #0f7d72;
-  --accent-ink:    #ffffff;
-
-  --line-fabric:     #1c8f82;
-  --line-automate:   #b8622f;
-  --line-bi:         #a8791f;
-  --line-apps:       #6a5bb0;
-  --line-dataverse:  #3f8a5c;
-  --line-copilot:    #4f63b0;
-  --line-agents:     #a1436a;
-
-  --status-ga:      #1c8f82;
-  --status-rollout: #6a5bb0;
-  --status-planned: #a8791f;
-  --status-new:     #a1436a;
-
-  --font-display: ui-serif, "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
-  --font-body:    -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono:    ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
-
-  --radius: 3px;
-  --max-width: 1180px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ground:      #0c0d0f;
-    --surface:     #131417;
-    --surface-2:   #191b1f;
-    --edge:        #2a2c31;
-    --edge-strong: #3a3d43;
-    --ink:         #eeece6;
-    --ink-muted:   #9a988f;
-    --ink-faint:   #67655d;
-    --accent:      #4fc6b8;
-    --accent-ink:  #04211d;
-
-    --line-fabric:     #4fc6b8;
-    --line-automate:   #e2905c;
-    --line-bi:         #dcb15c;
-    --line-apps:       #a79ae0;
-    --line-dataverse:  #6fc492;
-    --line-copilot:    #8b9de0;
-    --line-agents:     #e0759e;
-
-    --status-ga:      #4fc6b8;
-    --status-rollout: #a79ae0;
-    --status-planned: #dcb15c;
-    --status-new:     #e0759e;
-  }
-}
-
-:root[data-theme="dark"] {
+  color-scheme: dark;
   --ground:      #0c0d0f;
   --surface:     #131417;
   --surface-2:   #191b1f;
@@ -84,6 +26,13 @@
   --status-rollout: #a79ae0;
   --status-planned: #dcb15c;
   --status-new:     #e0759e;
+
+  --font-display: ui-serif, "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  --font-body:    -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+
+  --radius: 3px;
+  --max-width: 1180px;
 }
 
 /* ============ RESET / BASE ============ */
@@ -591,9 +540,15 @@ body.sheet-open { overflow: hidden; }
   .date-picker-wrap { display: none; }
   .date-toggle-btn  { display: flex; }
 
-  .digest-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.75rem 0 1.5rem; }
+  .digest-inner { grid-template-columns: 1fr; gap: 1.35rem; padding: 1.5rem 0 1.4rem; align-items: start; }
   .digest-month { font-size: 1.6rem; }
-  .digest-stats { gap: 1.2rem 1.6rem; }
+  .digest-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem .75rem;
+    width: 100%;
+  }
+  .digest-stat .label { white-space: normal; font-size: .66rem; line-height: 1.25; }
 
   .search { width: 100%; order: 10; margin-left: 0; }
 
