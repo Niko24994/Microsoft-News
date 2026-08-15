@@ -322,9 +322,8 @@
     digestStatsEl.innerHTML = '';
     for (const line of LINES) {
       const n = counts[line.key];
-      if (!n) continue;
       const stat = document.createElement('div');
-      stat.className = 'digest-stat';
+      stat.className = 'digest-stat' + (n === 0 ? ' digest-stat--zero' : '');
       stat.innerHTML = `
         <span class="n">${String(n).padStart(2, '0')}</span>
         <span class="label"><span class="dot line-${line.key}"></span>${line.label}</span>
