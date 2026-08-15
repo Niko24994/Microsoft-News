@@ -414,6 +414,19 @@ function cleanFabricDescription(text) {
     .slice(0, 600);
 }
 
+// The Fabric Roadmap API returns every feature ever shipped, including
+// ones from years ago (e.g. "Q1 2024") — keep only items targeting a
+// quarter within the last ~year so old "Try Now" clutter drops out.
+// (Planned items are always current/future, so this never affects them.)
+function isFabricQuarterRecent(quarterStr) {
+  const m = (quarterStr || '').match(/Q([1-4])\s*(\d{4})/i);
+  if (!m) return true; // no parseable quarter — keep rather than guess
+  const quarterStart = new Date(parseInt(m[2], 10), (parseInt(m[1], 10) - 1) * 3, 1);
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+  return quarterStart >= oneYearAgo;
+}
+
 async function fetchFabricRoadmap() {
   console.log('\n[fabricroadmap] Loading via fabric-json API…');
   const allFeatures = [];
@@ -435,8 +448,11 @@ async function fetchFabricRoadmap() {
       const data = JSON.parse(sanitized);
       const items = data.results || [];
 
+      let kept = 0;
       for (const item of items) {
         const isPreview = item.ReleaseType === 'Public preview';
+        if (!isFabricQuarterRecent(item.ReleaseDate)) continue;
+        kept++;
         allFeatures.push({
           title:       (item.FeatureName || '').trim(),
           category:    name,
@@ -447,7 +463,7 @@ async function fetchFabricRoadmap() {
           url: `https://roadmap.fabric.microsoft.com/?product=${encodeURIComponent(fabricProductSlug(name))}#plan-${item.ReleaseItemID}`,
         });
       }
-      console.log(`  → ${name}: ${items.length} features`);
+      console.log(`  → ${name}: ${kept}/${items.length} features (within last year)`);
     } catch (err) {
       console.warn(`  [WARN] ${name} fetch failed: ${err.message}`);
     }
