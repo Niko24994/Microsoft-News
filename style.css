@@ -220,7 +220,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   border-bottom: 1px solid var(--edge);
 }
 .digest-inner {
-  padding: 2.5rem 0 2.25rem;
+  padding: 1.75rem 0 1.6rem;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 2.5rem;
@@ -228,22 +228,22 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 .digest-month {
   font-family: var(--font-display);
-  font-size: 3.6rem;
+  font-size: 1.9rem;
   font-weight: 600;
-  line-height: .9;
-  letter-spacing: -.02em;
+  line-height: .95;
+  letter-spacing: -.01em;
   white-space: nowrap;
 }
 .digest-month em {
   font-style: normal;
   display: block;
-  font-size: .82rem;
+  font-size: .68rem;
   font-family: var(--font-body);
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: .5rem;
+  margin-bottom: .35rem;
 }
 .digest-stats {
   display: flex;
@@ -589,7 +589,7 @@ body.sheet-open { overflow: hidden; }
   .filterbar { top: 61px; }
 
   .digest-inner { grid-template-columns: 1fr; gap: 1rem; padding: 1.75rem 0 1.5rem; }
-  .digest-month { font-size: 2.5rem; }
+  .digest-month { font-size: 1.6rem; }
   .digest-stats { gap: 1.2rem 1.6rem; }
 
   .search { width: 100%; order: 10; margin-left: 0; }

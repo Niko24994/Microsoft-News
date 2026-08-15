@@ -10,9 +10,9 @@
   const LINES = [
     { key: 'fabric',    label: 'Fabric' },
     { key: 'automate',  label: 'Power Automate' },
+    { key: 'dataverse', label: 'Dataverse' },
     { key: 'bi',        label: 'Power BI' },
     { key: 'apps',      label: 'Power Apps' },
-    { key: 'dataverse', label: 'Dataverse' },
     { key: 'copilot',   label: 'Copilot' },
     { key: 'agents',    label: 'Agents' },
   ];
