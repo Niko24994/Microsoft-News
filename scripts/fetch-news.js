@@ -1,7 +1,6 @@
 import Parser from 'rss-parser';
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer';
 
 const parser = new Parser({ timeout: 10000 });
 const NEWS_DIR = path.resolve('public/news');
@@ -367,252 +366,107 @@ function updateIndex(today) {
   console.log(`\n[INDEX] ${dates.length} days available, latest: ${today}`);
 }
 
-// ── Fabric Roadmap scraper (Puppeteer) ───────────────────────────────────────
-
-// Known roadmap categories from roadmap.fabric.microsoft.com left sidebar.
-// These are deliberately hardcoded to avoid accidentally navigating forum pages.
-const FABRIC_ROADMAP_CATEGORIES = [
-  'Administration, Governance and Security',
-  'Cosmos DB',
-  'Data Engineering',
-  'Data Factory',
-  'Data Science',
-  'Data Warehouse',
-  'Fabric Developer Experiences',
-  'Fabric Ecosystem',
-  'IQ',
-  'OneLake',
-  'Power BI',
-  'Real-Time Intelligence',
-  'Databases',
+// ── Fabric Roadmap (direct API) ────────────────────────────────────────────
+// roadmap.fabric.microsoft.com is a SPA, but it loads each category's data
+// from a plain JSON endpoint: /fabric-json/?productId=<guid>. Fetching that
+// directly is far more reliable than scraping the rendered page (no missed
+// items, no fragile DOM guessing) — and gives a stable per-feature ID plus
+// the full feature description, neither of which the rendered page exposes.
+//
+// The productId GUIDs below were captured from the site's product-filter
+// list (li[id]) — Microsoft doesn't publish them anywhere else. Note: the
+// underlying data has NO per-feature "date added" field (checked directly —
+// only ReleaseDate, which is the target ship quarter, e.g. "Q3 2026"). Real
+// per-item dates are carried forward from previous runs in main() instead.
+const FABRIC_PRODUCTS = [
+  { name: 'Administration, Governance and Security', id: '796a0af7-2dc7-ee11-9079-000d3a3419a8' },
+  { name: 'Conversational Analytics',                id: '951b64e0-a663-f111-a826-6045bd00f798' },
+  { name: 'Cosmos DB',                                id: '0e17459c-141b-f011-998a-00224804b6c3' },
+  { name: 'Data Engineering',                         id: 'a731518f-36ca-ee11-9079-000d3a341a60' },
+  { name: 'Data Factory',                             id: 'a821f83f-dbd6-ee11-9079-000d3a310f67' },
+  { name: 'Data Science',                             id: '0522b590-dcd6-ee11-9079-000d3a310f67' },
+  { name: 'Data Warehouse',                           id: 'fa3a73cd-dcd6-ee11-9079-000d3a310f67' },
+  { name: 'Fabric Developer Experiences',             id: 'c6da6b3b-ded6-ee11-9079-000d3a310f67' },
+  { name: 'Fabric Ecosystem',                         id: '94e84e43-aa69-f011-bec2-00224804b6c3' },
+  { name: 'IQ',                                       id: 'cef5a30d-562f-f011-8c4d-6045bd096d8f' },
+  { name: 'OneLake',                                  id: '338c69fe-dcd6-ee11-9079-000d3a310f67' },
+  { name: 'Power BI',                                 id: '642a8375-05fc-ee11-a1ff-000d3a341a60' },
+  { name: 'Real-Time Intelligence',                   id: '58cb90aa-4203-ef11-a1fd-000d3a36eea4' },
+  { name: 'SQL database',                             id: '347da228-ea54-ef11-a317-0022480a694f' },
 ];
 
-// Titles that are actually UI labels / filter buttons / empty-state messages — not real features
-const FABRIC_INVALID_TITLES = new Set([
-  'All features planned',
-  'All features planned and released',
-  'All features recently released',
-  'Planned',
-  'Try Now',
-  'All',
-]);
-// Prefix patterns that indicate non-feature content
-const FABRIC_INVALID_PREFIXES = [
-  "we didn't find any results",
-  "no results",
-  "no features",
-];
+// Matches the site's own URL scheme: lowercase product name, whitespace
+// stripped, other punctuation (commas, hyphens) left as-is.
+function fabricProductSlug(name) {
+  return name.toLowerCase().replace(/\s+/g, '');
+}
 
-// Extract feature items currently visible in the DOM for a given category.
-// Called repeatedly while scrolling to handle lazy-loaded / virtual-scrolled pages.
-function extractVisibleFeatures(catName, invalidTitles, invalidPrefixes) {
-  const results    = [];
-  const STATUS_ARR = ['Planned', 'Try Now'];
-
-  // Use innerText (rendered text only, ignores SVG titles and display:none)
-  // so we reliably find only the visible badge elements.
-  const allEls = [...document.querySelectorAll('*')];
-
-  // Pre-filter by textContent (cheap), then verify with innerText (accurate)
-  const candidates = allEls.filter(el => {
-    const tc = el.textContent.trim();
-    return tc === 'Planned' || tc === 'Try Now';
-  });
-
-  // Keep only the deepest element in each parent→child chain
-  // (avoids processing both a wrapper div AND its inner span for the same badge)
-  const badges = candidates.filter(el =>
-    !candidates.some(other => other !== el && el.contains(other))
-  );
-
-  const seen = new Set();
-
-  for (const badge of badges) {
-    // Use innerText for the status text — empty string means element is hidden
-    const statusText = (badge.innerText || '').trim();
-    if (!STATUS_ARR.includes(statusText)) continue; // hidden or mis-matched
-
-    // Walk up to find a row container that:
-    //   • has a link inside (feature titles are links on Fabric Roadmap)
-    //   • has reasonable innerText length (not a whole-section wrapper)
-    let row = badge.parentElement;
-    let found = false;
-    for (let i = 0; i < 14 && row; i++) {
-      const innerLen = (row.innerText || '').trim().length;
-      if (innerLen > 15 && innerLen < 2000 && row.querySelector('a[href]')) {
-        found = true;
-        break;
-      }
-      row = row.parentElement;
-    }
-    if (!found || !row) continue;
-
-    // Title: prefer the first link text in the row
-    const rowLink = row.querySelector('a[href]');
-    let title = null;
-    if (rowLink) {
-      const lt = (rowLink.innerText || rowLink.textContent || '').trim();
-      if (lt.length > 8 && !STATUS_ARR.includes(lt) &&
-          !invalidTitles.includes(lt) &&
-          !invalidPrefixes.some(p => lt.toLowerCase().startsWith(p)) &&
-          lt !== catName) {
-        title = lt;
-      }
-    }
-
-    // Fallback: first non-date, non-badge line in the row's innerText
-    if (!title) {
-      const isDateLike = s => /^Q[1-4]\s*\d{4}$|^\d{4}$|^H[12]/.test(s);
-      const isBadgeStr = s =>
-        ['planned','try now','public preview','general availability','preview','ga']
-          .includes(s.toLowerCase());
-      const lines = (row.innerText || '').split('\n').map(l => l.trim()).filter(Boolean);
-      title = lines.find(l =>
-        l.length > 8 && !isDateLike(l) && !isBadgeStr(l) &&
-        !invalidTitles.includes(l) &&
-        !invalidPrefixes.some(p => l.toLowerCase().startsWith(p)) &&
-        l !== catName
-      );
-    }
-
-    if (!title || seen.has(title)) continue;
-    seen.add(title);
-
-    const ft = row.innerText || '';
-    const pm = ft.match(/Public Preview\s*(Q[1-4]\s*\d{4}|\d{4})/i);
-    const gm = ft.match(/General Availability\s*(Q[1-4]\s*\d{4}|\d{4})/i);
-
-    results.push({
-      title,
-      category:    catName,
-      status:      statusText,
-      previewDate: pm ? pm[1].replace(/\s+/, ' ') : '',
-      gaDate:      gm ? gm[1].replace(/\s+/, ' ') : '',
-      url:         rowLink ? rowLink.href : '',
-    });
-  }
-
-  return results;
+// Feature descriptions come with inline `**bold**`/`***bold***` markers
+// and no paragraph breaks — strip the markers, collapse whitespace, trim.
+function cleanFabricDescription(text) {
+  return (text || '')
+    .replace(/\*+/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 600);
 }
 
 async function fetchFabricRoadmap() {
-  console.log('\n[fabricroadmap] Launching headless browser…');
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-  });
+  console.log('\n[fabricroadmap] Loading via fabric-json API…');
+  const allFeatures = [];
 
-  try {
-    const page = await browser.newPage();
-    await page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
-      '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
-    );
-    // Wider viewport renders more grid columns → more items visible per scroll step
-    await page.setViewport({ width: 1440, height: 900 });
+  for (const { name, id } of FABRIC_PRODUCTS) {
+    const url = `https://roadmap.fabric.microsoft.com/fabric-json/?productId=${id}`;
+    try {
+      const res = await Promise.race([
+        fetch(url),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout after 10s')), 10000)),
+      ]);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      // Some FeatureDescription values contain raw control characters or
+      // stray backslashes that break strict JSON parsing — sanitize first.
+      const raw = await res.text();
+      const sanitized = raw
+        .replace(/[\x00-\x1F]/g, ' ')
+        .replace(/\\(?!["\\/bfnrtu])/g, '\\\\');
+      const data = JSON.parse(sanitized);
+      const items = data.results || [];
 
-    console.log('  → Navigating to roadmap.fabric.microsoft.com…');
-    await page.goto('https://roadmap.fabric.microsoft.com/', {
-      waitUntil: 'networkidle2',
-      timeout: 60000,
-    });
-    await sleep(3000);
-
-    const allFeatures = [];
-
-    for (const catName of FABRIC_ROADMAP_CATEGORIES) {
-      console.log(`  → Category: ${catName}`);
-
-      // Scroll to top so the sidebar link is visible before clicking
-      await page.evaluate(() => window.scrollTo(0, 0));
-      await sleep(300);
-
-      const clicked = await page.evaluate((name) => {
-        const all = [...document.querySelectorAll('a, button, li, [role="menuitem"]')];
-        // Exact match first; then prefix match for "Category (22)" style labels
-        const match =
-          all.find(el => el.textContent.trim() === name) ||
-          all.find(el => {
-            const t = el.textContent.trim();
-            return t.startsWith(name) && (t.length === name.length || /^[\s(]/.test(t[name.length]));
-          });
-        if (match) { match.click(); return true; }
-        return false;
-      }, catName);
-
-      if (!clicked) {
-        console.log(`    → Not found, skipping`);
-        continue;
+      for (const item of items) {
+        const isPreview = item.ReleaseType === 'Public preview';
+        allFeatures.push({
+          title:       (item.FeatureName || '').trim(),
+          category:    name,
+          status:      item.ReleaseStatus === 'Shipped' ? 'Try Now' : 'Planned',
+          previewDate: isPreview ? item.ReleaseDate : '',
+          gaDate:      !isPreview ? item.ReleaseDate : '',
+          description: cleanFabricDescription(item.FeatureDescription),
+          url: `https://roadmap.fabric.microsoft.com/?product=${encodeURIComponent(fabricProductSlug(name))}#plan-${item.ReleaseItemID}`,
+        });
       }
-      await sleep(2000); // Wait for filtered content to render
-
-      // --- Scroll-based extraction ---
-      // Handles lazy-loaded AND virtual-scrolled pages by collecting items
-      // at every scroll position and deduplicating by title.
-      const seenTitles = new Set();
-      const categoryFeatures = [];
-
-      const collectVisible = async () => {
-        const visible = await page.evaluate(
-          extractVisibleFeatures,
-          catName, [...FABRIC_INVALID_TITLES], FABRIC_INVALID_PREFIXES
-        );
-        let foundNew = false;
-        for (const f of visible) {
-          if (!seenTitles.has(f.title)) {
-            seenTitles.add(f.title);
-            categoryFeatures.push(f);
-            foundNew = true;
-          }
-        }
-        return foundNew;
-      };
-
-      // Initial extraction (top of page)
-      await collectVisible();
-
-      // Scroll down in steps; stop when bottom is reached or nothing new appears
-      let noNewStreak = 0;
-      for (let step = 1; step <= 40; step++) {
-        await page.evaluate((s) => window.scrollTo(0, s * 500), step);
-        await sleep(700); // Give the SPA time to render newly visible items
-
-        const foundNew = await collectVisible();
-        noNewStreak = foundNew ? 0 : noNewStreak + 1;
-
-        const atBottom = await page.evaluate(() =>
-          Math.ceil(window.scrollY + window.innerHeight) >= document.body.scrollHeight
-        );
-        if (atBottom || noNewStreak >= 5) break;
-      }
-
-      console.log(`    → ${categoryFeatures.length} features`);
-      allFeatures.push(...categoryFeatures);
+      console.log(`  → ${name}: ${items.length} features`);
+    } catch (err) {
+      console.warn(`  [WARN] ${name} fetch failed: ${err.message}`);
     }
-
-    console.log(`\n  → Total Fabric Roadmap features: ${allFeatures.length}`);
-
-    return allFeatures.map(f => ({
-      title:   f.title,
-      summary: [
-        f.previewDate ? `Public Preview: ${f.previewDate}` : '',
-        f.gaDate      ? `General Availability: ${f.gaDate}` : '',
-      ].filter(Boolean).join(' · ') || 'See Microsoft Fabric Roadmap for details.',
-      source:      'Fabric Roadmap',
-      product:     f.category,
-      status:      f.status,
-      url:         f.url || 'https://roadmap.fabric.microsoft.com/',
-      date:        new Date().toISOString(),
-      previewDate: f.previewDate || undefined,
-      gaDate:      f.gaDate      || undefined,
-    }));
-
-  } catch (err) {
-    console.warn(`  [WARN] Fabric Roadmap scrape failed: ${err.message}`);
-    return [];
-  } finally {
-    await browser.close();
+    await sleep(200);
   }
+
+  console.log(`\n  → Total Fabric Roadmap features: ${allFeatures.length}`);
+
+  return allFeatures.map(f => ({
+    title:   f.title,
+    summary: f.description || [
+      f.previewDate ? `Public Preview: ${f.previewDate}` : '',
+      f.gaDate      ? `General Availability: ${f.gaDate}` : '',
+    ].filter(Boolean).join(' · ') || 'See Microsoft Fabric Roadmap for details.',
+    source:      'Fabric Roadmap',
+    product:     f.category,
+    status:      f.status,
+    url:         f.url,
+    date:        new Date().toISOString(), // carried forward from prior runs in main() when unchanged
+    previewDate: f.previewDate || undefined,
+    gaDate:      f.gaDate      || undefined,
+  }));
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
