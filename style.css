@@ -306,6 +306,33 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-variant-numeric: tabular-nums;
 }
 
+/* ============ Fabric status sub-filter ─────────────────── */
+/* Only shown while the Fabric chip is active — narrows Fabric Roadmap
+   items by Planned / Try Now on top of the main line filter. */
+.fabric-status-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 0 0;
+  margin-top: .6rem;
+  border-top: 1px solid var(--edge);
+}
+.fabric-status-bar[hidden] { display: none; }
+
+.fabric-status-label {
+  font-size: .66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--ink-faint);
+  margin-right: .1rem;
+}
+
+.chip-sm {
+  padding: .22rem .65rem;
+  font-size: .7rem;
+}
+
 /* ============ GRID / TILES ============ */
 .grid-section { flex: 1; padding: 2.25rem 0 4rem; position: relative; }
 

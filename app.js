@@ -31,7 +31,8 @@
     'Copilot Studio':          'copilot',
   };
 
-  let activeChip    = 'all';   // 'all' | 'saved' | one of LINES[].key
+  let activeChip         = 'all';   // 'all' | 'saved' | one of LINES[].key
+  let activeFabricStatus = 'all';   // 'all' | 'Planned' | 'Try Now' — only applies when activeChip === 'fabric'
   let searchQuery   = '';
   let unifiedArticles = [];    // deduped articles for the currently loaded day
 
@@ -386,12 +387,35 @@
   }
 
   // ── Filter chips ───────────────────────────────────────────
+  const fabricStatusBarEl = $('fabricStatusBar');
+
   function wireFilterChips() {
-    document.querySelectorAll('.chip').forEach(chip => {
+    document.querySelectorAll('.filterbar-inner .chip').forEach(chip => {
       chip.addEventListener('click', () => {
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.filterbar-inner .chip').forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
         activeChip = chip.dataset.chip;
+
+        // Fabric status sub-filter only makes sense while viewing Fabric —
+        // show/hide it and reset its selection whenever we enter/leave Fabric.
+        const isFabric = activeChip === 'fabric';
+        if (fabricStatusBarEl) fabricStatusBarEl.hidden = !isFabric;
+        if (!isFabric) {
+          activeFabricStatus = 'all';
+          fabricStatusBarEl?.querySelectorAll('.chip').forEach(c =>
+            c.classList.toggle('active', c.dataset.status === 'all')
+          );
+        }
+
+        renderGrid();
+      });
+    });
+
+    fabricStatusBarEl?.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        fabricStatusBarEl.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFabricStatus = chip.dataset.status;
         renderGrid();
       });
     });
@@ -411,6 +435,9 @@
       list = unifiedArticles;
     } else {
       list = unifiedArticles.filter(a => a.line === activeChip);
+      if (activeChip === 'fabric' && activeFabricStatus !== 'all') {
+        list = list.filter(a => a.status === activeFabricStatus);
+      }
     }
 
     if (searchQuery) {
