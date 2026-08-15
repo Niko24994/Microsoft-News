@@ -2,12 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- viewport-fit=cover enables env(safe-area-inset-*) for iPhone X notch -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Microsoft Roadmaps & Releases</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- PWA manifest -->
   <link rel="manifest" href="manifest.json" />
@@ -17,37 +13,37 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MS News" />
 
-  <!-- Apple Touch Icons (v2 filenames force iOS cache refresh) -->
-  <link rel="apple-touch-icon"             href="icons/apple-touch-icon-v2.png" />
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon"                 href="icons/apple-touch-icon-v2.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-v2.png" />
   <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167-v2.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152-v2.png" />
 
   <!-- Theme colour -->
-  <meta name="theme-color" content="#0078d4" />
+  <meta name="theme-color" content="#0f7d72" />
 
-  <link rel="stylesheet" href="style.css?v=20260526f" />
+  <link rel="stylesheet" href="style.css?v=20260815a" />
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <span class="brand-icon">◈</span>
-        <span class="brand-name">Microsoft Roadmaps & Releases</span>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div class="wordmark">
+        Roadmaps &amp; Releases
+        <small>Microsoft Power Platform &middot; Fabric &middot; Copilot</small>
       </div>
-      <div class="header-controls">
-        <span class="updated-label" id="updatedLabel"></span>
+      <div class="masthead-controls">
+        <span class="masthead-meta" id="updatedLabel"></span>
 
         <!-- Desktop: normal date select -->
         <div class="date-picker-wrap">
-          <label for="datePicker" class="sr-only">Datum auswählen</label>
-          <select id="datePicker" class="date-picker" aria-label="Datum auswählen"></select>
+          <label for="datePicker" class="sr-only">Datum ausw&auml;hlen</label>
+          <select id="datePicker" class="date-picker" aria-label="Datum ausw&auml;hlen"></select>
         </div>
 
         <!-- Mobile only: calendar icon button that opens the bottom sheet -->
         <button class="date-toggle-btn" id="dateToggleBtn"
                 aria-label="Select date" aria-expanded="false" aria-controls="dateSheet">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+          <svg width="14" height="14" viewBox="0 0 15 15" fill="none"
                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x=".75" y="2" width="13.5" height="12.25" rx="2" stroke="currentColor" stroke-width="1.4"/>
             <line x1=".75" y1="6" x2="14.25" y2="6" stroke="currentColor" stroke-width="1.4"/>
@@ -60,43 +56,51 @@
     </div>
   </header>
 
-  <!-- Tabs: data-icon / data-short drive the mobile bottom nav icons & labels -->
-  <nav class="tabs" role="tablist" aria-label="Roadmap areas">
-    <button class="tab active" role="tab" aria-selected="true"
-            data-tab="summary"       data-icon="◉" data-short="Month"
-            aria-controls="panel-summary">This Month</button>
-    <button class="tab"        role="tab" aria-selected="false"
-            data-tab="releasenotes"  data-icon="◆" data-short="Releases"
-            aria-controls="panel-releasenotes">Release Notes</button>
-    <button class="tab"        role="tab" aria-selected="false"
-            data-tab="fabricroadmap" data-icon="◈" data-short="Fabric"
-            aria-controls="panel-fabricroadmap">Fabric Roadmap</button>
-    <button class="tab"        role="tab" aria-selected="false"
-            data-tab="copilot"       data-icon="⊕" data-short="Copilot"
-            aria-controls="panel-copilot">Microsoft Copilot</button>
-    <button class="tab"        role="tab" aria-selected="false"
-            data-tab="agents"        data-icon="⚙" data-short="Agents"
-            aria-controls="panel-agents">Microsoft Agents</button>
-    <button class="tab"        role="tab" aria-selected="false"
-            data-tab="saved"         data-icon="★" data-short="Saved"
-            aria-controls="panel-saved">Gespeichert</button>
+  <section class="digest">
+    <div class="wrap digest-inner">
+      <div class="digest-month">
+        <em id="digestEyebrow">Dieser Monat</em>
+        <span id="digestMonthName">&nbsp;</span>
+      </div>
+      <div class="digest-stats" id="digestStats"></div>
+    </div>
+  </section>
+
+  <nav class="filterbar" id="filterbar">
+    <div class="wrap filterbar-inner">
+      <button class="chip active" data-chip="all">Alle</button>
+      <button class="chip" data-chip="fabric"><span class="dot line-fabric"></span>Fabric</button>
+      <button class="chip" data-chip="automate"><span class="dot line-automate"></span>Power Automate</button>
+      <button class="chip" data-chip="bi"><span class="dot line-bi"></span>Power BI</button>
+      <button class="chip" data-chip="apps"><span class="dot line-apps"></span>Power Apps</button>
+      <button class="chip" data-chip="dataverse"><span class="dot line-dataverse"></span>Dataverse</button>
+      <button class="chip" data-chip="copilot"><span class="dot line-copilot"></span>Copilot</button>
+      <button class="chip" data-chip="agents"><span class="dot line-agents"></span>Agents</button>
+      <button class="chip chip-saved" data-chip="saved">&#9733; Gespeichert</button>
+      <div class="search">
+        <label for="searchInput" class="sr-only">Suche</label>
+        <input type="text" id="searchInput" placeholder="Suche&hellip;" autocomplete="off" />
+      </div>
+      <span class="result-count" id="resultCount"></span>
+    </div>
   </nav>
 
-  <main>
-    <div id="panel-summary"       class="tab-panel active" role="tabpanel"></div>
-    <div id="panel-releasenotes"  class="tab-panel"        role="tabpanel"></div>
-    <div id="panel-fabricroadmap" class="tab-panel"        role="tabpanel"></div>
-    <div id="panel-copilot"       class="tab-panel"        role="tabpanel"></div>
-    <div id="panel-agents"        class="tab-panel"        role="tabpanel"></div>
-    <div id="panel-saved"         class="tab-panel"        role="tabpanel"></div>
+  <main class="grid-section">
+    <div class="wrap">
+      <div class="grid" id="grid"></div>
+      <p id="emptyState" class="empty-state hidden">Keine Eintr&auml;ge gefunden.</p>
+    </div>
     <div id="errorBox"       class="error-box hidden"></div>
-    <div id="loadingSpinner" class="spinner hidden" aria-live="polite" aria-label="Wird geladen…">
+    <div id="loadingSpinner" class="spinner hidden" aria-live="polite" aria-label="Wird geladen&hellip;">
       <span class="spinner-ring"></span>
     </div>
   </main>
 
   <footer>
-    <span>Data from public Microsoft RSS feeds · Hosted on GitHub Pages · Internal tool</span>
+    <div class="wrap footer-inner">
+      <span>Daten aus &ouml;ffentlichen Microsoft-RSS-Feeds &amp; Fabric Roadmap</span>
+      <span>Gehostet auf GitHub Pages</span>
+    </div>
   </footer>
 
   <!-- Mobile date picker bottom sheet -->
@@ -109,8 +113,8 @@
     </div>
   </div>
 
-  <button id="backToTop" class="back-to-top" aria-label="Scroll to top">↑</button>
-  <script src="app.js?v=20260526f"></script>
+  <button id="backToTop" class="back-to-top" aria-label="Scroll to top">&uarr;</button>
+  <script src="app.js?v=20260815a"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () =>

@@ -1,14 +1,58 @@
 (() => {
   'use strict';
 
-  const INDEX_URL    = './public/news/index.json';
-  const FAVS_KEY     = 'msroadmap_favorites';
-  const cache        = {};
-  let currentDate    = null;
-  let currentTab     = 'summary';
+  const INDEX_URL = './public/news/index.json';
+  const FAVS_KEY   = 'msroadmap_favorites';
+  const cache = {};
+  let currentDate = null;
+
+  // ── Product lines: single source of truth for filter chips, digest, colours ──
+  const LINES = [
+    { key: 'fabric',    label: 'Fabric' },
+    { key: 'automate',  label: 'Power Automate' },
+    { key: 'bi',        label: 'Power BI' },
+    { key: 'apps',      label: 'Power Apps' },
+    { key: 'dataverse', label: 'Dataverse' },
+    { key: 'copilot',   label: 'Copilot' },
+    { key: 'agents',    label: 'Agents' },
+  ];
+  const LINE_LABEL = Object.fromEntries(LINES.map(l => [l.key, l.label]));
+
+  // Maps a release-notes article's `.product` field to a filter-chip line
+  const RELEASE_PRODUCT_TO_LINE = {
+    'Fabric':                'fabric',
+    'Power BI':               'bi',
+    'Power Apps':              'apps',
+    'Power Automate':          'automate',
+    'Power Pages':              'apps',
+    'Power Platform':           'apps',
+    'Power Platform Admin':     'apps',
+    'Dataverse':              'dataverse',
+    'Copilot Studio':          'copilot',
+  };
+
+  let activeChip    = 'all';   // 'all' | 'saved' | one of LINES[].key
+  let searchQuery   = '';
+  let unifiedArticles = [];    // deduped articles for the currently loaded day
+
+  const $ = id => document.getElementById(id);
+  const datePicker      = $('datePicker');
+  const updatedLabel    = $('updatedLabel');
+  const errorBox        = $('errorBox');
+  const spinner         = $('loadingSpinner');
+  const dateToggleBtn   = $('dateToggleBtn');
+  const dateToggleLabel = $('dateToggleLabel');
+  const dateSheetEl     = $('dateSheet');
+  const dateSheetBody   = $('dateSheetBody');
+  const gridEl          = $('grid');
+  const emptyStateEl    = $('emptyState');
+  const resultCountEl   = $('resultCount');
+  const searchInputEl   = $('searchInput');
+  const digestMonthName = $('digestMonthName');
+  const digestStatsEl   = $('digestStats');
 
   // ── Favourites (localStorage) ────────────────────────────────
-  // Stored as a Map: articleId (url|title) → full article object
+  // Stored as a Map: articleId (url|title) → full enriched article object
   let favorites = new Map();
 
   function loadFavorites() {
@@ -26,56 +70,15 @@
 
   function isFavorite(id) { return favorites.has(id); }
 
-  function toggleFavorite(article, isRoadmap) {
+  function toggleFavorite(article) {
     const id = article.url || article.title;
-    if (favorites.has(id)) {
-      favorites.delete(id);
-    } else {
-      favorites.set(id, { ...article, _isRoadmap: isRoadmap });
-    }
+    if (favorites.has(id)) favorites.delete(id);
+    else favorites.set(id, article);
     saveFavorites();
-    // Refresh every star button for this article (may appear in multiple tabs)
-    document.querySelectorAll('.fav-btn').forEach(btn => {
-      if (btn.dataset.favId === id) syncStarBtn(btn);
-    });
-    // Keep Gespeichert panel current
-    renderFavoritesPanel();
-  }
-
-  function syncStarBtn(btn) {
-    const saved = isFavorite(btn.dataset.favId);
-    btn.classList.toggle('fav-btn--saved', saved);
-    btn.setAttribute('aria-pressed', String(saved));
-    btn.title = saved ? 'Remove from saved' : 'Save';
+    renderGrid();
   }
 
   loadFavorites();
-
-  // Tabs with real M365 Roadmap data → status filter + search
-  const ROADMAP_TABS  = new Set(['copilot', 'agents']);
-  // Product-filter tabs
-  const RELEASE_TABS  = new Set(['releasenotes', 'fabricroadmap']);
-
-  const activeFilters  = {};   // status or product filter per tab
-  const searchQueries  = {};   // search string per tab
-
-  const $ = id => document.getElementById(id);
-  const datePicker      = $('datePicker');
-  const updatedLabel    = $('updatedLabel');
-  const errorBox        = $('errorBox');
-  const spinner         = $('loadingSpinner');
-  const dateToggleBtn   = $('dateToggleBtn');
-  const dateToggleLabel = $('dateToggleLabel');
-  const dateSheetEl     = $('dateSheet');
-  const dateSheetBody   = $('dateSheetBody');
-  const panels = {
-    summary:       $('panel-summary'),
-    copilot:       $('panel-copilot'),
-    agents:        $('panel-agents'),
-    releasenotes:  $('panel-releasenotes'),
-    fabricroadmap: $('panel-fabricroadmap'),
-    saved:         $('panel-saved'),
-  };
 
   // ── Mobile date bottom sheet ─────────────────────────────
   const isMobileView = () => window.matchMedia('(max-width: 767px)').matches;
@@ -101,7 +104,6 @@
       .toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
   }
 
-  // Move the <select> element between header and bottom-sheet depending on viewport
   function positionDatePicker() {
     const wrap = document.querySelector('.date-picker-wrap');
     if (!wrap || !dateSheetBody) return;
@@ -113,7 +115,6 @@
     }
   }
 
-  // Wire up bottom-sheet interactions
   dateToggleBtn?.addEventListener('click', openDateSheet);
   dateSheetEl?.addEventListener('click', e => {
     if (e.target === dateSheetEl || e.target === $('dateSheetBackdrop')) closeDateSheet();
@@ -143,427 +144,246 @@
     catch { return ''; }
   }
 
+  function isThisMonth(iso) {
+    try {
+      const d = new Date(iso);
+      const now = new Date();
+      return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+    } catch { return false; }
+  }
+
   // ── UI helpers ───────────────────────────────────────────
   function showError(msg) { errorBox.textContent = msg; errorBox.classList.remove('hidden'); spinner.classList.add('hidden'); }
   function clearError()   { errorBox.classList.add('hidden'); errorBox.textContent = ''; }
   function setLoading(on) { spinner.classList.toggle('hidden', !on); }
 
-  // ── CSS class helpers ────────────────────────────────────
-  function slugify(s) { return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  // ── Build the unified, deduplicated article list ─────────
+  // Same article can appear in multiple source tabs (e.g. an M365 Roadmap
+  // item matching both the Copilot and Agents keyword sets) — first tab
+  // to claim a URL wins, later duplicates are skipped.
+  function releaseNoteLine(article) {
+    return RELEASE_PRODUCT_TO_LINE[article.product] || 'apps';
+  }
 
-  // ── Build a single card ──────────────────────────────────
-  function createCard(article, isRoadmap) {
-    const card = document.createElement('article');
-    card.className = isRoadmap ? 'card card--roadmap' : 'card';
+  function buildUnifiedArticles(dayData) {
+    const tabs = dayData.tabs || {};
+    const seen = new Set();
+    const unified = [];
+
+    function addAll(articles, lineFor) {
+      for (const a of articles || []) {
+        const id = a.url || a.title;
+        if (!id || seen.has(id)) continue;
+        seen.add(id);
+        const line = typeof lineFor === 'function' ? lineFor(a) : lineFor;
+        unified.push({ ...a, line });
+      }
+    }
+
+    addAll(tabs.fabricroadmap, 'fabric');
+    addAll(tabs.releasenotes,  releaseNoteLine);
+    addAll(tabs.copilot,       'copilot');
+    addAll(tabs.agents,        'agents');
+
+    return unified;
+  }
+
+  // ── Eyebrow label per article (line name + specific detail) ──
+  function eyebrowFor(article) {
+    if (article.source === 'Fabric Roadmap' && article.product) {
+      return `Fabric &middot; ${escapeHtml(article.product)}`;
+    }
+    if (article.line === 'fabric' && article.product && article.product !== 'Fabric') {
+      return `Fabric &middot; ${escapeHtml(article.product)}`;
+    }
+    // Release-notes items: product name is already descriptive
+    if (article.product && RELEASE_PRODUCT_TO_LINE[article.product]) {
+      return escapeHtml(article.product);
+    }
+    // Roadmap-sourced copilot/agents items: no `.product`, use `.source`
+    if (article.source) {
+      return `${LINE_LABEL[article.line]} &middot; ${escapeHtml(article.source)}`;
+    }
+    return LINE_LABEL[article.line] || '';
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    }[c]));
+  }
+
+  // ── Status info per article (colour dot + label) ──────────
+  function statusInfoFor(article) {
+    if (article.status) {
+      const map = {
+        'Launched':        { cls: 'status-ga',       label: article.status },
+        'Rolling out':      { cls: 'status-rollout', label: article.status },
+        'In development':   { cls: 'status-planned', label: article.status },
+        'Cancelled':        { cls: 'line-agents',    label: article.status },
+      };
+      return map[article.status] || { cls: 'status-planned', label: article.status };
+    }
+    if (article.planned) {
+      const m = (article.waveLabel || '').match(/(\d{4})\s+Release\s+Wave\s+(\d)/i);
+      return { cls: 'status-planned', label: m ? `Planned &middot; ${m[1]} W${m[2]}` : 'Planned' };
+    }
+    if (article.isNew) {
+      return { cls: 'status-new', label: 'Neu' };
+    }
+    return null;
+  }
+
+  // ── Build a single tile ───────────────────────────────────
+  function createTile(article) {
+    const tile = document.createElement('article');
+    tile.className = 'tile';
+    tile.dataset.line = article.line;
+    tile.dataset.id = article.url || article.title;
+    tile.dataset.search = (article.title + ' ' + (article.summary || '')).toLowerCase();
+
+    const eyebrow = document.createElement('div');
+    eyebrow.className = 'tile-eyebrow';
+    eyebrow.innerHTML = `<span class="dot line-${article.line}"></span>${eyebrowFor(article)}`;
+    tile.appendChild(eyebrow);
+
+    const title = document.createElement('h3');
+    title.className = 'tile-title';
+    if (article.url) {
+      const a = document.createElement('a');
+      a.href = article.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = article.title || '';
+      title.appendChild(a);
+    } else {
+      title.textContent = article.title || '';
+    }
+    tile.appendChild(title);
+
+    if (article.summary) {
+      const desc = document.createElement('p');
+      desc.className = 'tile-desc';
+      desc.textContent = article.summary;
+      tile.appendChild(desc);
+    }
 
     const meta = document.createElement('div');
-    meta.className = 'card-meta';
+    meta.className = 'tile-meta';
 
-    // "New" badge — inline at start of meta row
-    if (article.isNew) {
-      const newBadge = document.createElement('span');
-      newBadge.className = 'new-badge';
-      newBadge.textContent = 'NEW';
-      meta.appendChild(newBadge);
-    }
-
-    // Source chip
-    const source = document.createElement('span');
-    source.className = 'card-source';
-    source.textContent = article.source || '';
-    meta.appendChild(source);
-
-    // Product badge (release notes)
-    if (article.product) {
-      const prod = document.createElement('span');
-      prod.className = `product-badge product-${slugify(article.product)}`;
-      prod.textContent = article.product;
-      meta.appendChild(prod);
-    }
-
-    // Planned badge — inline after product badge, shortened label
-    if (article.planned) {
-      const plannedBadge = document.createElement('span');
-      plannedBadge.className = 'planned-badge';
-      const label = article.waveLabel || 'Planned';
-      const m = label.match(/(\d{4})\s+Release\s+Wave\s+(\d)/i);
-      plannedBadge.textContent = m ? `${m[1]} W${m[2]}` : label;
-      meta.appendChild(plannedBadge);
-    }
-
-    // Status badge (roadmap)
-    if (article.status) {
-      const badge = document.createElement('span');
-      badge.className = `status-badge status-${slugify(article.status)}`;
-      badge.textContent = article.status;
-      meta.appendChild(badge);
-    }
-
-    // For release notes: date stays inline in meta
-    // For roadmap items: date goes on its own line below meta to keep badge row short
-    const date = document.createElement('span');
-    date.className = 'card-date';
-    date.textContent = isRoadmap
-      ? 'Added ' + formatArticleDate(article.date)
-      : formatArticleDate(article.date);
-
-    if (!isRoadmap) meta.appendChild(date);
-
-    const title = document.createElement('h2');
-    title.className = 'card-title';
-    title.textContent = article.title || '';
-
-    const summary = document.createElement('p');
-    summary.className = 'card-summary';
-    summary.textContent = article.summary || '';
-
-    if (isRoadmap) {
-      card.append(meta, date, title, summary);
+    const statusInfo = statusInfoFor(article);
+    if (statusInfo) {
+      const status = document.createElement('span');
+      status.className = 'status';
+      status.innerHTML = `<span class="dot round ${statusInfo.cls}"></span>${statusInfo.label}`;
+      meta.appendChild(status);
     } else {
-      card.append(meta, title, summary);
+      meta.appendChild(document.createElement('span')); // keep flex spacing
     }
 
-    // Parsed roadmap dates (Preview / GA)
-    if (article.previewDate || article.gaDate) {
-      const dates = document.createElement('div');
-      dates.className = 'roadmap-dates';
-      if (article.previewDate) {
-        const p = document.createElement('span');
-        p.className = 'roadmap-date-item';
-        p.innerHTML = `<span class="roadmap-date-label">Preview</span> ${article.previewDate}`;
-        dates.appendChild(p);
-      }
-      if (article.gaDate) {
-        const g = document.createElement('span');
-        g.className = 'roadmap-date-item';
-        g.innerHTML = `<span class="roadmap-date-label">GA</span> ${article.gaDate}`;
-        dates.appendChild(g);
-      }
-      card.appendChild(dates);
-    }
+    const actions = document.createElement('div');
+    actions.className = 'tile-actions';
 
-    if (article.url) {
-      const link = document.createElement('a');
-      link.className = 'card-link';
-      link.href = article.url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = 'Read more';
-      card.appendChild(link);
-    }
+    const date = document.createElement('span');
+    date.className = 'date';
+    date.textContent = formatArticleDate(article.date);
+    actions.appendChild(date);
 
-    // Star / favourite button
-    const favId  = article.url || article.title;
-    const saved  = isFavorite(favId);
+    const favId = article.url || article.title;
+    const saved = isFavorite(favId);
     const favBtn = document.createElement('button');
-    favBtn.className       = 'fav-btn' + (saved ? ' fav-btn--saved' : '');
-    favBtn.dataset.favId   = favId;
+    favBtn.className = 'tile-star' + (saved ? ' saved' : '');
     favBtn.setAttribute('aria-pressed', String(saved));
-    favBtn.setAttribute('aria-label', 'Save article');
-    favBtn.title           = saved ? 'Remove from saved' : 'Save';
-    favBtn.textContent     = '★';
+    favBtn.setAttribute('aria-label', saved ? 'Remove from saved' : 'Save');
+    favBtn.title = saved ? 'Remove from saved' : 'Save';
+    favBtn.textContent = '★';
     favBtn.addEventListener('click', e => {
       e.preventDefault();
       e.stopPropagation();
-      toggleFavorite(article, isRoadmap);
+      toggleFavorite(article);
     });
-    card.appendChild(favBtn);
+    actions.appendChild(favBtn);
 
-    return card;
+    meta.appendChild(actions);
+    tile.appendChild(meta);
+
+    return tile;
   }
 
-  // ── Fill a card grid ─────────────────────────────────────
-  function fillGrid(gridEl, articles, isRoadmap) {
-    gridEl.innerHTML = '';
-    if (!articles || articles.length === 0) {
-      const p = document.createElement('p');
-      p.className = 'empty-state';
-      p.textContent = 'No articles found.';
-      gridEl.appendChild(p);
-      return;
+  // ── Digest ("This Month") ─────────────────────────────────
+  function renderDigest(articles) {
+    const now = new Date();
+    digestMonthName.textContent = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+
+    const monthly = articles.filter(a => isThisMonth(a.date));
+    const counts = Object.fromEntries(LINES.map(l => [l.key, 0]));
+    for (const a of monthly) if (counts[a.line] !== undefined) counts[a.line]++;
+
+    digestStatsEl.innerHTML = '';
+    for (const line of LINES) {
+      const n = counts[line.key];
+      if (!n) continue;
+      const stat = document.createElement('div');
+      stat.className = 'digest-stat';
+      stat.innerHTML = `
+        <span class="n">${String(n).padStart(2, '0')}</span>
+        <span class="label"><span class="dot line-${line.key}"></span>${line.label}</span>
+      `;
+      digestStatsEl.appendChild(stat);
     }
-    const frag = document.createDocumentFragment();
-    for (const a of articles) frag.appendChild(createCard(a, isRoadmap));
-    gridEl.appendChild(frag);
   }
 
-  // ── Apply filters + search and re-render ─────────────────
-  function applyFilter(tab, allArticles) {
-    const panel    = panels[tab];
-    if (!panel) return;
-    const filter   = activeFilters[tab] || '';
-    const query    = (searchQueries[tab] || '').toLowerCase().trim();
-    const isRoadmap = ROADMAP_TABS.has(tab);
-
-    let filtered = allArticles;
-
-    if (filter) {
-      if (isRoadmap) filtered = filtered.filter(a => a.status === filter);
-      else           filtered = filtered.filter(a => a.product === filter);
-    }
-    if (query) filtered = filtered.filter(a =>
-      (a.title   || '').toLowerCase().includes(query) ||
-      (a.summary || '').toLowerCase().includes(query)
-    );
-
-    // Update filter button states
-    panel.querySelectorAll('.filter-btn').forEach(btn => {
-      const isAll = !btn.dataset.filter;
-      btn.classList.toggle('active', isAll ? !filter : btn.dataset.filter === filter);
+  // ── Filter chips ───────────────────────────────────────────
+  function wireFilterChips() {
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeChip = chip.dataset.chip;
+        renderGrid();
+      });
     });
-
-    // Update result count
-    const countEl = panel.querySelector('.search-count');
-    if (countEl) countEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
-
-    const grid = panel.querySelector('.card-grid');
-    if (grid) fillGrid(grid, filtered, isRoadmap);
   }
 
-  // ── Build search box ─────────────────────────────────────
-  function createSearchBox(tab, allArticles) {
-    const wrap = document.createElement('div');
-    wrap.className = 'search-wrap';
+  searchInputEl?.addEventListener('input', () => {
+    searchQuery = searchInputEl.value.trim().toLowerCase();
+    renderGrid();
+  });
 
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'search-input';
-    input.placeholder = 'Search…';
-    input.value = searchQueries[tab] || '';
-    input.setAttribute('aria-label', 'Search');
-
-    const count = document.createElement('span');
-    count.className = 'search-count';
-    count.textContent = `${allArticles.length} result${allArticles.length !== 1 ? 's' : ''}`;
-
-    let debounce;
-    input.addEventListener('input', () => {
-      clearTimeout(debounce);
-      debounce = setTimeout(() => { searchQueries[tab] = input.value; applyFilter(tab, allArticles); }, 200);
-    });
-
-    wrap.append(input, count);
-    return wrap;
-  }
-
-  // ── Build filter bar (status or product) ─────────────────
-  function createFilterBar(tab, articles) {
-    const isRoadmap = ROADMAP_TABS.has(tab);
-    const bar = document.createElement('div');
-    bar.className = 'status-filter';
-
-    let options;
-    if (isRoadmap) {
-      const ORDER = ['In development', 'Rolling out', 'Launched', 'Cancelled'];
-      options = ORDER.filter(s => articles.some(a => a.status === s));
+  // ── Render the grid according to current filters ─────────
+  function renderGrid() {
+    let list;
+    if (activeChip === 'saved') {
+      list = [...favorites.values()].reverse();
+    } else if (activeChip === 'all') {
+      list = unifiedArticles;
     } else {
-      // Products in order of appearance
-      const seen = new Set();
-      options = [];
-      for (const a of articles) {
-        if (a.product && !seen.has(a.product)) { seen.add(a.product); options.push(a.product); }
-      }
+      list = unifiedArticles.filter(a => a.line === activeChip);
     }
 
-    // "All" button
-    const allBtn = document.createElement('button');
-    allBtn.className = 'filter-btn status-btn active';
-    allBtn.textContent = `All (${articles.length})`;
-    allBtn.addEventListener('click', () => { activeFilters[tab] = ''; applyFilter(tab, articles); });
-    bar.appendChild(allBtn);
-
-    for (const opt of options) {
-      const count = articles.filter(a => isRoadmap ? a.status === opt : a.product === opt).length;
-      const btn = document.createElement('button');
-      btn.className = isRoadmap
-        ? `filter-btn status-btn status-${slugify(opt)}`
-        : `filter-btn status-btn product-btn product-${slugify(opt)}`;
-      btn.textContent = `${opt} (${count})`;
-      btn.dataset.filter = opt;
-      btn.addEventListener('click', () => { activeFilters[tab] = opt; applyFilter(tab, articles); });
-      bar.appendChild(btn);
+    if (searchQuery) {
+      list = list.filter(a =>
+        (a.title || '').toLowerCase().includes(searchQuery) ||
+        (a.summary || '').toLowerCase().includes(searchQuery)
+      );
     }
 
-    return bar;
+    gridEl.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    for (const a of list) frag.appendChild(createTile(a));
+    gridEl.appendChild(frag);
+
+    resultCountEl.textContent = `${list.length} ${list.length === 1 ? 'Eintrag' : 'Einträge'}`;
+    emptyStateEl.classList.toggle('hidden', list.length > 0);
   }
 
-  // ── Summary panel (This Month) ───────────────────────────────
-  function renderSummaryPanel(dayData) {
-    const panel = panels.summary;
-    if (!panel) return;
-    panel.innerHTML = '';
-
-    const tabs = dayData.tabs || {};
-    const now  = new Date();
-    const monthLabel = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
-
-    // Update tab button label to current month name
-    const summaryBtn = document.querySelector('.tab[data-tab="summary"]');
-    if (summaryBtn) summaryBtn.textContent = monthLabel;
-
-    function isThisMonth(iso) {
-      try {
-        const d = new Date(iso);
-        return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
-      } catch { return false; }
-    }
-
-    const rn = tabs.releasenotes || [];
-    const co = tabs.copilot      || [];
-    const ag = tabs.agents       || [];
-
-    // Copilot: merge Copilot Studio wave-plan items + copilot tab, dedupe by url/title
-    const copilotSeen = new Set();
-    const copilotItems = [
-      ...rn.filter(a => a.product === 'Copilot Studio' && isThisMonth(a.date)),
-      ...co.filter(a => isThisMonth(a.date)),
-    ].filter(a => {
-      const key = a.url || a.title;
-      if (copilotSeen.has(key)) return false;
-      copilotSeen.add(key);
-      return true;
-    });
-
-    const SECTIONS = [
-      { key: 'Fabric',         color: '#f3ba2f', items: rn.filter(a => a.product === 'Fabric'         && isThisMonth(a.date)) },
-      { key: 'Power Platform', color: '#818cf8', items: rn.filter(a => (a.product === 'Power Platform' || a.product === 'Power Platform Admin') && isThisMonth(a.date)) },
-      { key: 'Power Apps',     color: '#a78bfa', items: rn.filter(a => a.product === 'Power Apps'     && isThisMonth(a.date)) },
-      { key: 'Power Automate', color: '#38bdf8', items: rn.filter(a => a.product === 'Power Automate' && isThisMonth(a.date)) },
-      { key: 'Power BI',       color: '#f59e0b', items: rn.filter(a => a.product === 'Power BI'       && isThisMonth(a.date)) },
-      { key: 'Dataverse',      color: '#34d399', items: rn.filter(a => a.product === 'Dataverse'      && isThisMonth(a.date)) },
-      { key: 'Copilot',        color: '#c084fc', items: copilotItems },
-      { key: 'Agents',         color: '#fb7185', items: ag.filter(a => isThisMonth(a.date)) },
-    ];
-
-    const grid = document.createElement('div');
-    grid.className = 'summary-grid';
-    let anyContent = false;
-
-    for (const sec of SECTIONS) {
-      if (!sec.items.length) continue;
-      anyContent = true;
-
-      const box = document.createElement('div');
-      box.className = 'summary-section';
-      box.style.setProperty('--sec-color', sec.color);
-
-      const h3 = document.createElement('h3');
-      h3.className = 'summary-section-heading';
-      h3.innerHTML = `${sec.key} <span class="summary-count">${sec.items.length}</span>`;
-      box.appendChild(h3);
-
-      const ul = document.createElement('ul');
-      ul.className = 'summary-list';
-
-      for (const a of sec.items) {
-        const li = document.createElement('li');
-        li.className = 'summary-item';
-
-        if (a.url) {
-          const link = document.createElement('a');
-          link.href = a.url;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.textContent = a.title;
-          li.appendChild(link);
-        } else {
-          const span = document.createElement('span');
-          span.textContent = a.title;
-          li.appendChild(span);
-        }
-
-        if (a.planned) {
-          const badge = document.createElement('span');
-          badge.className = 'summary-planned-badge';
-          badge.textContent = 'Planned';
-          li.appendChild(badge);
-        }
-
-        const dateEl = document.createElement('span');
-        dateEl.className = 'summary-item-date';
-        dateEl.textContent = formatArticleDate(a.date);
-        li.appendChild(dateEl);
-
-        ul.appendChild(li);
-      }
-
-      box.appendChild(ul);
-      grid.appendChild(box);
-    }
-
-    if (!anyContent) {
-      const p = document.createElement('p');
-      p.className = 'empty-state';
-      p.textContent = `No updates found for ${monthLabel} yet.`;
-      panel.appendChild(p);
-      return;
-    }
-
-    panel.appendChild(grid);
-  }
-
-  // ── Render one panel ─────────────────────────────────────
-  function renderPanel(tab, articles) {
-    const panel = panels[tab];
-    if (!panel) return;
-    panel.innerHTML = '';
-    activeFilters[tab] = '';
-    searchQueries[tab]  = '';
-
-    const isRoadmap   = ROADMAP_TABS.has(tab);
-    const hasFilters  = isRoadmap || RELEASE_TABS.has(tab);
-
-    if (!articles || articles.length === 0) {
-      const p = document.createElement('p');
-      p.className = 'empty-state';
-      p.textContent = 'No articles available.';
-      panel.appendChild(p);
-      return;
-    }
-
-    if (hasFilters) {
-      panel.appendChild(createSearchBox(tab, articles));
-      panel.appendChild(createFilterBar(tab, articles));
-    }
-
-    const grid = document.createElement('div');
-    grid.className = 'card-grid';
-    panel.appendChild(grid);
-    fillGrid(grid, articles, isRoadmap);
-  }
-
-  // ── Favourites panel ─────────────────────────────────────
-  function renderFavoritesPanel() {
-    const panel = panels.saved;
-    if (!panel) return;
-    panel.innerHTML = '';
-
-    const articles = [...favorites.values()].reverse();
-
-    if (!articles.length) {
-      const p = document.createElement('p');
-      p.className = 'empty-state';
-      p.textContent = 'No saved articles yet. Click ★ on any card to save it here.';
-      panel.appendChild(p);
-      return;
-    }
-
-    const grid = document.createElement('div');
-    grid.className = 'card-grid';
-    for (const a of articles) {
-      grid.appendChild(createCard(a, !!a._isRoadmap));
-    }
-    panel.appendChild(grid);
-  }
-
-  // ── Render all tabs ──────────────────────────────────────
+  // ── Render one loaded day ─────────────────────────────────
   function renderDay(dayData) {
-    const tabs = dayData.tabs || {};
-    renderSummaryPanel(dayData);
-    renderPanel('copilot',       tabs.copilot       || []);
-    renderPanel('agents',        tabs.agents        || []);
-    renderPanel('releasenotes',  tabs.releasenotes  || []);
-    renderPanel('fabricroadmap', tabs.fabricroadmap || []);
+    unifiedArticles = buildUnifiedArticles(dayData);
+    unifiedArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderDigest(unifiedArticles);
+    renderGrid();
 
     if (dayData.updated) updatedLabel.textContent = 'Updated: ' + formatTimestamp(dayData.updated);
   }
@@ -598,23 +418,6 @@
     }
   }
 
-  // ── Tab switching ────────────────────────────────────────
-  function activateTab(tab) {
-    currentTab = tab;
-    document.querySelectorAll('.tab').forEach(btn => {
-      const active = btn.dataset.tab === tab;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-selected', String(active));
-    });
-    Object.entries(panels).forEach(([key, panel]) => {
-      if (panel) panel.classList.toggle('active', key === tab);
-    });
-  }
-
-  document.querySelectorAll('.tab').forEach(btn =>
-    btn.addEventListener('click', () => activateTab(btn.dataset.tab))
-  );
-
   datePicker.addEventListener('change', async () => {
     const d = datePicker.value;
     if (d && d !== currentDate) {
@@ -625,8 +428,20 @@
     }
   });
 
+  // ── Back-to-top ───────────────────────────────────────────
+  const backToTopBtn = $('backToTop');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('back-to-top--visible', window.scrollY > 300);
+    }, { passive: true });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // ── Bootstrap ────────────────────────────────────────────
   async function init() {
+    wireFilterChips();
     setLoading(true);
     clearError();
     let index;
@@ -650,24 +465,10 @@
 
     buildDatePicker(dates, latest);
     currentDate = latest;
-    positionDatePicker();    // move select to sheet on mobile, header on desktop
-    updateDateToggleLabel(); // set initial short date on mobile toggle button
+    positionDatePicker();
+    updateDateToggleLabel();
     await loadDay(latest);
   }
-
-  // ── Back-to-top ───────────────────────────────────────────
-  const backToTopBtn = $('backToTop');
-  if (backToTopBtn) {
-    window.addEventListener('scroll', () => {
-      backToTopBtn.classList.toggle('back-to-top--visible', window.scrollY > 300);
-    }, { passive: true });
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // Initial render of favourites panel (shows empty state on first visit)
-  renderFavoritesPanel();
 
   init();
 })();
