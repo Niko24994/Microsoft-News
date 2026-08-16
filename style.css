@@ -56,7 +56,6 @@ body {
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
   position: relative;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, p { text-wrap: balance; }
@@ -112,10 +111,18 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 /* ============ MASTHEAD ============ */
-.masthead {
+/* Masthead + filter bar share one sticky wrapper so they always stack
+   with zero gap, regardless of either's rendered height — no JS-measured
+   offset needed (a previous per-element `top: <masthead height>` approach
+   was fragile: the header's height changes once the "Updated" timestamp
+   populates and the row wraps, and re-measuring it reliably proved brittle). */
+.sticky-top {
   position: sticky;
   top: 0;
   z-index: 50;
+}
+
+.masthead {
   background: rgba(8,7,15,.72);
   border-bottom: 1px solid var(--edge);
   backdrop-filter: blur(20px) saturate(150%);
@@ -242,9 +249,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 /* ============ FILTER BAR ============ */
 .filterbar {
-  position: sticky;
-  top: var(--masthead-h, 73px);
-  z-index: 40;
   background: rgba(8,7,15,.68);
   border-bottom: 1px solid var(--edge);
   backdrop-filter: blur(16px);

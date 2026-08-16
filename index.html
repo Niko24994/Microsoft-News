@@ -22,29 +22,56 @@
   <!-- Theme colour -->
   <meta name="theme-color" content="#08070f" />
 
-  <link rel="stylesheet" href="style.css?v=20260816b" />
+  <link rel="stylesheet" href="style.css?v=20260816c" />
 </head>
 <body>
   <div class="mesh" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
-  <header class="masthead">
-    <div class="wrap masthead-inner">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">MR</div>
-        <div>
-          <div class="brand-word">Roadmaps &amp; Releases</div>
-          <span class="brand-tag">Microsoft Power Platform &middot; Fabric &middot; Copilot</span>
+  <div class="sticky-top">
+    <header class="masthead">
+      <div class="wrap masthead-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">MR</div>
+          <div>
+            <div class="brand-word">Roadmaps &amp; Releases</div>
+            <span class="brand-tag">Microsoft Power Platform &middot; Fabric &middot; Copilot</span>
+          </div>
+        </div>
+        <div class="masthead-controls">
+          <span class="status-readout">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span id="updatedLabel"></span>
+          </span>
         </div>
       </div>
-      <div class="masthead-controls">
-        <span class="status-readout">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          <span id="updatedLabel"></span>
-        </span>
+    </header>
+
+    <nav class="filterbar" id="filterbar">
+      <div class="wrap filterbar-inner">
+        <button class="chip active" data-chip="all">Alle</button>
+        <button class="chip" data-chip="fabric"><span class="dot line-fabric"></span>Fabric</button>
+        <button class="chip" data-chip="automate"><span class="dot line-automate"></span>Power Automate</button>
+        <button class="chip" data-chip="dataverse"><span class="dot line-dataverse"></span>Dataverse</button>
+        <button class="chip" data-chip="bi"><span class="dot line-bi"></span>Power BI</button>
+        <button class="chip" data-chip="apps"><span class="dot line-apps"></span>Power Apps</button>
+        <button class="chip" data-chip="copilot"><span class="dot line-copilot"></span>Copilot</button>
+        <button class="chip" data-chip="agents"><span class="dot line-agents"></span>Agents</button>
+        <button class="chip chip-saved" data-chip="saved">&#9733; Gespeichert</button>
+        <div class="search">
+          <label for="searchInput" class="sr-only">Suche</label>
+          <input type="text" id="searchInput" placeholder="Suche&hellip;" autocomplete="off" />
+        </div>
+        <span class="result-count" id="resultCount"></span>
       </div>
-    </div>
-  </header>
+      <div class="wrap fabric-status-bar" id="fabricStatusBar" hidden>
+        <span class="fabric-status-label">Status</span>
+        <button class="chip chip-sm active" data-status="all">Alle</button>
+        <button class="chip chip-sm" data-status="Planned">Planned</button>
+        <button class="chip chip-sm" data-status="Try Now">Try Now</button>
+      </div>
+    </nav>
+  </div>
 
   <section class="digest">
     <div class="wrap digest-inner">
@@ -52,31 +79,6 @@
       <div class="digest-stats" id="digestStats"></div>
     </div>
   </section>
-
-  <nav class="filterbar" id="filterbar">
-    <div class="wrap filterbar-inner">
-      <button class="chip active" data-chip="all">Alle</button>
-      <button class="chip" data-chip="fabric"><span class="dot line-fabric"></span>Fabric</button>
-      <button class="chip" data-chip="automate"><span class="dot line-automate"></span>Power Automate</button>
-      <button class="chip" data-chip="dataverse"><span class="dot line-dataverse"></span>Dataverse</button>
-      <button class="chip" data-chip="bi"><span class="dot line-bi"></span>Power BI</button>
-      <button class="chip" data-chip="apps"><span class="dot line-apps"></span>Power Apps</button>
-      <button class="chip" data-chip="copilot"><span class="dot line-copilot"></span>Copilot</button>
-      <button class="chip" data-chip="agents"><span class="dot line-agents"></span>Agents</button>
-      <button class="chip chip-saved" data-chip="saved">&#9733; Gespeichert</button>
-      <div class="search">
-        <label for="searchInput" class="sr-only">Suche</label>
-        <input type="text" id="searchInput" placeholder="Suche&hellip;" autocomplete="off" />
-      </div>
-      <span class="result-count" id="resultCount"></span>
-    </div>
-    <div class="wrap fabric-status-bar" id="fabricStatusBar" hidden>
-      <span class="fabric-status-label">Status</span>
-      <button class="chip chip-sm active" data-status="all">Alle</button>
-      <button class="chip chip-sm" data-status="Planned">Planned</button>
-      <button class="chip chip-sm" data-status="Try Now">Try Now</button>
-    </div>
-  </nav>
 
   <main class="grid-section">
     <div class="wrap">
@@ -97,7 +99,7 @@
   </footer>
 
   <button id="backToTop" class="back-to-top" aria-label="Scroll to top">&uarr;</button>
-  <script src="app.js?v=20260816b"></script>
+  <script src="app.js?v=20260816c"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () =>
