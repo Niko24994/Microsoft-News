@@ -93,21 +93,25 @@
     catch { return ''; }
   }
 
-  function isThisMonth(iso) {
-    try {
-      const d = new Date(iso);
-      const now = new Date();
-      return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
-    } catch { return false; }
+  // "Qx YYYY" → calendar quarter for a given Date, e.g. August 2026 → "Q3 2026".
+  function quarterLabelForDate(d) {
+    const q = Math.floor(d.getMonth() / 3) + 1;
+    return `Q${q} ${d.getFullYear()}`;
   }
 
-  // "Qx YYYY" → current calendar quarter, e.g. August 2026 → "Q3 2026".
-  // Fabric has no real per-item date, so this is used both to sort Fabric
-  // tiles and to count "this quarter" items for the digest.
   function getCurrentQuarterLabel() {
-    const now = new Date();
-    const q = Math.floor(now.getMonth() / 3) + 1;
-    return `Q${q} ${now.getFullYear()}`;
+    return quarterLabelForDate(new Date());
+  }
+
+  // Which quarter an article belongs to. Fabric Roadmap items carry a
+  // target quarter directly (no real per-item date); everything else is
+  // derived from its real publish date — one consistent rule for the digest.
+  function articleQuarterLabel(article) {
+    if (article.source === 'Fabric Roadmap') {
+      return article.previewDate || article.gaDate || null;
+    }
+    try { return quarterLabelForDate(new Date(article.date)); }
+    catch { return null; }
   }
 
   // Turns "Q3 2026" (or a bare "2026") into a comparable number, farthest-out first.
@@ -263,7 +267,8 @@
     if (statusInfo) {
       const status = document.createElement('span');
       status.className = 'status';
-      status.innerHTML = `<span class="dot round ${statusInfo.cls}"></span>${statusInfo.label}`;
+      status.style.setProperty('--status-color', `var(--${statusInfo.cls})`);
+      status.innerHTML = `<span class="dot round"></span>${statusInfo.label}`;
       meta.appendChild(status);
     } else {
       meta.appendChild(document.createElement('span')); // keep flex spacing
@@ -303,30 +308,25 @@
     return tile;
   }
 
-  // ── Digest ("This Month") ─────────────────────────────────
+  // ── Digest (current quarter readout) ──────────────────────
+  // One consistent rule for every line: count articles whose quarter —
+  // Fabric Roadmap's target quarter, or everything else's real publish
+  // date converted to a quarter — matches the current calendar quarter.
   function renderDigest(articles) {
-    const now = new Date();
-    digestMonthName.textContent = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
-
-    // Fabric is counted separately below (no real "date added" to go by) —
-    // excluded here entirely, including its blog posts, for one consistent rule.
-    const monthly = articles.filter(a => a.line !== 'fabric' && isThisMonth(a.date));
-    const counts = Object.fromEntries(LINES.map(l => [l.key, 0]));
-    for (const a of monthly) if (counts[a.line] !== undefined) counts[a.line]++;
-
-    // Fabric: only items that are Try Now (shipped) AND targeting the
-    // current quarter — e.g. in August (Q3), only "Q3 2026" Try Now items count.
     const currentQuarter = getCurrentQuarterLabel();
-    counts.fabric = articles.filter(a =>
-      a.source === 'Fabric Roadmap' && a.status === 'Try Now' &&
-      (a.previewDate === currentQuarter || a.gaDate === currentQuarter)
-    ).length;
+    digestMonthName.textContent = currentQuarter;
+
+    const counts = Object.fromEntries(LINES.map(l => [l.key, 0]));
+    for (const a of articles) {
+      if (articleQuarterLabel(a) === currentQuarter && counts[a.line] !== undefined) counts[a.line]++;
+    }
 
     digestStatsEl.innerHTML = '';
     for (const line of LINES) {
       const n = counts[line.key];
       const stat = document.createElement('div');
       stat.className = 'digest-stat' + (n === 0 ? ' digest-stat--zero' : '');
+      stat.dataset.line = line.key;
       stat.innerHTML = `
         <span class="n">${String(n).padStart(2, '0')}</span>
         <span class="label"><span class="dot line-${line.key}"></span>${line.label}</span>

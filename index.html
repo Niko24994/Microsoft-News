@@ -20,29 +20,35 @@
   <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152-v2.png" />
 
   <!-- Theme colour -->
-  <meta name="theme-color" content="#0f7d72" />
+  <meta name="theme-color" content="#08070f" />
 
-  <link rel="stylesheet" href="style.css?v=20260816a" />
+  <link rel="stylesheet" href="style.css?v=20260816b" />
 </head>
 <body>
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <header class="masthead">
     <div class="wrap masthead-inner">
-      <div class="wordmark">
-        Roadmaps &amp; Releases
-        <small>Microsoft Power Platform &middot; Fabric &middot; Copilot</small>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">MR</div>
+        <div>
+          <div class="brand-word">Roadmaps &amp; Releases</div>
+          <span class="brand-tag">Microsoft Power Platform &middot; Fabric &middot; Copilot</span>
+        </div>
       </div>
       <div class="masthead-controls">
-        <span class="masthead-meta" id="updatedLabel"></span>
+        <span class="status-readout">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span id="updatedLabel"></span>
+        </span>
       </div>
     </div>
   </header>
 
   <section class="digest">
     <div class="wrap digest-inner">
-      <div class="digest-month">
-        <em id="digestEyebrow">Dieser Monat</em>
-        <span id="digestMonthName">&nbsp;</span>
-      </div>
+      <h1 class="digest-month" id="digestMonthName">&nbsp;</h1>
       <div class="digest-stats" id="digestStats"></div>
     </div>
   </section>
@@ -91,7 +97,7 @@
   </footer>
 
   <button id="backToTop" class="back-to-top" aria-label="Scroll to top">&uarr;</button>
-  <script src="app.js?v=20260816a"></script>
+  <script src="app.js?v=20260816b"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () =>
