@@ -123,13 +123,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 .masthead {
-  /* Solid-ish, not just blurred-transparent: some mobile browsers skip
-     backdrop-filter during active scrolling for performance, which let
-     the cards scrolling underneath show through. */
-  background: rgba(8,7,15,.94);
+  /* Fully opaque: some mobile browsers skip backdrop-filter during active
+     scrolling for performance, which let the cards scrolling underneath
+     show through when this was semi-transparent. No blur needed now. */
+  background: var(--surface-solid);
   border-bottom: 1px solid var(--edge);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .masthead-inner {
   display: flex;
@@ -252,10 +250,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 /* ============ FILTER BAR ============ */
 .filterbar {
-  background: rgba(8,7,15,.94);
+  background: var(--surface-solid);
   border-bottom: 1px solid var(--edge);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   padding: .85rem 0;
 }
 .filterbar-inner { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
