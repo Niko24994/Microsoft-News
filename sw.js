@@ -1,12 +1,12 @@
 // Service Worker – Microsoft Roadmaps & Releases
-// Strategy: network-first for JSON data, cache-first for static shell assets.
+// Strategy: network-first for the HTML/JS/CSS shell + news data (so every
+// visit gets the latest deploy while online — a cache-first shell was
+// causing index.html/app.js/style.css to never refresh from the network
+// at all once installed); cache-first only for rarely-changing assets
+// (icons, manifest).
 
-const CACHE   = 'ms-news-v2';
+const CACHE   = 'ms-news-v3';
 const SHELL   = [
-  './',
-  './index.html',
-  './app.js',
-  './style.css',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -38,13 +38,17 @@ self.addEventListener('fetch', event => {
   // Only handle GET requests on the same origin
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  // News JSON files → network-first (fresh data is important)
-  if (url.pathname.includes('/public/news/')) {
+  // HTML page loads + app.js/style.css + news JSON → network-first, so a
+  // new deploy is picked up on the very next visit instead of being stuck
+  // behind a stale cached shell indefinitely.
+  const isCoreAsset = request.mode === 'navigate' ||
+    url.pathname.endsWith('/app.js') || url.pathname.endsWith('/style.css');
+  if (isCoreAsset || url.pathname.includes('/public/news/')) {
     event.respondWith(networkFirst(request));
     return;
   }
 
-  // Everything else → cache-first (shell, icons, fonts)
+  // Everything else (icons, manifest) → cache-first, rarely changes
   event.respondWith(cacheFirst(request));
 });
 

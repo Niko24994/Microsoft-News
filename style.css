@@ -501,10 +501,16 @@ footer {
   .brand-mark { width: 30px; height: 30px; }
   .status-readout { font-size: .6rem; }
 
-  .digest-inner { padding: 1.5rem 0 1.4rem; }
-  .digest-month { font-size: 1.9rem; margin-bottom: 1.1rem; }
-  .digest-stats { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
-  .digest-stat .label { white-space: normal; }
+  .digest-inner { padding: 1.25rem 0 1.1rem; }
+  .digest-month { font-size: 1.7rem; margin-bottom: .85rem; }
+  .digest-stats { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+  .digest-stat {
+    padding: .6rem .55rem .55rem;
+    gap: .3rem;
+    border-radius: 8px;
+  }
+  .digest-stat .n { font-size: 1.15rem; }
+  .digest-stat .label { white-space: normal; font-size: .6rem; gap: .3rem; }
 
   .search { width: 100%; order: 10; margin-left: 0; }
 
