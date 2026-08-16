@@ -37,14 +37,9 @@
   let unifiedArticles = [];    // deduped articles for the currently loaded day
 
   const $ = id => document.getElementById(id);
-  const datePicker      = $('datePicker');
   const updatedLabel    = $('updatedLabel');
   const errorBox        = $('errorBox');
   const spinner         = $('loadingSpinner');
-  const dateToggleBtn   = $('dateToggleBtn');
-  const dateToggleLabel = $('dateToggleLabel');
-  const dateSheetEl     = $('dateSheet');
-  const dateSheetBody   = $('dateSheetBody');
   const gridEl          = $('grid');
   const emptyStateEl    = $('emptyState');
   const resultCountEl   = $('resultCount');
@@ -80,53 +75,6 @@
   }
 
   loadFavorites();
-
-  // ── Mobile date bottom sheet ─────────────────────────────
-  const isMobileView = () => window.matchMedia('(max-width: 767px)').matches;
-
-  function openDateSheet() {
-    if (!dateSheetEl) return;
-    dateSheetEl.classList.add('open');
-    document.body.classList.add('sheet-open');
-    dateToggleBtn?.setAttribute('aria-expanded', 'true');
-  }
-
-  function closeDateSheet() {
-    if (!dateSheetEl) return;
-    dateSheetEl.classList.remove('open');
-    document.body.classList.remove('sheet-open');
-    dateToggleBtn?.setAttribute('aria-expanded', 'false');
-  }
-
-  function updateDateToggleLabel() {
-    if (!dateToggleLabel || !currentDate) return;
-    const [y, m, d] = currentDate.split('-').map(Number);
-    dateToggleLabel.textContent = new Date(y, m - 1, d)
-      .toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-  }
-
-  function positionDatePicker() {
-    const wrap = document.querySelector('.date-picker-wrap');
-    if (!wrap || !dateSheetBody) return;
-    if (isMobileView()) {
-      if (!dateSheetBody.contains(datePicker)) dateSheetBody.appendChild(datePicker);
-    } else {
-      if (!wrap.contains(datePicker)) wrap.appendChild(datePicker);
-      closeDateSheet();
-    }
-  }
-
-  dateToggleBtn?.addEventListener('click', openDateSheet);
-  dateSheetEl?.addEventListener('click', e => {
-    if (e.target === dateSheetEl || e.target === $('dateSheetBackdrop')) closeDateSheet();
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDateSheet(); });
-
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(positionDatePicker, 150);
-  });
 
   // ── Date helpers ─────────────────────────────────────────
   function formatDateLong(iso) {
@@ -360,18 +308,19 @@
     const now = new Date();
     digestMonthName.textContent = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
 
-    // Fabric Roadmap items have no real "date added" — excluded here and
-    // counted separately below by target quarter instead. Fabric blog
-    // posts (same filter line, real dates) count normally.
-    const monthly = articles.filter(a => a.source !== 'Fabric Roadmap' && isThisMonth(a.date));
+    // Fabric is counted separately below (no real "date added" to go by) —
+    // excluded here entirely, including its blog posts, for one consistent rule.
+    const monthly = articles.filter(a => a.line !== 'fabric' && isThisMonth(a.date));
     const counts = Object.fromEntries(LINES.map(l => [l.key, 0]));
     for (const a of monthly) if (counts[a.line] !== undefined) counts[a.line]++;
 
+    // Fabric: only items that are Try Now (shipped) AND targeting the
+    // current quarter — e.g. in August (Q3), only "Q3 2026" Try Now items count.
     const currentQuarter = getCurrentQuarterLabel();
-    const fabricRoadmapThisQuarter = articles.filter(a =>
-      a.source === 'Fabric Roadmap' && (a.previewDate === currentQuarter || a.gaDate === currentQuarter)
+    counts.fabric = articles.filter(a =>
+      a.source === 'Fabric Roadmap' && a.status === 'Try Now' &&
+      (a.previewDate === currentQuarter || a.gaDate === currentQuarter)
     ).length;
-    counts.fabric += fabricRoadmapThisQuarter;
 
     digestStatsEl.innerHTML = '';
     for (const line of LINES) {
@@ -485,28 +434,6 @@
     }
   }
 
-  // ── Date picker ──────────────────────────────────────────
-  function buildDatePicker(dates, selected) {
-    datePicker.innerHTML = '';
-    for (const d of dates) {
-      const opt = document.createElement('option');
-      opt.value = d;
-      opt.textContent = formatDateLong(d);
-      if (d === selected) opt.selected = true;
-      datePicker.appendChild(opt);
-    }
-  }
-
-  datePicker.addEventListener('change', async () => {
-    const d = datePicker.value;
-    if (d && d !== currentDate) {
-      currentDate = d;
-      updateDateToggleLabel();
-      closeDateSheet();
-      await loadDay(d);
-    }
-  });
-
   // ── Keep filter bar pinned directly below the masthead ────
   // The masthead's height varies (mobile vs desktop, text wrapping, font
   // load reflow), so a hardcoded `top` offset drifts out of sync — measure
@@ -556,10 +483,7 @@
       return;
     }
 
-    buildDatePicker(dates, latest);
     currentDate = latest;
-    positionDatePicker();
-    updateDateToggleLabel();
     await loadDay(latest);
   }
 

@@ -22,7 +22,7 @@
   <!-- Theme colour -->
   <meta name="theme-color" content="#0f7d72" />
 
-  <link rel="stylesheet" href="style.css?v=20260815a" />
+  <link rel="stylesheet" href="style.css?v=20260816a" />
 </head>
 <body>
   <header class="masthead">
@@ -33,25 +33,6 @@
       </div>
       <div class="masthead-controls">
         <span class="masthead-meta" id="updatedLabel"></span>
-
-        <!-- Desktop: normal date select -->
-        <div class="date-picker-wrap">
-          <label for="datePicker" class="sr-only">Datum ausw&auml;hlen</label>
-          <select id="datePicker" class="date-picker" aria-label="Datum ausw&auml;hlen"></select>
-        </div>
-
-        <!-- Mobile only: calendar icon button that opens the bottom sheet -->
-        <button class="date-toggle-btn" id="dateToggleBtn"
-                aria-label="Select date" aria-expanded="false" aria-controls="dateSheet">
-          <svg width="14" height="14" viewBox="0 0 15 15" fill="none"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x=".75" y="2" width="13.5" height="12.25" rx="2" stroke="currentColor" stroke-width="1.4"/>
-            <line x1=".75" y1="6" x2="14.25" y2="6" stroke="currentColor" stroke-width="1.4"/>
-            <line x1="4.75" y1=".75" x2="4.75" y2="3.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-            <line x1="10.25" y1=".75" x2="10.25" y2="3.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-          <span id="dateToggleLabel">Date</span>
-        </button>
       </div>
     </div>
   </header>
@@ -109,18 +90,8 @@
     </div>
   </footer>
 
-  <!-- Mobile date picker bottom sheet -->
-  <div id="dateSheet" class="date-sheet" role="dialog" aria-modal="true" aria-label="Select date">
-    <div class="date-sheet-backdrop" id="dateSheetBackdrop"></div>
-    <div class="date-sheet-panel">
-      <div class="date-sheet-handle"></div>
-      <p class="date-sheet-title">Select Date</p>
-      <div id="dateSheetBody" class="date-sheet-body"></div>
-    </div>
-  </div>
-
   <button id="backToTop" class="back-to-top" aria-label="Scroll to top">&uarr;</button>
-  <script src="app.js?v=20260815a"></script>
+  <script src="app.js?v=20260816a"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () =>

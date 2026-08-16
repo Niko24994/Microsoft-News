@@ -1,6 +1,6 @@
 {
   "date": "2026-08-16",
-  "updated": "2026-08-16T06:25:06.501Z",
+  "updated": "2026-08-16T11:13:15.296Z",
   "wave": "261",
   "waveLabel": "2026 Release Wave 1",
   "tabs": {
@@ -893,20 +893,11 @@
       },
       {
         "title": "Introducing Fabric Lakehouse support in dbt job for Microsoft Fabric (Preview)",
-        "summary": "Fabric Lakehouse plays a central role in many Microsoft Fabric implementations, serving as the foundation where data is prepared, organized, and made ready for downstream analytics workloads. As more teams adopt dbt alongside Microsoft Fabric, a common goal is to bring transformation workflows closer to that same data foundation.  With Fabric Lakehouse support in dbt job, you can run dbt projects directly against Fabric Lakehouse. Whether you're building transformation layers, managing business ",
+        "summary": "Fabric Lakehouse plays a central role in many Microsoft Fabric implementations, serving as the foundation where data is prepared, organized, and made ready for downstream analytics workloads. As more teams adopt dbt alongside Microsoft Fabric, a common goal is to bring transformation workflows closer to that same data foundation. With Fabric Lakehouse support in dbt job, you can run dbt projects directly against Fabric Lakehouse. Whether you're building transformation layers, managing business l",
         "source": "meghasony",
         "product": "Fabric",
         "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Introducing-Fabric-Lakehouse-support-in-dbt-job-for-Microsoft/ba-p/5358240",
         "date": "2026-08-13T17:00:00.000Z"
-      },
-      {
-        "title": "Register now for PPCC 2026: Come for the learning, stay for the community",
-        "summary": "Whether you’re exploring AI in your business, building with low code, developing professional solutions, or leading enterprise-wide transformation, PPCC is your best opportunity to return to work on Monday ready to make an impact.\nThe post Register now for PPCC 2026: Come for the learning, stay for the community appeared first on Microsoft Power Platform Blog.",
-        "source": "Bryony Wolf",
-        "product": "Power Automate",
-        "url": "https://www.microsoft.com/en-us/power-platform/blog/2026/08/13/register-now-for-ppcc-2026-come-for-the-learning-stay-for-the-community/",
-        "date": "2026-08-13T15:00:00.000Z",
-        "isNew": true
       },
       {
         "title": "Refine global search with table scoping",
@@ -929,21 +920,21 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "Run Python scripts using current Python versions in desktop flows",
-        "summary": "Run Python scripts with the latest versions in Power Automate for desktop to access extensive libraries and create more sophisticated automation solutions.",
-        "source": "Release Wave Plan",
-        "product": "Power Automate",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/run-python-scripts-using-current-python-versions-desktop-flows",
-        "date": "2026-08-12T23:07:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
         "title": "Automate PowerPoint presentations in desktop flows",
         "summary": "Automate PowerPoint presentations with Power Automate Desktop to create, edit, and save slides seamlessly as part of your workflow process.",
         "source": "Release Wave Plan",
         "product": "Power Automate",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/automate-powerpoint-presentations-desktop-flows",
+        "date": "2026-08-12T23:07:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Run Python scripts using current Python versions in desktop flows",
+        "summary": "Run Python scripts with the latest versions in Power Automate for desktop to access extensive libraries and create more sophisticated automation solutions.",
+        "source": "Release Wave Plan",
+        "product": "Power Automate",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/run-python-scripts-using-current-python-versions-desktop-flows",
         "date": "2026-08-12T23:07:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1060,7 +1051,7 @@
       },
       {
         "title": "Build agent with AI for Data Agent (Preview)",
-        "summary": "Configuring a Data Agent can be challenging. To deliver reliable answers, authors must understand the data model, identify the right tables and relationships, write clear instructions, create representative examples, and test the agent until it meets user expectations. This process can require hours of schema review, prompt refinement, and manual validation. Build agent with AI in Data Agent is an AI-powered assistant that simplifies how creators build, configure, and refine Data Agents. Creator",
+        "summary": "Configuring a Data Agent can be challenging. To deliver reliable answers, authors must understand the data model, identify the right tables and relationships, write clear instructions, create representative examples, and test the agent until it meets user expectations. This process can require hours of schema review, prompt refinement, and manual validation.Build agent with AI in Data Agent is an AI-powered assistant that simplifies how creators build, configure, and refine Data Agents. Creators",
         "source": "msft-shreyas",
         "product": "Fabric",
         "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Build-agent-with-AI-for-Data-Agent-Preview/ba-p/5351116",
@@ -1082,6 +1073,16 @@
         "source": "Release Wave Plan",
         "product": "Power Apps",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-streamlined-header-navigation-better-view",
+        "date": "2026-08-07T20:59:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Create and visualize custom KPIs in the process intelligence experience",
+        "summary": "Create, edit, and visualize custom metrics and KPIs in the process intelligence experience to analyze, monitor, and improve your specific business goals.",
+        "source": "Release Wave Plan",
+        "product": "Power Automate",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/create-visualize-custom-kpis-process-intelligence-studio",
         "date": "2026-08-07T20:59:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1117,18 +1118,8 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "Create and visualize custom KPIs in the process intelligence experience",
-        "summary": "Create, edit, and visualize custom metrics and KPIs in the process intelligence experience to analyze, monitor, and improve your specific business goals.",
-        "source": "Release Wave Plan",
-        "product": "Power Automate",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/create-visualize-custom-kpis-process-intelligence-studio",
-        "date": "2026-08-07T20:59:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
         "title": "Evaluate Fabric workload performance with the modern evaluation engine for VNet data gateways (Preview)",
-        "summary": "Virtual network (VNet) data gateways help organizations connect Microsoft Fabric workloads to data sources that are protected by virtual network boundaries. They are commonly used when teams need private connectivity for semantic models, Dataflow Gen2, and DirectQuery scenarios without changing their existing connectivity architecture. The modern evaluation engine is now available in preview as an opt-in setting for VNet data gateways. This feature introduces an updated execution path for suppor",
+        "summary": "Virtual network (VNet) data gateways help organizations connect Microsoft Fabric workloads to data sources that are protected by virtual network boundaries. They are commonly used when teams need private connectivity for semantic models, Dataflow Gen2, and DirectQuery scenarios without changing their existing connectivity architecture.The modern evaluation engine is now available in preview as an opt-in setting for VNet data gateways. This feature introduces an updated execution path for support",
         "source": "goupadhy",
         "product": "Fabric",
         "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Evaluate-Fabric-workload-performance-with-the-modern-evaluation/ba-p/5330293",
@@ -1136,7 +1127,7 @@
       },
       {
         "title": "Automate recurring business logic with scheduled User Data Functions in Microsoft Fabric (Preview)",
-        "summary": "Many business processes rely on custom code that must run repeatedly—whether to validate data, apply business rules, synchronize systems, or generate notifications. Until now, teams often needed separate orchestration tools or manual processes to keep those workflows running. User Data Functions in Microsoft Fabric let developers encapsulate custom business logic and run it close to their data. With scheduling support through the Fabric job scheduler, teams can run those functions automatically ",
+        "summary": "Many business processes rely on custom code that must run repeatedly—whether to validate data, apply business rules, synchronize systems, or generate notifications. Until now, teams often needed separate orchestration tools or manual processes to keep those workflows running. User Data Functions in Microsoft Fabric let developers encapsulate custom business logic and run it close to their data. With scheduling support through the Fabric job scheduler, teams can run those functions automatically ",
         "source": "mk_sunitha",
         "product": "Fabric",
         "url": "https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Automate-recurring-business-logic-with-scheduled-User-Data/ba-p/5341912",
@@ -1275,6 +1266,16 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
+        "title": "Build Power Pages sites faster with AI coding tools",
+        "summary": "Accelerate site development with AI coding tools that understand web roles, table permissions, web APIs, and Power Pages security best practices.",
+        "source": "Release Wave Plan",
+        "product": "Power Pages",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-pages/build-power-pages-sites-faster-ai-coding-tools",
+        "date": "2026-07-23T15:20:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
         "title": "Configure site analytics and server logging",
         "summary": "Enable and track native site analytics in Power Pages and allow integration with external analytics and telemetry services.",
         "source": "Release Wave Plan",
@@ -1310,16 +1311,6 @@
         "source": "Release Wave Plan",
         "product": "Power Pages",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-pages/perform-website-actions-using-power-platform-cli",
-        "date": "2026-07-23T15:20:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
-        "title": "Build Power Pages sites faster with AI coding tools",
-        "summary": "Accelerate site development with AI coding tools that understand web roles, table permissions, web APIs, and Power Pages security best practices.",
-        "source": "Release Wave Plan",
-        "product": "Power Pages",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-pages/build-power-pages-sites-faster-ai-coding-tools",
         "date": "2026-07-23T15:20:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1404,7 +1395,7 @@
       },
       {
         "title": "Power BI July 2026 Feature Summary",
-        "summary": "Welcome to the July 2026 Power BI update!This month, we're introducing new capabilities across reporting, modeling, mobile, and embedded analytics. Highlights include expanded modern visual defaults, conditional formatting improvements for line charts and legends, new org app capabilities and APIs, Model Options in the Power BI Service, and TMDL View on the web. Let's take a look at what's new this month.  \n\n  Download Power BI Desktop  Events and AnnouncementsYour Road to the Power BI DataViz W",
+        "summary": "Welcome to the July 2026 Power BI update!This month, we're introducing new capabilities across reporting, modeling, mobile, and embedded analytics. Highlights include expanded modern visual defaults, conditional formatting improvements for line charts and legends, new org app capabilities and APIs, Model Options in the Power BI Service, and TMDL View on the web.Let's take a look at what's new this month. \n\nDownload Power BI Desktop Events and AnnouncementsYour Road to the Power BI DataViz World ",
         "source": "murray-kp",
         "product": "Power BI",
         "url": "https://community.fabric.microsoft.com/t5/Power-BI-Updates-Blog/Power-BI-July-2026-Feature-Summary/ba-p/5303533",
@@ -1446,7 +1437,7 @@
         "title": "Native Dataverse Authorization (Public Preview) for Stronger Security in Power Pages",
         "summary": "We’re excited to introduce the public preview of Native Dataverse Authorization (Enhanced Authorization) in Power Pages. This release brings a significant advancement in how external user access is secured and managed. Authorization is now enforced directly within Dataverse, providing stronger security, improved visibility, and more precise control while keeping the maker experience unchanged.\nThe post Native Dataverse Authorization (Public Preview) for Stronger Security in Power Pages appeared ",
         "source": "Nagesh Bhat",
-        "product": "Power Pages",
+        "product": "Power Platform",
         "url": "https://www.microsoft.com/en-us/power-platform/blog/power-pages/native-dataverse-authorization-public-preview-for-stronger-security-in-power-pages/",
         "date": "2026-07-07T15:06:13.000Z"
       },
@@ -1518,7 +1509,7 @@
       },
       {
         "title": "Power BI Desktop Bridge (Preview)",
-        "summary": "Power BI Desktop Bridge (Preview)Power BI Desktop Bridge introduces a new way of working, allowing external applications and agents to interact directly with Power BI Desktop! What is Power BI Desktop Bridge?The bridge is a lightweight local server that lets external applications interact directly with Power BI Desktop. Think of it as a direct, secure channel between your tools and Power BI Desktop. Your agents, scripts, and external applications can now:Check the current state of your report.Tr",
+        "summary": "Power BI Desktop Bridge (Preview)Power BI Desktop Bridge introduces a new way of working, allowing external applications and agents to interact directly with Power BI Desktop!What is Power BI Desktop Bridge?The bridge is a lightweight local server that lets external applications interact directly with Power BI Desktop.Think of it as a direct, secure channel between your tools and Power BI Desktop. Your agents, scripts, and external applications can now:Check the current state of your report.Trig",
         "source": "saralam",
         "product": "Power BI",
         "url": "https://community.fabric.microsoft.com/t5/Power-BI-Updates-Blog/Power-BI-Desktop-Bridge-Preview/ba-p/5227769",
@@ -1839,11 +1830,31 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
+        "title": "Use Microsoft 365 Copilot in canvas apps",
+        "summary": "Microsoft 365 Copilot is now available in canvas apps, bringing conversational AI with full support for custom agents.",
+        "source": "Release Wave Plan",
+        "product": "Power Apps",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-365-copilot-chat-canvas-apps",
+        "date": "2026-05-14T18:47:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
         "title": "Explore and visualize data with data exploration agent",
         "summary": "Learn how to find, filter, sort, and visualize data using natural language in model-driven apps with the data exploration agent.",
         "source": "Release Wave Plan",
         "product": "Power Apps",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/find-records-filter-views-using-natural-language",
+        "date": "2026-05-14T18:47:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Visualize the data in your view easily with Copilot",
+        "summary": "Analyze and get insights from the data in your view with AI-generated visualization by Copilot.",
+        "source": "Release Wave Plan",
+        "product": "Power Apps",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/visualize-data-view-easily-copilot",
         "date": "2026-05-14T18:47:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1874,26 +1885,6 @@
         "source": "Release Wave Plan",
         "product": "Power Apps",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/get-better-suggestions-using-form-fill-assistance",
-        "date": "2026-05-14T18:47:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
-        "title": "Use Microsoft 365 Copilot in canvas apps",
-        "summary": "Microsoft 365 Copilot is now available in canvas apps, bringing conversational AI with full support for custom agents.",
-        "source": "Release Wave Plan",
-        "product": "Power Apps",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-365-copilot-chat-canvas-apps",
-        "date": "2026-05-14T18:47:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
-        "title": "Visualize the data in your view easily with Copilot",
-        "summary": "Analyze and get insights from the data in your view with AI-generated visualization by Copilot.",
-        "source": "Release Wave Plan",
-        "product": "Power Apps",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/visualize-data-view-easily-copilot",
         "date": "2026-05-14T18:47:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -2223,6 +2214,16 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
+        "title": "View sensitivity labels in Microsoft Copilot Studio",
+        "summary": "Dataverse columns that are labeled with Microsoft Purview Information Protection sensitivity labels are displayed in Copilot Studio.",
+        "source": "Release Wave Plan",
+        "product": "Power Platform Admin",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-platform-governance-administration/view-sensitivity-labels-copilot-studio",
+        "date": "2026-03-18T14:56:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
         "title": "Discover and foster Power Platform adoption with the new Usage page",
         "summary": "The Usage page in the Power Platform admin center provides analytics to track adoption trends across Power Apps, Power Automate, and Copilot Studio.",
         "source": "Release Wave Plan",
@@ -2263,16 +2264,6 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "View sensitivity labels in Microsoft Copilot Studio",
-        "summary": "Dataverse columns that are labeled with Microsoft Purview Information Protection sensitivity labels are displayed in Copilot Studio.",
-        "source": "Release Wave Plan",
-        "product": "Power Platform Admin",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-platform-governance-administration/view-sensitivity-labels-copilot-studio",
-        "date": "2026-03-18T14:56:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
         "title": "New enhancements to work queues that will transform how your teams manage and monitor automated workflows.",
         "summary": "A Unified Control Center for Queue Monitoring and SLA Tracking Work queues in Power Automate are structured lists that let you assign, track, and manage work items across users or automations in an organized, scalable way.\nThe post New enhancements to work queues that will transform how your teams manage and monitor automated workflows. appeared first on Microsoft Power Platform Blog.",
         "source": "Tristan Dehove",
@@ -2287,6 +2278,14 @@
         "product": "Power Apps",
         "url": "https://www.microsoft.com/en-us/power-platform/blog/power-apps/new-quality-updates-to-modern-controls-in-canvas-apps/",
         "date": "2026-02-25T17:30:00.000Z"
+      },
+      {
+        "title": "What’s new in Power Platform: February 2026 feature update",
+        "summary": "Apps, agents and Copilot Public preview: M365 Copilot chat in model-driven apps Copilot chat is now available directly inside apps built with Power Apps, bringing the intelligence of Microsoft 365 Copilot into the flow of business processes.\nThe post What’s new in Power Platform: February 2026 feature update appeared first on Microsoft Power Platform Blog.",
+        "source": "Tiffany Treacy",
+        "product": "Power Apps",
+        "url": "https://www.microsoft.com/en-us/power-platform/blog/power-apps/whats-new-in-power-platform-february-2026-feature-update/",
+        "date": "2026-02-17T16:09:57.000Z"
       },
       {
         "title": "Breaking down the facts about secure development with Power Platform",
@@ -2327,6 +2326,14 @@
         "product": "Power Automate",
         "url": "https://www.microsoft.com/en-us/power-platform/blog/power-automate/announcing-major-dlp-enhancements-for-power-automate-and-copilot-studio/",
         "date": "2025-07-01T15:16:04.000Z"
+      },
+      {
+        "title": "Empowering a New Era of Agent-Based Experiences: Upwork and Microsoft Power Platform Partnership",
+        "summary": "We are entering a new era of work—one where low code and agent-based experiences are reshaping how we create and collaborate. As the tides of technological advancement sweep across industries, two transformative forces are reshaping the way we work: the rise of AI Agent experiences and the expansion of the gig economy within tech.\nThe post Empowering a New Era of Agent-Based Experiences: Upwork and Microsoft Power Platform Partnership appeared first on Microsoft Power Platform Blog.",
+        "source": "David Abu",
+        "product": "Power Automate",
+        "url": "https://www.microsoft.com/en-us/power-platform/blog/2025/06/16/empowering-a-new-era-of-agent-based-experiences-upwork-and-microsoft-power-platform-partnership/",
+        "date": "2025-06-16T07:00:00.000Z"
       }
     ],
     "fabricroadmap": [
@@ -2339,16 +2346,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-86a39e25-2f62-f011-bec2-000d3a302e4a",
         "date": "2026-08-15T07:22:19.781Z",
         "gaDate": "Q1 2026"
-      },
-      {
-        "title": "OneLake Catalog - Govern Tab For Admins",
-        "summary": "Today, the Goven tab in OneLake Catalog, is a central place for data owners to find insights on their data, get recommended actions and find all the available solutions in Fabric.We are extending the experience to allow Fabric admins to gain insights, get recommended actions and find all Fabric solutions available for them.As part of the public preview, Admins will be able to see information about their entire tenant, such as inventory insights on domains, capacities, workspaces, item operations ,Capacities and domains state, protection state (sensitivity label coverage, information on DLP and",
-        "source": "Fabric Roadmap",
-        "product": "Administration, Governance and Security",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-a5931131-7020-f011-9989-000d3a34671f",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Fabric Extensibility Toolkit - Workload Self-Service Publishing (Selected audience)",
@@ -2389,16 +2386,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-9d8a208b-5eb0-f011-bbd3-000d3a3740cc",
         "date": "2026-08-15T07:22:19.781Z",
         "gaDate": "Q2 2026"
-      },
-      {
-        "title": "Capacity Events in Real-Time Hub (RTH) - Overview Events",
-        "summary": "Capacity Events in Fabric Real-Time Hub (RTH)Capacity Events in RTH provides near-real-time telemetry for Fabric capacities, enabling admins to monitor, troubleshoot, and automate capacity management with low latency. This Preview includes Overview Events (e.g., 'Capacity Overview' event group) which encompasses the Capacity Summary and Capacity State events. Capacity Summary shows capacity usage at a given moment, calculated using a 30-second smoothed utilization of the capacity. Capacity State captures changes in capacity due to different actions, such as switching to a paused state or becom",
-        "source": "Fabric Roadmap",
-        "product": "Administration, Governance and Security",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-03a9bc58-5fb0-f011-bbd3-000d3a3740cc",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Workspace tagging",
@@ -2461,16 +2448,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Outbound access protection for Variable Library",
-        "summary": "Fabric administrators want to ensure that data in Fabric isnt exfiltrated to unpermitted destinations outside of Fabric unintentionally or by due to malicious intent . In this milestone, we plan to support CICD - Variable Library under OAP. https://learn.microsoft.com/en-us/fabric/cicd/variable-library/variable-library-overview",
-        "source": "Fabric Roadmap",
-        "product": "Administration, Governance and Security",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-e3bc5737-fbb8-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Outbound access protection for Mirrored DBs",
         "summary": "Outbound access protection is one of the top security asks from the Fabric Enterprise customers. Today WS OAP support only limited set of items which limits the adoption of Fabric for Customers. Our aim is to support Mirrored DBs in OAP so that customers can prevent sensitive data from getting exfiltrated.",
         "source": "Fabric Roadmap",
@@ -2529,16 +2506,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-3ed3d63a-6eb8-f011-bbd3-00224808fcf0",
         "date": "2026-08-15T07:22:19.781Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "OneLake catalog - Copilot for Semantic model summary",
-        "summary": "Fabric OneLake catalog now includes a feature that uses Copilot to create automatic summaries for your data. This innovative capability allows users to quickly understand what their data is about and gain valuable insights. By leveraging Copilot's AI capabilities, item owners can easily curate their items to make them more discoverable, enhance clarity and so to improve end-users decision-making process.",
-        "source": "Fabric Roadmap",
-        "product": "Administration, Governance and Security",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-d7638308-5020-f011-998a-0022480939f0",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Item Soft-Delete and Recovery - REST APIs",
@@ -2601,16 +2568,6 @@
         "gaDate": "Q1 2026"
       },
       {
-        "title": "Customer Managed Keys in Fabric",
-        "summary": "Microsoft Fabric encrypts all data-at-rest by default using Microsoft Managed Keys. However, many indistry standards require customers to maintain full control over their encryption keys. The Customer Managed Keys (CMK) feature allows customers to use keys that they own and manage to encrypt their data at rest in Fabric. This ensures compliance with regulatory standards and enhances data security, giving customers greater control over their data assets. CMK can be enabled at a workspace level, providing customers with the flexibility and granularity needed to manage their encryption keys effec",
-        "source": "Fabric Roadmap",
-        "product": "Administration, Governance and Security",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=administration%2Cgovernanceandsecurity#plan-5706d64b-9721-f011-9989-6045bd096807",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "OneLake catalog - Automatic description with Copilot for Semantic models",
         "summary": "Auto-Description uses Copilot to generate clear, relevant descriptions for semantic models in the OneLake catalog.Item owners can quickly review, refine, and publish these descriptions to save time and improve discoverability, search relevance, and overall understanding of each model.",
         "source": "Fabric Roadmap",
@@ -2651,26 +2608,6 @@
         "gaDate": "Q4 2026"
       },
       {
-        "title": "Cosmos DB in Fabric",
-        "summary": "Cosmos DB in Fabric allows customers to build operational and analytical workloads in Microsoft Fabric. Leverage the AI-features available in Cosmos DB and take advantage of the innovations in Fabric with SQL queries over JSON data, build real-time intelligence over transactional data, use Cosmos DB as a lightning fast serving layer for Power BI with reverse ETL using Spark, as well as Copilot-powered Microsoft Power BI, — all without having to stitch together separate services. Cosmos DB in Fabric now includes many new features. For example, build User-Data Functions that connect seamlessly w",
-        "source": "Fabric Roadmap",
-        "product": "Cosmos DB",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=cosmosdb#plan-c0d03300-26a5-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Azure Cosmos DB Mirroring in Microsoft Fabric",
-        "summary": "Now generally available, Azure Cosmos DB Mirroring in Fabric allows you to seamlessly integrate your existing operational workloads with the analytical capabilities of Microsoft Fabric. Take advantage of the innovations in Fabric with SQL queries over JSON data and build real-time intelligence over your existing transactional data. Integrate with the Microsoft Fabric ecosystem of services, as well as Copilot-powered Microsoft Power BI, — all without having to stitch together separate services. Azure Cosmos DB Mirroring in Fabric allows you to select which containers to mirror into Fabric, givi",
-        "source": "Fabric Roadmap",
-        "product": "Cosmos DB",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=cosmosdb#plan-5d4dfe86-26a5-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Cosmos DB Mirroring for MongoDB",
         "summary": "Bring your Azure Cosmos DB for MongoDB data into Microsoft Fabric with Mirroring. Replicate your operational MongoDB data into OneLake in near real time and run analytics across it without ETL pipelines or impact to your transactional workload.",
         "source": "Fabric Roadmap",
@@ -2699,16 +2636,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=cosmosdb#plan-8275e94e-174b-f111-bec7-6045bd00f506",
         "date": "2026-08-14T07:12:57.973Z",
         "previewDate": "Q3 2026"
-      },
-      {
-        "title": "Fabric Materialized Lake Views - Optimal Refresh",
-        "summary": "[Optimal Refresh](https://learn.microsoft.com/en-us/fabric/data-engineering/materialized-lake-views/overview-materialized-lake-view) – refreshes only changed data (supporting filter, innerjoin and projections) instead of entire datasets, delivering faster and more efficient data updates.",
-        "source": "Fabric Roadmap",
-        "product": "Data Engineering",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=dataengineering#plan-81643458-b721-f011-9989-000d3a34671f",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Fabric Materialized Lake Views - Multiple Schedule Support",
@@ -2759,26 +2686,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=dataengineering#plan-11fd2c23-e28c-ef11-ac21-00224804e9b4",
         "date": "2026-08-14T07:12:57.974Z",
         "gaDate": "Q2 2026"
-      },
-      {
-        "title": "ArcGIS GeoAnalytics for Microsoft Fabric Spark - General Availability",
-        "summary": "Microsoft and Esri have partnered to bring spatial analytics into Microsoft Fabric. This collaboration introduces a new library, ArcGIS GeoAnalytics for Microsoft Fabric, enabling an extensive set of spatial analytics right within Microsoft Fabric Spark notebooks and Spark job definitions (across both Data Engineering and Data Science experiences / workloads). This integrated product experience empowers Spark developers or data scientists to natively use Esri capabilities to run ArcGIS GeoAnalytics functions and tools within Fabric Spark for spatial transformation, enrichment, and pattern / tr",
-        "source": "Fabric Roadmap",
-        "product": "Data Engineering",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=dataengineering#plan-ab01c7d9-92ba-f011-bbd3-00224808fcf0",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Synapse Spark 3.5 Release - General Availability",
-        "summary": "Making available the latest Spark runtime in Azure Synapse Analytics in GA",
-        "source": "Fabric Roadmap",
-        "product": "Data Engineering",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=dataengineering#plan-5075a5ad-93ba-f011-bbd3-00224808fcf0",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Fabric Runtime 2.0 - Experimental Public Preview",
@@ -3081,46 +2988,6 @@
         "gaDate": "Q3 2026"
       },
       {
-        "title": "Copy Job/Activity - Lakehouse connector support query mode in Copy Job and Pipeline activities",
-        "summary": "Lakehouse connector now supports to read delta table through query mode in Copy job and Pipeline activities (copy activity, lookup activity)",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-049d5744-c59a-f011-b4cc-000d3a30273e",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Mirroring for SAP via SAP Datasphere",
-        "summary": "Mirroring delivers a no-ETL, near real-time integration of your SAP data into Microsoft Fabric. Using SAP Datasphere, you can continuously replicate data from SAP systems directly into Fabric OneLake without disrupting transactional performance. This approach ensures your SAP data seamlessly blends with the rest of your enterprise data in Fabric, enabling unified analytics and insights at scale.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-d67fb797-009b-f011-b4cc-000d3a30273e",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Airflow - Upload files to Apache Airflow job projects",
-        "summary": "We've now made it super easy to include project files in your Fabric Apache Airflow job! Just go to the built-in UI editor in Fabric for Airflow and import your project files from your local device.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-8f28de71-0eb1-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Airflow - APIs for Files and Requirements",
-        "summary": "We have released a new set of public APIs for Fabric Apache Airflow Job! Now you can use APIs to include files and requirements to your Airflow project with these new APIs.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-b43787b0-0eb1-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Pipelines - SQL Endpoint Refresh Activity",
         "summary": "When creating ETL pipelines in Fabric, it is important to have an easy step to refresh downstream items including the SQL Analytics Endpoint. To make it easy in your pipelines, we're excited to announce a new activity to easily refresh the SQL Endpoint.",
         "source": "Fabric Roadmap",
@@ -3169,16 +3036,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-d8e9db43-99b3-f011-bbd3-000d3a30273e",
         "date": "2026-08-15T07:22:19.781Z",
         "gaDate": "Q1 2026"
-      },
-      {
-        "title": "Dataflows - Intellisense support",
-        "summary": "One of the most frequently requested enhancements to the Power Query Online experience by advanced users is parity with the Intellisense capabilities available today in Power Query Desktop. As part of this planned release item, we will provide Intellisense support for editing of M code across Power Query Online hosts.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-9f97e0b6-99b3-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Dataflows - New Destination: Google Cloud Storage",
@@ -3241,16 +3098,6 @@
         "gaDate": "Q1 2026"
       },
       {
-        "title": "dbt job - New dbt job support in Fabric",
-        "summary": "dbt job introduces native authoring and operationalization of dbt workflows within Microsoft Fabric, eliminating the need for external orchestration tools. This feature enables customers to build, schedule, and manage dbt SQL transformations in Fabric Data Warehouse and external data wareshouses, streamlining data transformation processes and improving productivity.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-ac18ff0a-9f06-ef11-9f89-000d3a33ff0b",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Dataflows - Output Destinations: Recents Support",
         "summary": "We plan to bring support for Recents to the Output Data experience, allowing users to easily reconnect to a recently used Output Destination, much like we have made available in the Get Data experience.",
         "source": "Fabric Roadmap",
@@ -3279,16 +3126,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-b142ccd3-3f21-f011-9989-000d3a34671f",
         "date": "2026-08-15T07:22:19.781Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "Mirroring - New Source: Azure CosmosDB",
-        "summary": "Mirroring provides a seamless no-ETL experience to integrate your existing Azure Cosmos DB data with the rest of your data in Microsoft Fabric. You can continuously replicate your Azure Cosmos DB data directly into Fabric OneLake in near real-time, without any effect on the performance of your transactional workloads.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-274b528d-5907-ef11-9f89-000d3a34b75c",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Dataflows - Dataflows Gen2 Partitioned Compute",
@@ -3431,16 +3268,6 @@
         "previewDate": "Q3 2026"
       },
       {
-        "title": "Dataflows - AI-powered Transforms",
-        "summary": "We will introduce an initial set of AI-powered Transforms in Dataflow Gen2, and surface those transforms available in Fabric, including capabilities such as sentiment analysis, data classification, summarization, entity extraction, PII obfuscation, etc.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-1e89879f-5a21-f011-9989-000d3a5b0147",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Copy job - AI-powered Error Assistant and Insight for Copy Job",
         "summary": "Copilot helps to troubleshoot Copy job error messages by providing clearer summary and actionable recommendations.",
         "source": "Fabric Roadmap",
@@ -3461,16 +3288,6 @@
         "previewDate": "Q2 2026"
       },
       {
-        "title": "Copy Job/Activity- Improve read performance for CSV format when source is a single large file",
-        "summary": "Improve the read performance when reading a single large csv file in Copy job and Pipeline activities (Copy activity, Lookup activity, GetMetadata activity, Delete activity) by allowing multi-threads.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-9b42191b-fb9c-f011-b41c-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Connector - New connector in Copy Job and Pipeline activities (2H)",
         "summary": "New connectors are planned in Copy job, and Pipeline activities 1. SharePoint Online File (as source and destination)3. Google BigQuery (as destination)4. MySQL (as destination)5. PosgreSQL connector (as destination)",
         "source": "Fabric Roadmap",
@@ -3479,26 +3296,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-e6033a7e-029d-f011-b41c-000d3a5b0efa",
         "date": "2026-08-15T07:22:19.781Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "Mirroring - SQL Server 2022 and before",
-        "summary": "Mirroring support SQL Server on-prem (2022 and before) as General availability",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-9484955e-569d-f011-b41c-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Mirroring - SQL Server 2025",
-        "summary": "Mirroring support SQL Server on-prem 2025 as General availability",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-06b04c89-569d-f011-b41c-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Pipelines - Lakehouse Maintenance Activity",
@@ -3521,26 +3318,6 @@
         "gaDate": "Q2 2026"
       },
       {
-        "title": "Copy job - CDC based replication to Fabric Lakehouse table",
-        "summary": "With the CDC mechanism, customers can automatically capture inserts, updates, and deletions from supported CDC source store, and replicate them to the Fabric Lakehouse tables—without requiring a watermark column.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-f9d01fc9-b79a-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Copy job - Support more file formats: ORC, Excel, Avro, XML",
-        "summary": "Copy job can be used to copy more file formats including ORC, Excel, Avro, XML.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-e1d73f32-b99a-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Copy job - Support Workspace Monitoring",
         "summary": "With Workspace Monitoring for Copy Job, you can collect and organize logs and metrics from all Copy Job runs in an Eventhouse database within your workspace. You can also query this database to gain insights into workspace usage and performance, including the performance of individual Copy Jobs.",
         "source": "Fabric Roadmap",
@@ -3551,16 +3328,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Copy job - CDC based replication from Google BigQuery",
-        "summary": "With the CDC mechanism, customers can automatically capture inserts, updates, and deletions from Google BigQuery, and replicate them to supported destination—without requiring a watermark column.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-1258ff8c-c09a-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Copy job - CDC based replication from Oracle",
         "summary": "With the CDC mechanism, customers can automatically capture inserts, updates, and deletions from Oracle Database and replicate them to the destination—without requiring a watermark column.",
         "source": "Fabric Roadmap",
@@ -3569,16 +3336,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-91c99409-c19a-f011-b4cc-000d3a5b0efa",
         "date": "2026-08-15T07:22:19.781Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "Copy job - CDC based replication from SAP via Datasphere",
-        "summary": "With the CDC mechanism, customers can automatically capture inserts, updates, and deletions from SAP via Datasphere and replicate them to the destination—without requiring a watermark column.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-1670c585-c19a-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Copy job - SAP with ABAP add-on",
@@ -3609,16 +3366,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-dca3a694-cb9a-f011-b4cc-000d3a5b0efa",
         "date": "2026-08-15T07:22:19.781Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "Copy job - Copy table from user defined query",
-        "summary": "Copy Job lets you copy tables based on a user-defined query, giving you flexibility to select and filter data before loading it into the target.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-ee445270-cc9a-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.781Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Pipelines - Tumbling Window Triggers",
@@ -3791,16 +3538,6 @@
         "previewDate": "Q3 2026"
       },
       {
-        "title": "Connector - Snowflake Key-Pair Auth type",
-        "summary": "We will enhance the Snowflake connector to support Snowflake's Key-Pair Authentication type.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-89d671fa-8c20-f011-998a-0022480939f0",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Dataflows - Browse SharePoint UX",
         "summary": "One of the biggest challenges over the years for Citizen Users in connecting to data stored in SharePoint (Files, Folders, Lists) has been to specify the right SharePoint URL to connect to. We’re planning to provide a “Browse SharePoint” UX, similar to the existing “Browse OneDrive” UX in product, that will allow customers to explore the SharePoint Sites available to them – This enhancement is planned to ship across Modern Get Data (for SharePoint Folder and SharePoint Lists) as well as Output Destinations (SharePoint output destination).",
         "source": "Fabric Roadmap",
@@ -3841,16 +3578,6 @@
         "gaDate": "Q2 2026"
       },
       {
-        "title": "Copy Job - Truncation on destination for full initial load",
-        "summary": "Customers will have the option to truncate existing data at the destination before performing the initial full load from the source.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-3ade39a2-6821-f011-998a-0022480939f0",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Copy Job - Audit Column",
         "summary": "You can use Copy job to add audit-style system columns when moving data to your destination, improving data lineage and compliance. This feature provides row-level visibility into your destination data, showing when rows were moved and where they came from, enabling downstream data lineage tracking and compliance reporting across the entire stack.",
         "source": "Fabric Roadmap",
@@ -3859,16 +3586,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-ec4d989c-6921-f011-998a-0022480939f0",
         "date": "2026-08-15T07:22:19.782Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "Mirroring - New Source: Azure PostgreSQL Flexible Server",
-        "summary": "Customers can replicate Azure PostgreSQL Flexible server snapshot and change data into Fabric Onelake",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-29ba43dd-ec21-f011-998a-0022480939f0",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Mirroring - Enabling Delta Change Feed",
@@ -3891,16 +3608,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Dataflows - Export Query Results in Power Query within Power BI Desktop",
-        "summary": "“Export Query Results” in Power Query in Power BI Desktop will enable users to leverage Fabric Dataflows to power data transformations – providing scale, performance and access to all Fabric supported destinations, including Fabric data items (Lakehouse, Warehouse, SQL database, Eventhouse), Azure SQL Database, SharePoint Files and more.These accelerated experiences will help customers benefit from the High-Scale, Performance and Wide Reusability provided by Dataflow Gen2 in Fabric, while ensuring their existing workflows in Power BI Desktop are not disrupted, and provide a gradual on-ramp for",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-11e6c855-b090-ef11-ac21-002248098a98",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Pipelines - Run Pipeline when dependencies are met",
         "summary": "A commonly used functionality in ADF is configuring a Pipeline to run when a set of dependencies are met. We are excited to bring this functionality to Data Pipelines in Data Factory in Fabric to continue enriching orchestration capabilities.",
         "source": "Fabric Roadmap",
@@ -3909,16 +3616,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-f8636911-7191-ef11-ac21-002248098a98",
         "date": "2026-08-14T07:12:57.974Z",
         "previewDate": "Q3 2026"
-      },
-      {
-        "title": "Copy job - CDC based replication from Snowflake",
-        "summary": "With the CDC mechanism, customers can automatically capture inserts, updates, and deletions from Snowflake, and replicate them to the supported destinations—without requiring a watermark column.",
-        "source": "Fabric Roadmap",
-        "product": "Data Factory",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datafactory#plan-13725833-bb9a-f011-b4cc-0022480b30e4",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Pipelines - Actions",
@@ -4291,26 +3988,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Support AutoML with FLAML in ML model endpoints",
-        "summary": "This feature enables users to deploy models with internal dependencies, such as AutoML or FLAML, directly through ML model endpoints.",
-        "source": "Fabric Roadmap",
-        "product": "Data Science",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datascience#plan-f282e269-15be-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "AI Functions for LLM-Powered Text Enrichment and Transformation [GA]",
-        "summary": "AI functions in Fabric will allow notebook users to seamlessly perform tasks like text summarization, translation, classification, sentiment analysis, grammar correction, and more, providing a simplified API for common enrichments and making it easier for users to apply them with fewer lines of code. The functions will be initially available on top of pandas DataFrames and ultimately available via Spark, SQL, and other programming surfaces across Fabric.",
-        "source": "Fabric Roadmap",
-        "product": "Data Science",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datascience#plan-9f3e8191-53b3-f011-bbd3-000d3a3740cc",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Multimodal Support for AI Functions [Public Preview]",
         "summary": "Multimodal support for AI functions in Fabric will allow notebook users to use AI functions on their unstructured data in pdf, image, and text file formats, to seamlessly perform tasks like summarization, classification, sentiment analysis, and more, with just a few lines of code. The multimodal support for AI functions will be available with both pandas and Spark.",
         "source": "Fabric Roadmap",
@@ -4409,16 +4086,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-725ed67e-0495-f011-b4cc-000d3a30273e",
         "date": "2026-08-14T07:12:57.974Z",
         "gaDate": "Q1 2026"
-      },
-      {
-        "title": "OPENROWSET(JSONL)",
-        "summary": "The OPENROWSET(BULK) function allows you to query external data (such as CSV and Parquet files) stored in the lake using the T-SQL syntax. With JSONL support, you can now also query JSON Lines files, expanding the range of supported formats and simplifying access to semi-structured data. To read a JSONL file, use the existing OPENROWSET(BULK) syntax:```SELECT TOP 10 FROM OPENROWSET( BULK 'https://pandemicdatalake.blob.core.windows.net/public/curated/covid-19/bing_covid-19_data/latest/bing_covid-19_data.jsonl')```",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-65cd5ddb-28a8-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Regular expressions",
@@ -4521,16 +4188,6 @@
         "gaDate": "Q3 2026"
       },
       {
-        "title": "Incremental Statistics Refresh",
-        "summary": "Incremental Statistics Refresh is a performance optimization to automatic statistic updates. It opportunistically reduces duration of automatic statistic updates by only sampling newly-added rows (instead of the entire column), thereby speeding up user queries that must update statistics before running.",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-6fffac4b-d2fa-ee11-a1ff-000d3a340b2c",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "SQL Pool Insights",
         "summary": "The sql_pool_insights view in Microsoft Fabric Data Warehouse provides actionable insights into the configuration and utilization of SQL pools via Query Insights. It helps users monitor resource allocation, track configuration changes, and identify periods when pools are under pressure. This enables data engineers and administrators to optimize workloads and troubleshoot performance issues efficiently.",
         "source": "Fabric Roadmap",
@@ -4539,16 +4196,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-1e748b92-d2fa-ee11-a1ff-000d3a340b2c",
         "date": "2026-08-15T07:22:19.782Z",
         "gaDate": "Q1 2026"
-      },
-      {
-        "title": "VARCHAR(MAX)/VARBINARY(MAX) types",
-        "summary": "Users can define columns with VARCHAR(MAX)/VARBINARY(MAX) types in Data Warehouse to store string or binary data up to 16 MB.",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-c39f77e9-7d57-f011-877a-000d3a34671f",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "MERGE (T-SQL)",
@@ -4651,16 +4298,6 @@
         "previewDate": "Q3 2026"
       },
       {
-        "title": "DATE_BUCKET() - simplify analytics on datetime values",
-        "summary": "The `DATE_BUCKET()` function groups dates into buckets of arbitrary length and returns the starting date of each bucket. This function is particularly useful for performing analytics on datetime columns when you need to aggregate or group values by time intervals.The following example shows how to group the values into 2-week buckets and count the number of records in each bucket:&lt;br/&gt; ```SELECT date_period = DATE_BUCKET(WEEK, 2, updated), count = COUNT() FROM dbo.bing_covid19_data GROUP BY DATE_BUCKET(WEEK, 2, updated)```",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-d33a4d87-58b6-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "File-Level write-write conflict detection (Generally Available)",
         "summary": "This feature is part of the concurrency control strategy for Fabric DW. File-level write-write conflict detection is a mechanism designed to prevent two concurrent transactions from modifying the same physical file in a data warehouse at the same time. More precise than table-level detection (which blocks any concurrent changes to the same table).What It Does?Scope: Operates at the file level (e.g., Parquet files in Fabric DW), rather than at the table or row level.Goal: Detect overlapping changes (updates, deletes) to the same file during concurrent transactions.Trigger: When a transaction tr",
         "source": "Fabric Roadmap",
@@ -4669,26 +4306,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-b7e155c6-94bf-f011-bbd3-000d3a5b0efa",
         "date": "2026-08-14T07:12:57.974Z",
         "gaDate": "Q4 2026"
-      },
-      {
-        "title": "CMK Support for Fabric Warehouse and SQL Endpoint",
-        "summary": "### Customer Managed Keys (CMK) Support on Fabric WarehouseCustomer Managed Keys (CMK) support on Fabric Warehouse allows customers to use their own encryption keys stored in Azure Key Vault or Managed HSM to protect data at rest within Fabric workspaces. This feature ensures that all persistent customer data—including OneLake storage and SQL metadata—is encrypted with customer-controlled keys, providing enhanced security, compliance, and key lifecycle management. CMK on Fabric Warehouse is a critical component of Fabric workspace encryption, enabling customers to maintain full ownership and c",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-f0a40ab7-0972-f011-bec3-00224802d8fd",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Proactive Statistics Refresh",
-        "summary": "With this feature enabled, column statistics that are automatically created during SELECT queries are now also proactively refreshed as their data changes. This reduces the likelihood of a user query having to wait for statistic updates before being able to run, and thus reduces user query time.",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-52d118fc-14f3-ef11-be21-00224806b5e1",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Create, Get, Update warehouse definition Rest API",
@@ -4752,16 +4369,6 @@
       },
       {
         "title": "Configurable Retention between 1-120 days",
-        "summary": "Ability to configure retention between 1 to 30 days",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-c13c3e13-0d22-f011-998a-0022480939f0",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q2 2027"
-      },
-      {
-        "title": "Configurable Retention between 1-120 days",
         "summary": "Ability to configure the data warehouse retention between 1 to 120 days;",
         "source": "Fabric Roadmap",
         "product": "Data Warehouse",
@@ -4811,26 +4418,6 @@
         "gaDate": "Q2 2026"
       },
       {
-        "title": "Data Clustering",
-        "summary": "Data Clustering enables faster read performance by allowing users to specify columns for co-locating data on ingestion and perform file skipping on read.",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-d8b8c72e-7f82-ef11-ac21-002248098a98",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Identity columns",
-        "summary": "Identity columns are numeric columns that automatically increment with each new row value that is inserted into a table with an Identity column defined.",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-62789c47-9a82-ef11-ac21-002248098a98",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "COPY INTO - Support Workspace Identity",
         "summary": "COPY INTO - Support Workspace Identity – Support workspace-scoped identity as a credential option, allowing secure storage access and on-behalf-of enforcement without credential management.",
         "source": "Fabric Roadmap",
@@ -4839,16 +4426,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-aa94dc1e-14b9-f011-bbd2-0022480a2ecf",
         "date": "2026-08-14T07:12:57.974Z",
         "previewDate": "Q3 2026"
-      },
-      {
-        "title": "Warehouse snapshots (Generally Available)",
-        "summary": "This capability allows users to access a consistent read only version of data from a specific point in time, even if they attempt to access it during an ongoing ETL process. Fabric DW is committed to empowering businesses with reliable and consistent data, enabling them to make informed decisions with confidence.As read-only child items of the parent warehouse, warehouse snapshots offer a consistent and stable view of your data, ensuring that analytical workloads remain unaffected by ongoing changes or ETL operations.",
-        "source": "Fabric Roadmap",
-        "product": "Data Warehouse",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=datawarehouse#plan-0a478c1d-6166-ef11-bfe3-0022480abf3c",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Custom SQL Pools",
@@ -5021,26 +4598,6 @@
         "previewDate": "Q2 2026"
       },
       {
-        "title": "Pin and unpin multitasking tabs",
-        "summary": "Allow users to pin/unpin tabs.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-e33b0ce3-2fba-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Open the multitasking tab in new browser tab",
-        "summary": "Allow users toright click on a multitasking tab and open it in a new browser tab, similar to the web browser experience.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-74045e2c-30ba-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Allow users to reorder open workspaces in the nav bar",
         "summary": "Currently, users can open multiple workspaces simultaneously and switch between them via the navigation bar. However, the order of these workspace icons is fixed based on the sequence in which they were opened.This creates friction for users who frequently multitask across workspaces and want to organize their open items in a way that better reflects their workflow priorities.This feature allows users to reorder open workspace icons in the navigation bar through drag-and-drop interaction, enabling greater control and efficiency in multitasking.",
         "source": "Fabric Roadmap",
@@ -5131,16 +4688,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Fabric Extensibility Toolkit - Workload validation Improvements",
-        "summary": "The Fabric Extensibility Toolkit (FET) introduces Validation Improvements to streamline readiness checks for Public Preview and GA stages. A new self-verification tool empowers developers to validate workloads independently, ensuring compliance with Fabric standards before submission. In addition, we’ve enhanced documentation for validation workflows and upgraded the partner validation reports, providing clearer insights, actionable feedback, and alignment with certification requirements. These improvements reduce friction, accelerate approval timelines, and give partners greater confidence in",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-0781625c-21ba-f011-bbd3-000d3a3740cc",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Fabric Python SDK GA",
         "summary": "Python SDK GA alllows to build, automate, and integrate with Microsoft Fabric faster.With GA stability and support, developers and ISVs can programmatically manage Fabric items, workspaces, and operations using clean, idiomatic Python APIs—designed for production-scale automation, CI/CD, and embedded experiences.",
         "source": "Fabric Roadmap",
@@ -5179,26 +4726,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-76396892-86db-f011-8544-000d3a3b0571",
         "date": "2026-08-15T07:22:19.782Z",
         "gaDate": "Q2 2026"
-      },
-      {
-        "title": "Enable developers to focus on one key editor pane and hide sidebar",
-        "summary": "When focusing on editing an Item developers need an option to maximize the available window space for the editor pane. This is a core need when working on Item editing, but it also addresses the crowding that can occur in the UI due to multiple levels of navigation and side panels between the shell and various extensions.This feature allows users to hide their navigation side bar so that they can be more focused on the main page.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-e5867f80-8897-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Hotkey support for quick navigation",
-        "summary": "Enable hotkey functionality to support efficient management of open items. By reducing reliance on mouse interactions, it streamlines multitasking workflows, enhances productivity, and minimizes context-switching, making it easier for users to stay focused and manage complex tasks simultaneously.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-467aabb6-8897-f011-b4cc-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Git Integration - Selective Branching",
@@ -5241,26 +4768,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Git integration - Cross-tenant Authentication to Azure DevOps",
-        "summary": "Today, users of Fabric can work against Azure DevOps only using the same user they are logged into Fabric with.With this feature, we will enable (in addition to current single-sign-on experience) to connect using a separate user, that can be from a different tenant as well.This can enable few scenarios for different organizations: When the org uses a different tenant for Azure DevOps than the tenant used in Fabric. When the org uses Fabric with multiple tenants (such as dev/test/prod workspaces). In cases of guest user in a tenant (B2B).",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-97cad90e-ba5d-f011-bec1-00224804b6c3",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "REST API - Service Principal support for Azure DevOps",
-        "summary": "For a complete automation story for CI/CD and Git APIs, we will support working with Service principal when running the [Fabric Git APIs](/rest/api/fabric/core/git).This will allow devs to call these APIs with an App created in Entra, and has access to the workspace.Additoinal info: As we are adding also support for cross-tenant Authentication for Azure DevOps, the SPN used to call Fabric APIs won't automatically be the same identity used to work against Azure Repos. If the same SPN is to be used to access the repo, make sure the SPN has access. You would also need to setup the App ID and Secr",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-c029fe93-ba5d-f011-bec1-00224804b6c3",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Fabric Extensibility Toolkit - General Availability",
         "summary": "The Fabric Extensibility Framework (FET) is officially General Availability (GA), marking a major milestone in empowering developers to build, customize, and extend Fabric experiences at scale. GA brings enterprise-grade stability. With comprehensive documentation, standardized UX controls, and robust governance support, FET enables partners and developers to deliver secure, performant, and compliant solutions confidently across the Fabric ecosystem.",
         "source": "Fabric Roadmap",
@@ -5269,16 +4776,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-35a5688b-91ba-f011-bbd3-00224808fcf0",
         "date": "2026-08-15T07:22:19.782Z",
         "gaDate": "Q1 2026"
-      },
-      {
-        "title": "Fabric Extensibility Toolkit - Publish Workloads",
-        "summary": "The Fabric Extensibility Toolkit (FET) will support cross-tenant publishing as part of Public Preview, enabling partners and developers to publish workloads beyond their home tenant.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-7275a5ad-93ba-f011-bbd3-00224808fcf0",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "ADO Pipelines Extension for MS Fabric",
@@ -5319,16 +4816,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-3bf3fb7e-b5b9-f011-bbd2-0022480a2ecf",
         "date": "2026-08-15T07:22:19.782Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "Fabric Extensibility Toolkit - Fabric Editor controls",
-        "summary": "The Fabric Extensibility Toolkit (FET) Starter Kit now includes Standard Fabric controls support, giving developers a head start in building item editors that are both fast and visually consistent. With a curated set of pre-built UI components aligned to Fabric UX style guidelines, the Starter Kit eliminates the need to design controls from scratch, ensuring accessibility and a native look-and-feel out of the box. This accelerates development cycles, reduces complexity, and guarantees that custom editors seamlessly integrate into the Fabric ecosystem while maintaining a polished, enterprise-re",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-6ff574e2-b5b9-f011-bbd2-0022480a2ecf",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Terraform Provider for Fabric V1.11.0",
@@ -5399,16 +4886,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-fbee65ff-2b8b-f111-ab0f-6045bd03ee11",
         "date": "2026-08-14T07:12:57.974Z",
         "previewDate": "Q4 2026"
-      },
-      {
-        "title": "Terraform provider for Fabric - Workspace Private Link support",
-        "summary": "General Availability: Q4 2025",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Developer Experiences",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricdeveloperexperiences#plan-11be4ad2-c1b9-f011-bbd3-6045bd05dd14",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Fabric Extensibility Toolkit - Workload Management Admin API",
@@ -5511,26 +4988,6 @@
         "gaDate": "Q2 2026"
       },
       {
-        "title": "SAS Decision Builder",
-        "summary": "SAS Decision Builder for Microsoft Fabric helps customers make better, faster and more secure decisions by compiling multiple artificial intelligence models, rules and procedure logic into a composite workflow. This is a critical step for organizations looking to maximize their return on their analytics investments with AI-automated decision making.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Ecosystem",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricecosystem#plan-22864ab2-51a4-f011-bbd3-000d3a30273e",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Esri ArcGIS Maps",
-        "summary": "Powerful maping, spatial visualization and analysis using 180+ geospatial functions and tools built directly into Microsoft Fabric.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Ecosystem",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricecosystem#plan-13096836-b77e-f011-b4cc-000d3a302e4a",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Zebra AI",
         "summary": "Zebra AI is a smart assistant for turning business data into clear, actionable insights directly integrated with Fabric and PowerBI",
         "source": "Fabric Roadmap",
@@ -5559,16 +5016,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=fabricecosystem#plan-96ce85f7-2101-f111-8406-000d3a36696c",
         "date": "2026-08-14T07:12:57.974Z",
         "previewDate": "Q3 2026"
-      },
-      {
-        "title": "Esri ArcGIS geospatial libraries for Fabric Spark",
-        "summary": "Esri ArcGIS geospatial libraries allows Fabric Spark users to use over 150 geoanalytics tools and functions to understand trends, patterns, and correlations within large geospatial dataset.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Ecosystem",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricecosystem#plan-b2e2f16c-a97e-f011-b4cc-00224804b6c3",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "Lucid Datahub AgentMart Studio",
@@ -5619,16 +5066,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=fabricecosystem#plan-93425130-8100-f111-8406-6045bd00f798",
         "date": "2026-08-15T07:22:19.782Z",
         "previewDate": "Q1 2026"
-      },
-      {
-        "title": "2TEST Data Testing",
-        "summary": "Instead of spending countless hours on error-prone, manual data testing requiring specialized skills, 2TEST automates data and BI testing with a user-friendly interface for your entire team.",
-        "source": "Fabric Roadmap",
-        "product": "Fabric Ecosystem",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=fabricecosystem#plan-f12482a4-e7bf-f011-bbd3-6045bd05dd14",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Stibo Master Data Management",
@@ -5689,16 +5126,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=iq#plan-b126ea44-39d5-f011-8544-000d3a30273e",
         "date": "2026-08-15T07:22:19.782Z",
         "previewDate": "Q2 2026"
-      },
-      {
-        "title": "Ontology Public Preview Release",
-        "summary": "A unified semantic layer that connects data points through meaning, not just structure, allowing systems and humans to interpret and act on data with context and consistency. The foundation for interoperability, intelligent automation, and AI explainability. A way to organize enterprise data into actionable intelligence.",
-        "source": "Fabric Roadmap",
-        "product": "IQ",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=iq#plan-ad65ada2-2f9e-f011-b41c-000d3a30273e",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Public API for Ontology",
@@ -5931,26 +5358,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "OneLake security - ReadWrite permission",
-        "summary": "Configure write permissions for folders in a lakehouse using OneLake security. With this feature, viewers can be given selective write access to certain folders in the lakehouse enabling teams to write data without having Contributor or higher roles in the workspace.",
-        "source": "Fabric Roadmap",
-        "product": "OneLake",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=onelake#plan-b632b753-9a1f-f011-9989-000d3a329ecb",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "OneLake security - public preview (no sign-up)",
-        "summary": "Now available for use without signing up, OneLake security allows you to set security once and have it enforced across all engines in Microsoft Fabric. Use granular permissions such as table, column, or row level security to limit access to sensitive data.",
-        "source": "Fabric Roadmap",
-        "product": "OneLake",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=onelake#plan-d41ff5cc-3f46-f011-8779-000d3a34671f",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "OneLake malware scanning",
         "summary": "OneLake malware protection helps secure your data by automatically scanning files for malicious content when they’re uploaded. It surfaces alerts and scan results for further action, providing built‑in protection for enterprise data without requiring additional infrastructure.",
         "source": "Fabric Roadmap",
@@ -6141,16 +5548,6 @@
         "previewDate": "Q2 2026"
       },
       {
-        "title": "Button slicer",
-        "summary": "In Power BI, the button slicer is an interactive visual allowing users to filter data in reports, providing an easy and dynamic way to scope down your other visuals.Among the various types of slicers, the button slicer stands. Button slicer offers customizable button styles, interactive states, conditional formatting for labels, and a grid layout for arranging buttons in rows and columns. Additionally, the button slicer can integrate images, enhancing visual appeal and providing more context.",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-57ee901c-1bb5-f011-bbd3-000d3a366ca0",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Table and matrix fixed width columns",
         "summary": "A new option in the Table and Matrix visuals to specify each columns width.",
         "source": "Fabric Roadmap",
@@ -6251,46 +5648,6 @@
         "gaDate": "Q3 2026"
       },
       {
-        "title": "Chat with your data experience in the Power BI Mobile apps",
-        "summary": "Chat with your data in the Power BI Mobile app lets you ask questions in natural language and instantly get answers from your reports and semantic models. It uses Copilot intelligence to deliver insights, summaries, and visuals right from your mobile device, so you can explore data and make decisions on the go.",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-b6fd3d47-7fa7-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Image visual improvements",
-        "summary": "The Image visual improvements empower report creators to craft more engaging experiences for report consumers. Report creators can easily maintain image visuals with more image formatting options, more image source options, and the ability to change the image in-place.",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-823bcd14-04c2-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "New Card visual",
-        "summary": "The new Card visual brings a modern and visually engaging way to highlight key measures in your reports, now with support for hero images, new default styling, and consistent formatting experience. This card can be used with one or more measures, including additional measures for complete context. For example, you can show your sales measure with supporting details such as sales per day, change in sales, and units sold, all in a single card.",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-13f1b373-04c2-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Matrix visual with auto-size columns",
-        "summary": "A new option in the Matrix visual to automatically distribute columns to fit the width of the visual container. No more manually resizing each column to fill the gap.",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-d9761ec0-04c2-f011-bbd3-000d3a5b0efa",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Modern tooltips on report visuals",
         "summary": "Updated styling to match a report theme on tooltips on Power BI report visuals. Modern tooltips also include drill down and drill through actions.",
         "source": "Fabric Roadmap",
@@ -6381,16 +5738,6 @@
         "gaDate": "Q2 2026"
       },
       {
-        "title": "Table auto-size columns",
-        "summary": "A new option in the Table visual to automatically distribute columns to fit the width of the visual container. No more manually resizing each column to fill the gap.",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-ab8fc46b-42c4-f011-bbd3-6045bd00f9db",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Org Apps GA",
         "summary": "Org Apps allows you to easily create different apps for different pruposes with full source control support. In this upcomming release we will close alot of the most requested features and take Org Apps to General Availability.",
         "source": "Fabric Roadmap",
@@ -6419,16 +5766,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-794f705f-21c5-f011-bbd3-6045bd00f9db",
         "date": "2026-08-14T07:12:57.974Z",
         "gaDate": "Q3 2026"
-      },
-      {
-        "title": "Performance Analyzer in the Web",
-        "summary": "This feature brings the current perf analyzer in the desktop accessible inside the Web",
-        "source": "Fabric Roadmap",
-        "product": "Power BI",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=powerbi#plan-fd5af9a9-21c5-f011-bbd3-6045bd00f9db",
-        "date": "2026-08-15T07:22:19.782Z",
-        "gaDate": "Q4 2025"
       },
       {
         "title": "DAX User Defined Functions",
@@ -6639,16 +5976,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-60246c0e-762f-f011-8c4d-000d3a34671f",
         "date": "2026-08-14T07:12:57.974Z",
         "previewDate": "Q3 2026"
-      },
-      {
-        "title": "Eventstream integration with Cribl as source",
-        "summary": "This feature provides a dedicated source in Real-Time Hub for Cribl, making it easy for customers to integrate with Cribl.",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-1612c1b8-eb22-f011-9989-000d3a34671f",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Support SSL encryption for Eventstream connector data transmission",
@@ -7021,36 +6348,6 @@
         "previewDate": "Q1 2027"
       },
       {
-        "title": "Fabric Graph regional availability",
-        "summary": "Graph in Microsoft Fabric will become availabe across various [Fabric regions](https://learn.microsoft.com/en-us/fabric/admin/region-availability) according to the schedule below. Note that this schedule is subject to change.&lt;br&gt;&lt;br&gt;Oct 8&lt;br&gt;- East US 2&lt;br&gt;- North Central US&lt;br&gt;- UK South&lt;br&gt;- West Europe&lt;br&gt;&lt;br&gt;Oct 14&lt;br&gt;- Australia East&lt;br&gt;- Canada Central&lt;br&gt;- Central US&lt;br&gt;- East US&lt;br&gt;- North Europe&lt;br&gt;- Norway East&lt;br&gt;- Poland Central&lt;br&gt;- West US 2&lt;br&gt;&lt;br&gt;Oct 21&lt;br&gt;- Canada ",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-b55b5022-229e-f011-b41c-00224808fcf0",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Fabric Graph",
-        "summary": "Fabric Graph (preview) is scalable native graph service built directly into Microsoft Fabric. • Model connected data natively on OneLake – represent interconnected data points as labeled property graphs without managing ETL or data replication pipelines.• Explore visually – uncover hidden connections in seconds through low-/no-code user interfaces tailored for developers as well as business users.• Query with open standards – run pattern analysis using GQL-compliant syntax and REST endpoints.• Enterprise-grade governance – unified security, lineage, and scale-out compute inherited from Fabric ",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-cbcd7d3a-572f-f011-8c4e-0022480939f0",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Operations Agents",
-        "summary": "Operations Agents are a new capability in Real-Time Intelligence designed to act like virtual team members—monitoring data, recognizing patterns, and recommending actions in real time. They combine LLMs with rule-based logic to track operational goals, surface insights, and trigger workflows when conditions are met. The agent builds up an internal playbook to understand the domain, uses rules to define when to act, and logs everything for traceability and feedback. It’s all about helping customers move from insight to action faster, with humans in the loop where needed",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-56a6595c-7532-f011-8c4e-0022480939f0",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Activator alerts and rules on top of Data Warehouse queries",
         "summary": "Integrate Activator with Data Warehouse allowing alerting on top of business data quries as well as meta data and perf data.",
         "source": "Fabric Roadmap",
@@ -7069,26 +6366,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-28c0d541-e64c-ef11-a317-0022480abf3c",
         "date": "2026-08-14T07:12:57.974Z",
         "gaDate": "Q3 2026"
-      },
-      {
-        "title": "Eventstream Connector: HTTP with public feeds",
-        "summary": "This HTTP-based connector provides a no-code and configurable way for users to continuously pull data from any HTTP API and external platforms into Eventstream. With a simple UI, you can configure HTTP requests, authentication, headers, and intervals to stream data into Eventstream for real-time analysis.",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-628783c0-c4d4-ef11-8eea-0022480ad80e",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Eventstream connector: Mongo DB CDC",
-        "summary": "The MongoDB CDC connector for Eventstream captures database changes from any MongoDB deployment, including MongoDB Atlas and self-managed instances on other cloud providers. These change events are streamed into Eventstream for real-time processing and analysis.",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-6a1c65e6-c4d4-ef11-8eea-0022480ad80e",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Easily use Spark Structured Streaming with Fabric Eventstreams",
@@ -7441,16 +6718,6 @@
         "previewDate": "Q1 2026"
       },
       {
-        "title": "Azure Monitor DCR to Eventhouse",
-        "summary": "Azure Monitor Data Collection Rules (DCRs) allow to direct data from Azure Monitor agent (AMA) to different destinations, e.g. Azure Log Analytics & Event Hub.This new feature allows the data to be directed to a Fabric Eventhouse or an Azure Data Explorer cluster where destination tables are created automatically with the right schema.",
-        "source": "Fabric Roadmap",
-        "product": "Real-Time Intelligence",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=real-timeintelligence#plan-6cc920bf-d89e-f011-b41c-6045bd05dd14",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "Anomaly Detection Events in Real-Time Hub",
         "summary": "Anomaly Detection Events in Real-Time HubOverviewEnable Real-Time hub to surface anomaly detection signals as Business Events—allowing users to monitor, react, and automate responses to unusual patterns in real time.Key Capabilities Anomaly Signals as Business Events: Represent detected anomalies (e.g., spikes, drops, deviations) as standardized Business Events that can be consumed across Fabric. Real-time Event Monitoring & Alerts: Continuously monitor event streams and trigger anomaly events when defined conditions or thresholds are met. Customizable Detection Conditions: Configure rules, fi",
         "source": "Fabric Roadmap",
@@ -7621,26 +6888,6 @@
         "previewDate": "Q3 2026"
       },
       {
-        "title": "Copilot for SQL Database in Fabric",
-        "summary": "New enhancements for Copilot for SQL database in Fabric include: Improved response quality and consistency for Sidecar Chat / New toolsets to support scenarios like performance monitoring, troubleshooting errors, schema design, etc.",
-        "source": "Fabric Roadmap",
-        "product": "SQL database",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-fab08e48-e11b-f011-998a-000d3a302e4a",
-        "date": "2026-08-15T07:22:19.783Z",
-        "gaDate": "Q4 2025"
-      },
-      {
-        "title": "Editor for SQL database in Fabric",
-        "summary": "The SQL Query editor for SQL database in Fabric features include: Datawarehouse & SQL feature parity (Bulk query delete, Keyboard shortcuts, Search bar filter, Code snippets, Column resizing) Shortcuts Shared Queries",
-        "source": "Fabric Roadmap",
-        "product": "SQL database",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-663a3600-e21b-f011-998a-000d3a302e4a",
-        "date": "2026-08-15T07:22:19.783Z",
-        "gaDate": "Q4 2025"
-      },
-      {
         "title": "Fabric SQL | Point-in-time restore from dropped databases REST APIs ONLY | Public Preview",
         "summary": "Users should be able to restore a database from backups of a deleted database in their workspaces.",
         "source": "Fabric Roadmap",
@@ -7681,36 +6928,6 @@
         "gaDate": "Q1 2026"
       },
       {
-        "title": "Mirroring Configurability",
-        "summary": "Ability to Start and Stop Mirroring/Replication using REST API'shttps://learn.microsoft.com/en-us/fabric/database/sql/start-stop-mirroring-api",
-        "source": "Fabric Roadmap",
-        "product": "SQL database",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-72b4e006-fd55-f011-877a-00224804ca88",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Auditing for Fabric SQL DB",
-        "summary": "SQL Audit for Fabric SQL DatabaseAuditing is an essential enterprise-ready feature and a critical requirement for SQL Database in Fabric. Default Auditing:auditing for Fabric SQL Database is designed to deliver security by default. This default auditing mechanism audits all activities, aligning with the standards of Azure SQL Database. It enables customers to meet compliance requirements for the Fabric SQL Database and ensures that all audit logs are written to a single lake target.Custom Auditing:custom auditing, allowing customers to configure auditing based on specific scenarios such as aud",
-        "source": "Fabric Roadmap",
-        "product": "SQL database",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-0227ebbc-9f1b-f011-998a-0022480939f0",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
-        "title": "Customer-managed keys (CMK) for encryption at rest",
-        "summary": "Encryption at rest using customer-managed keys, configured at the workspace-level.",
-        "source": "Fabric Roadmap",
-        "product": "SQL database",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-34d3c0cd-ca90-ef11-ac21-002248098a98",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
-      },
-      {
         "title": "SQL project database definition import/export API",
         "summary": "The REST APIs for SQL database in Fabric are being extended to support the full SQL project file format in addition to the existing dacpac format. These APIs enable you to retrieve the code definition of your databases or have your database dynamically updated based on a code definition that you provide.- https://learn.microsoft.com/en-us/rest/api/fabric/sqldatabase/items/get-sql-database-definition?tabs=HTTP- https://learn.microsoft.com/en-us/rest/api/fabric/sqldatabase/items/update-sql-databases-definition?tabs=HTTPLearn more about SQL projects from https://aka.ms/sqlprojects",
         "source": "Fabric Roadmap",
@@ -7719,16 +6936,6 @@
         "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-267b969a-e3d9-f011-8544-0022480a2ecf",
         "date": "2026-08-15T07:22:19.783Z",
         "gaDate": "Q1 2026"
-      },
-      {
-        "title": "OPENROWSET and Bulk support",
-        "summary": "Fabric SQL Database now supports OPENROWSET, and BULK INSERT operations for CSV, and Parquet file formats. Users can easily and safetly query and ingest files directly from OneLake.",
-        "source": "Fabric Roadmap",
-        "product": "SQL database",
-        "status": "Try Now",
-        "url": "https://roadmap.fabric.microsoft.com/?product=sqldatabase#plan-f90da208-3d8f-ef11-ac21-6045bd062aa2",
-        "date": "2026-08-15T07:22:19.783Z",
-        "previewDate": "Q4 2025"
       },
       {
         "title": "Auditing for Fabric SQL DB",

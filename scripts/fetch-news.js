@@ -414,17 +414,27 @@ function cleanFabricDescription(text) {
     .slice(0, 600);
 }
 
-// The Fabric Roadmap API returns every feature ever shipped, including
-// ones from years ago (e.g. "Q1 2024") — keep only items targeting a
-// quarter within the last ~year so old "Try Now" clutter drops out.
-// (Planned items are always current/future, so this never affects them.)
-function isFabricQuarterRecent(quarterStr) {
+// Absolute, comparable quarter index: "Q3 2026" → 2026*4 + 2 = 8106.
+function fabricQuarterIndex(quarterStr) {
   const m = (quarterStr || '').match(/Q([1-4])\s*(\d{4})/i);
-  if (!m) return true; // no parseable quarter — keep rather than guess
-  const quarterStart = new Date(parseInt(m[2], 10), (parseInt(m[1], 10) - 1) * 3, 1);
-  const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  return quarterStart >= oneYearAgo;
+  if (!m) return null;
+  return parseInt(m[2], 10) * 4 + (parseInt(m[1], 10) - 1);
+}
+
+function currentFabricQuarterIndex() {
+  const now = new Date();
+  return now.getFullYear() * 4 + Math.floor(now.getMonth() / 3);
+}
+
+// The Fabric Roadmap API returns every feature ever shipped, including
+// ones from years ago (e.g. "Q1 2024"). Try Now (shipped) items are kept
+// only for the current quarter and the two before it — a rolling 3-quarter
+// window. Planned items are always current/future, so they're unrestricted.
+function isFabricTryNowWithinWindow(quarterStr) {
+  const idx = fabricQuarterIndex(quarterStr);
+  if (idx === null) return true; // unparseable — keep rather than guess
+  const current = currentFabricQuarterIndex();
+  return idx <= current && idx >= current - 2;
 }
 
 async function fetchFabricRoadmap() {
@@ -451,19 +461,20 @@ async function fetchFabricRoadmap() {
       let kept = 0;
       for (const item of items) {
         const isPreview = item.ReleaseType === 'Public preview';
-        if (!isFabricQuarterRecent(item.ReleaseDate)) continue;
+        const status = item.ReleaseStatus === 'Shipped' ? 'Try Now' : 'Planned';
+        if (status === 'Try Now' && !isFabricTryNowWithinWindow(item.ReleaseDate)) continue;
         kept++;
         allFeatures.push({
           title:       (item.FeatureName || '').trim(),
           category:    name,
-          status:      item.ReleaseStatus === 'Shipped' ? 'Try Now' : 'Planned',
+          status,
           previewDate: isPreview ? item.ReleaseDate : '',
           gaDate:      !isPreview ? item.ReleaseDate : '',
           description: cleanFabricDescription(item.FeatureDescription),
           url: `https://roadmap.fabric.microsoft.com/?product=${encodeURIComponent(fabricProductSlug(name))}#plan-${item.ReleaseItemID}`,
         });
       }
-      console.log(`  → ${name}: ${kept}/${items.length} features (within last year)`);
+      console.log(`  → ${name}: ${kept}/${items.length} features (Try Now limited to current + last 2 quarters)`);
     } catch (err) {
       console.warn(`  [WARN] ${name} fetch failed: ${err.message}`);
     }
