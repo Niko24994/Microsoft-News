@@ -123,7 +123,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 .masthead {
-  background: rgba(8,7,15,.72);
+  /* Solid-ish, not just blurred-transparent: some mobile browsers skip
+     backdrop-filter during active scrolling for performance, which let
+     the cards scrolling underneath show through. */
+  background: rgba(8,7,15,.94);
   border-bottom: 1px solid var(--edge);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -249,7 +252,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 /* ============ FILTER BAR ============ */
 .filterbar {
-  background: rgba(8,7,15,.68);
+  background: rgba(8,7,15,.94);
   border-bottom: 1px solid var(--edge);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
