@@ -168,8 +168,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .digest-month {
   font-family: var(--font-mono); font-weight: 700; font-size: 2.6rem;
   letter-spacing: -.01em; margin-bottom: 1.5rem;
-  color: var(--accent-cyan);
-  text-shadow: 0 0 30px rgba(34,211,238,.5), 0 0 60px rgba(34,211,238,.2);
+  color: var(--ink);
+  text-shadow: 0 0 30px rgba(34,211,238,.4), 0 0 60px rgba(34,211,238,.16);
   font-variant-numeric: tabular-nums;
 }
 .digest-stats {
