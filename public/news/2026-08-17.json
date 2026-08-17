@@ -1,6 +1,6 @@
 {
   "date": "2026-08-17",
-  "updated": "2026-08-17T06:36:43.695Z",
+  "updated": "2026-08-17T18:31:14.658Z",
   "wave": "261",
   "waveLabel": "2026 Release Wave 1",
   "tabs": {
@@ -1087,16 +1087,6 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "Create and visualize custom KPIs in the process intelligence experience",
-        "summary": "Create, edit, and visualize custom metrics and KPIs in the process intelligence experience to analyze, monitor, and improve your specific business goals.",
-        "source": "Release Wave Plan",
-        "product": "Power Automate",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/create-visualize-custom-kpis-process-intelligence-studio",
-        "date": "2026-08-07T20:59:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
         "title": "Enable Process Intelligence Studio in object-centric process mining",
         "summary": "In Process Intelligence Studio in OCPM, you build the exact analysis you need using tabs for context, layouts, tiles, and filters that work the way you do.",
         "source": "Release Wave Plan",
@@ -1122,6 +1112,16 @@
         "source": "Release Wave Plan",
         "product": "Power Automate",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/get-support-normalized-schema-import-data-ingestion",
+        "date": "2026-08-07T20:59:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Create and visualize custom KPIs in the process intelligence experience",
+        "summary": "Create, edit, and visualize custom metrics and KPIs in the process intelligence experience to analyze, monitor, and improve your specific business goals.",
+        "source": "Release Wave Plan",
+        "product": "Power Automate",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-automate/create-visualize-custom-kpis-process-intelligence-studio",
         "date": "2026-08-07T20:59:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1275,16 +1275,6 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "Build Power Pages sites faster with AI coding tools",
-        "summary": "Accelerate site development with AI coding tools that understand web roles, table permissions, web APIs, and Power Pages security best practices.",
-        "source": "Release Wave Plan",
-        "product": "Power Pages",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-pages/build-power-pages-sites-faster-ai-coding-tools",
-        "date": "2026-07-23T15:20:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
         "title": "Configure site analytics and server logging",
         "summary": "Enable and track native site analytics in Power Pages and allow integration with external analytics and telemetry services.",
         "source": "Release Wave Plan",
@@ -1320,6 +1310,16 @@
         "source": "Release Wave Plan",
         "product": "Power Pages",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-pages/perform-website-actions-using-power-platform-cli",
+        "date": "2026-07-23T15:20:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Build Power Pages sites faster with AI coding tools",
+        "summary": "Accelerate site development with AI coding tools that understand web roles, table permissions, web APIs, and Power Pages security best practices.",
+        "source": "Release Wave Plan",
+        "product": "Power Pages",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-pages/build-power-pages-sites-faster-ai-coding-tools",
         "date": "2026-07-23T15:20:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1409,6 +1409,15 @@
         "product": "Power BI",
         "url": "https://community.fabric.microsoft.com/t5/Power-BI-Updates-Blog/Power-BI-July-2026-Feature-Summary/ba-p/5303533",
         "date": "2026-07-22T15:48:26.000Z"
+      },
+      {
+        "title": "Extending agentic Microsoft Dynamics 365 Sales with MCP",
+        "summary": "MCP extends Dynamics 365 Sales agents with external data, tools, and actions, helping connect sales processes across business systems.\nThe post Extending agentic Microsoft Dynamics 365 Sales with MCP appeared first on Microsoft Copilot Blog.",
+        "source": "Mike Morton",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/extending-agentic-microsoft-dynamics-365-sales-with-mcp/",
+        "date": "2026-07-21T19:20:00.000Z",
+        "isNew": true
       },
       {
         "title": "Dataverse Plugin for Coding Agents Now Available in Cursor Marketplace",
@@ -1525,6 +1534,15 @@
         "date": "2026-06-30T19:00:00.000Z"
       },
       {
+        "title": "Building reliable voice agents: A practical guide",
+        "summary": "Learn how to design AI voice agents that handle real conversations, stay reliable under pressure, and scale from prototype to production.\nThe post Building reliable voice agents: A practical guide appeared first on Microsoft Copilot Blog.",
+        "source": "Jamie Flores",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/building-reliable-voice-agents-a-practical-guide/",
+        "date": "2026-06-25T16:00:00.000Z",
+        "isNew": true
+      },
+      {
         "title": "Build better forms with integrated Power Apps",
         "summary": "Launch interactive Microsoft Power Apps directly from the desktop flow for richer more reliable data collection and event‑driven attended automation.",
         "source": "Release Wave Plan",
@@ -1579,6 +1597,15 @@
         "product": "Power BI",
         "url": "https://community.fabric.microsoft.com/t5/Power-BI-Updates-Blog/Microsoft-Entra-ID-single-sign-on-for-the-Denodo-connector-in/ba-p/5193376",
         "date": "2026-06-23T21:00:00.000Z"
+      },
+      {
+        "title": "Meet the Agent Academy Hackathon Winners",
+        "summary": "From May 12 to June 2, 2026, builders from around the world put their Agent Academy learning to the test by designing, building, and shipping real, working AI agents with Copilot Studio. After two weeks of judging, we’re thrilled to announce the Agent Academy Hackathon winners. 🏆 The Winners Recruit Track The Recruit track is […]\nThe post Meet the Agent Academy Hackathon Winners appeared first on Power Platform Developer Blog.",
+        "source": "April Dunnam",
+        "product": "Dataverse",
+        "url": "https://devblogs.microsoft.com/powerplatform/agent-academy-hackathon-winners/",
+        "date": "2026-06-18T19:52:38.000Z",
+        "isNew": true
       },
       {
         "title": "Microsoft Entra ID single sign-on for the Starburst connector in Power BI (Preview)",
@@ -1651,6 +1678,15 @@
         "product": "Power BI",
         "url": "https://community.fabric.microsoft.com/t5/Power-BI-Updates-Blog/Simplified-Oracle-connectivity-in-Power-BI-Preview/ba-p/5193366",
         "date": "2026-06-15T17:00:00.000Z"
+      },
+      {
+        "title": "Who evaluates the evaluators? The data science behind agent evals",
+        "summary": "An inside look at the data science and evaluation systems helping teams improve agent quality at scale in Copilot Studio.\nThe post Who evaluates the evaluators? The data science behind agent evals appeared first on Microsoft Copilot Blog.",
+        "source": "Dikla Dotan‑Cohen",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/who-evaluates-the-evaluators-the-data-science-behind-agent-evals/",
+        "date": "2026-06-11T16:00:00.000Z",
+        "isNew": true
       },
       {
         "title": "Enable push notifications in custom branded apps",
@@ -1753,6 +1789,15 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
+        "title": "Frontier Tuning: Teaching AI to work the way you do",
+        "summary": "Frontier Tuning introduces a new way to tune AI agents around your organization’s workflows, internal knowledge, and compliance safeguards.\nThe post Frontier Tuning: Teaching AI to work the way you do appeared first on Microsoft Copilot Blog.",
+        "source": "Ranveer Chandra",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/frontier-tuning-teaching-ai-to-work-the-way-you-do/",
+        "date": "2026-06-02T17:00:00.000Z",
+        "isNew": true
+      },
+      {
         "title": "Enhanced Data Model and Bootstrap 5 Now Available for Dynamics 365 Portal Templates",
         "summary": "We’re excited to announce that Enhanced Data Model (EDM) and Bootstrap 5 are now available for four key Dynamics 365 portal templates in Power Pages: When you provision a new site using any of these templates, it’s automatically built on the Enhanced Data Model with Bootstrap 5. No additional configuration is needed.\nThe post Enhanced Data Model and Bootstrap 5 Now Available for Dynamics 365 Portal Templates appeared first on Microsoft Power Platform Blog.",
         "source": "Ritwik Ganni",
@@ -1769,6 +1814,15 @@
         "date": "2026-05-29T18:33:02.000Z"
       },
       {
+        "title": "Mistral joins Copilot Studio’s growing lineup of model providers",
+        "summary": "Copilot Studio adds Mistral Medium 3.5, expanding model choice with in‑region data control, strong multilingual performance, and admin governance.\nThe post Mistral joins Copilot Studio’s growing lineup of model providers appeared first on Microsoft Copilot Blog.",
+        "source": "Ben Appleby",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/mistral-joins-copilot-studios-growing-lineup-of-model-providers/",
+        "date": "2026-05-28T08:45:00.000Z",
+        "isNew": true
+      },
+      {
         "title": "Microsoft Dataverse - Build your low code hyperscale backend on Dataverse",
         "summary": "Accelerate low code maker experiences for Power Apps built on Microsoft Dataverse.",
         "source": "Release Wave Plan",
@@ -1777,6 +1831,15 @@
         "date": "2026-05-27T17:30:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "New and improved: Computer-using agents, a new workflows experience, and real-time voice experiences",
+        "summary": "Learn what's new in Copilot Studio, May 2026: computer-using agents are now generally available, plus redesigned workflows and Work IQ extensibility.\nThe post New and improved: Computer-using agents, a new workflows experience, and real-time voice experiences appeared first on Microsoft Copilot Blog.",
+        "source": "Nitasha Chopra",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/new-and-improved-computer-using-agents-a-new-workflows-experience-and-real-time-voice-experiences/",
+        "date": "2026-05-26T16:00:00.000Z",
+        "isNew": true
       },
       {
         "title": "Use CLI to discover, create, and wire connectors in code apps",
@@ -1794,16 +1857,6 @@
         "source": "Release Wave Plan",
         "product": "Power Apps",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/direct-sharepoint-list-integration-new-power-apps-experience",
-        "date": "2026-05-21T20:20:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
-        "title": "Use generative pages globally",
-        "summary": "Generative pages are available globally and can adapt to your user's preferred language and regional formatting.",
-        "source": "Release Wave Plan",
-        "product": "Power Apps",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-generative-pages-globally",
         "date": "2026-05-21T20:20:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1829,6 +1882,16 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
+        "title": "Use generative pages globally",
+        "summary": "Generative pages are available globally and can adapt to your user's preferred language and regional formatting.",
+        "source": "Release Wave Plan",
+        "product": "Power Apps",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-generative-pages-globally",
+        "date": "2026-05-21T20:20:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
         "title": "Guided table selection for first‑time Dataverse sync",
         "summary": "Select specific tables for first-time syncing with Microsoft Dataverse and Microsoft Fabric.",
         "source": "Release Wave Plan",
@@ -1839,14 +1902,13 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "Use Microsoft 365 Copilot in canvas apps",
-        "summary": "Microsoft 365 Copilot is now available in canvas apps, bringing conversational AI with full support for custom agents.",
-        "source": "Release Wave Plan",
-        "product": "Power Apps",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-365-copilot-chat-canvas-apps",
-        "date": "2026-05-14T18:47:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
+        "title": "The in-depth guide to managing real-time voice agents at scale",
+        "summary": "Explore an in-depth guide to managing customer-facing real-time voice agents with Copilot Studio, from governance foundations to production readiness.\nThe post The in-depth guide to managing real-time voice agents at scale appeared first on Microsoft Copilot Blog.",
+        "source": "Microsoft Copilot Studio Team",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/the-in-depth-guide-to-managing-real-time-voice-agents-at-scale/",
+        "date": "2026-05-19T16:00:00.000Z",
+        "isNew": true
       },
       {
         "title": "Explore and visualize data with data exploration agent",
@@ -1854,16 +1916,6 @@
         "source": "Release Wave Plan",
         "product": "Power Apps",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/find-records-filter-views-using-natural-language",
-        "date": "2026-05-14T18:47:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
-        "title": "Visualize the data in your view easily with Copilot",
-        "summary": "Analyze and get insights from the data in your view with AI-generated visualization by Copilot.",
-        "source": "Release Wave Plan",
-        "product": "Power Apps",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/visualize-data-view-easily-copilot",
         "date": "2026-05-14T18:47:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1894,6 +1946,26 @@
         "source": "Release Wave Plan",
         "product": "Power Apps",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/get-better-suggestions-using-form-fill-assistance",
+        "date": "2026-05-14T18:47:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Use Microsoft 365 Copilot in canvas apps",
+        "summary": "Microsoft 365 Copilot is now available in canvas apps, bringing conversational AI with full support for custom agents.",
+        "source": "Release Wave Plan",
+        "product": "Power Apps",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/use-365-copilot-chat-canvas-apps",
+        "date": "2026-05-14T18:47:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Visualize the data in your view easily with Copilot",
+        "summary": "Analyze and get insights from the data in your view with AI-generated visualization by Copilot.",
+        "source": "Release Wave Plan",
+        "product": "Power Apps",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-apps/visualize-data-view-easily-copilot",
         "date": "2026-05-14T18:47:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
@@ -1965,6 +2037,24 @@
         "date": "2026-05-12T16:00:00.000Z"
       },
       {
+        "title": "New and improved: Agent governance, intelligent workflows, and connected app experiences",
+        "summary": "See what's new in Copilot Studio, April 2026: updates to workflows, increased control over agent operations, and an expanded agent usage estimator.\nThe post New and improved: Agent governance, intelligent workflows, and connected app experiences appeared first on Microsoft Copilot Blog.",
+        "source": "Nitasha Chopra",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/new-and-improved-agent-governance-intelligent-workflows-and-connected-app-experiences/",
+        "date": "2026-05-11T16:00:00.000Z",
+        "isNew": true
+      },
+      {
+        "title": "Dataverse Plugin Is Now on the Claude Marketplace",
+        "summary": "Dataverse gives developers a powerful platform for building enterprise applications — but getting from zero to a connected, working environment has always involved multiple tools, authentication flows, and configuration steps. The Dataverse plugin was built to accelerate that journey by letting AI coding agents handle the setup orchestration for you. Three weeks ago we introduced […]\nThe post Dataverse Plugin Is Now on the Claude Marketplace appeared first on Power Platform Developer Blog.",
+        "source": "Suyash Kshirsagar",
+        "product": "Dataverse",
+        "url": "https://devblogs.microsoft.com/powerplatform/dataverse-plugin-claude-marketplace/",
+        "date": "2026-04-30T16:06:35.000Z",
+        "isNew": true
+      },
+      {
         "title": "Restore deleted records within a specified timeframe",
         "summary": "Users with the system administrator security role can view and restore any deleted records from the Microsoft Dataverse tables within 30 days.",
         "source": "Release Wave Plan",
@@ -1973,6 +2063,15 @@
         "date": "2026-04-29T17:39:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "Extend AI voice support: Introducing real-time voice agents in Microsoft Copilot Studio",
+        "summary": "Real-time voice agents are now generally available in Copilot Studio, supporting adaptive voice experiences for complex customer conversations.\nThe post Extend AI voice support: Introducing real-time voice agents in Microsoft Copilot Studio appeared first on Microsoft Copilot Blog.",
+        "source": "Nitasha Chopra",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/extend-ai-voice-support-introducing-real-time-voice-agents-in-microsoft-copilot-studio/",
+        "date": "2026-04-27T15:00:00.000Z",
+        "isNew": true
       },
       {
         "title": "More Secure SharePoint Integration in Power Pages with Site‑Scoped Permissions",
@@ -2039,6 +2138,15 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
+        "title": "Automate business processes with agents plus workflows in Microsoft Copilot Studio",
+        "summary": "Introducing new capabilities in Microsoft Copilot Studio that help you automate your business processes by mixing AI agents and workflows.\nThe post Automate business processes with agents plus workflows in Microsoft Copilot Studio appeared first on Microsoft Copilot Blog.",
+        "source": "Ashvini Sharma",
+        "product": "Copilot Studio",
+        "url": "https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/automate-business-processes-with-agents-plus-workflows-in-microsoft-copilot-studio/",
+        "date": "2026-04-10T15:58:12.000Z",
+        "isNew": true
+      },
+      {
         "title": "View sensitivity labels in connectors",
         "summary": "Customers can use Power Platform connectors and Copilot connectors to transfer Microsoft Purview Information Protection sensitivity labels.",
         "source": "Release Wave Plan",
@@ -2071,6 +2179,15 @@
         "product": "Power Apps",
         "url": "https://www.microsoft.com/en-us/power-platform/blog/2026/04/01/building-trustworthy-ai-a-practical-framework-for-adaptive-governance/",
         "date": "2026-04-01T15:00:00.000Z"
+      },
+      {
+        "title": "Dataverse Skills: Your Coding Agent Now Speaks Dataverse",
+        "summary": "Building enterprise solutions is shifting from writing code to directing AI agents. Instead of stitching together APIs, CLIs, and scripts, developers are increasingly describing intent and letting agents execute. For enterprise platforms like Dataverse, this creates a new requirement: they must be operable by agents, not just by humans. Today we’re releasing Dataverse Skills — […]\nThe post Dataverse Skills: Your Coding Agent Now Speaks Dataverse appeared first on Power Platform Developer Blog.",
+        "source": "Suyash Kshirsagar",
+        "product": "Dataverse",
+        "url": "https://devblogs.microsoft.com/powerplatform/dataverse-skills-your-coding-agent-now-speaks-dataverse/",
+        "date": "2026-04-01T12:00:14.000Z",
+        "isNew": true
       },
       {
         "title": "Announcing General Availability (GA) of Server Logic in Power Pages",
@@ -2223,16 +2340,6 @@
         "waveLabel": "2026 Release Wave 1"
       },
       {
-        "title": "View sensitivity labels in Microsoft Copilot Studio",
-        "summary": "Dataverse columns that are labeled with Microsoft Purview Information Protection sensitivity labels are displayed in Copilot Studio.",
-        "source": "Release Wave Plan",
-        "product": "Power Platform Admin",
-        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-platform-governance-administration/view-sensitivity-labels-copilot-studio",
-        "date": "2026-03-18T14:56:00.000Z",
-        "planned": true,
-        "waveLabel": "2026 Release Wave 1"
-      },
-      {
         "title": "Discover and foster Power Platform adoption with the new Usage page",
         "summary": "The Usage page in the Power Platform admin center provides analytics to track adoption trends across Power Apps, Power Automate, and Copilot Studio.",
         "source": "Release Wave Plan",
@@ -2268,6 +2375,16 @@
         "source": "Release Wave Plan",
         "product": "Power Platform Admin",
         "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-platform-governance-administration/licensing-capacity",
+        "date": "2026-03-18T14:56:00.000Z",
+        "planned": true,
+        "waveLabel": "2026 Release Wave 1"
+      },
+      {
+        "title": "View sensitivity labels in Microsoft Copilot Studio",
+        "summary": "Dataverse columns that are labeled with Microsoft Purview Information Protection sensitivity labels are displayed in Copilot Studio.",
+        "source": "Release Wave Plan",
+        "product": "Power Platform Admin",
+        "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/2026wave1/power-platform-governance-administration/view-sensitivity-labels-copilot-studio",
         "date": "2026-03-18T14:56:00.000Z",
         "planned": true,
         "waveLabel": "2026 Release Wave 1"

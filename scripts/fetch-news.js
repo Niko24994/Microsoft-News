@@ -41,6 +41,10 @@ const RELEASE_FEEDS = [
   { url: 'https://www.microsoft.com/en-us/power-platform/blog/power-automate/feed/',      product: 'Power Automate', skipFilter: true },
   { url: 'https://www.microsoft.com/en-us/power-platform/blog/power-apps/feed/',          product: 'Power Apps',     skipFilter: true },
   { url: 'https://www.microsoft.com/en-us/power-platform/blog/power-pages/feed/',         product: 'Power Pages',    skipFilter: true },
+  { url: 'https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/feed/',   product: 'Copilot Studio', skipFilter: true },
+  // General Power Platform dev blog — only keep posts explicitly tagged
+  // "Dataverse" since the blog also covers Power Pages/Apps dev topics.
+  { url: 'https://devblogs.microsoft.com/powerplatform/feed/',                            product: 'Dataverse',      categoryFilter: 'Dataverse' },
 ];
 
 const RELEASE_KEYWORDS = [
@@ -262,12 +266,15 @@ async function fetchReleaseNotes() {
   console.log('\n[releasenotes] Loading blog feeds…');
   const allItems = [];
 
-  for (const { url, product, skipFilter } of RELEASE_FEEDS) {
-    console.log(`  → ${url} [${product}]${skipFilter ? ' (no filter)' : ''}`);
+  for (const { url, product, skipFilter, categoryFilter } of RELEASE_FEEDS) {
+    console.log(`  → ${url} [${product}]${skipFilter ? ' (no filter)' : ''}${categoryFilter ? ` (category: ${categoryFilter})` : ''}`);
     const items = await fetchFeed(url);
     for (const item of items) {
       const title = (item.title || '').toLowerCase();
-      if (!skipFilter && !RELEASE_KEYWORDS.some(kw => title.includes(kw))) continue;
+      if (categoryFilter) {
+        const cats = (item.categories || []).map(c => c.toLowerCase());
+        if (!cats.includes(categoryFilter.toLowerCase())) continue;
+      } else if (!skipFilter && !RELEASE_KEYWORDS.some(kw => title.includes(kw))) continue;
       allItems.push({
         title:   (item.title || '').trim(),
         summary: (item.contentSnippet || item.summary || item.content || '')
