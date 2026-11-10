@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leos Friseursalon</title>
+<meta name="description" content="Leos – Ihr Friseursalon in Bad Oeynhausen. Schnitt, Farbe, Styling und Bart.">
+<meta name="theme-color" content="#14110f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14110f; --bg2:#1d1916; --card:#241f1b; --line:#3a322b;
+  --text:#f4ede6; --muted:#b5a99c; --accent:#d9a066; --accent-ink:#1a120b;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:rgba(20,17,15,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:Fraunces,serif;font-size:1.5rem;font-weight:600}
+.logo span{color:var(--accent)}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:.92rem;color:var(--muted)}
+.nav ul a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:.95rem;transition:transform .15s, background .15s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#e6b17c}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{background:var(--card)}
+.nav .btn{padding:10px 18px;font-size:.85rem}
+@media (max-width:760px){.nav ul{display:none}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:72px 0 64px}
+.hero::before{content:"";position:absolute;inset:-20% -30% auto auto;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,160,102,.28),transparent 65%);pointer-events:none}
+.hero h1{font-size:clamp(2.6rem,11vw,5.2rem);margin:16px 0 20px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--muted);max-width:520px;font-size:1.08rem}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:48px;max-width:520px}
+.stat{border-left:2px solid var(--accent);padding-left:12px}
+.stat b{display:block;font-family:Fraunces,serif;font-size:1.6rem}
+.stat small{color:var(--muted);font-size:.8rem}
+
+/* Sections */
+section{padding:72px 0}
+.section-head{margin-bottom:36px}
+.section-head h2{font-size:clamp(2rem,7vw,3rem);margin-top:10px}
+.alt{background:var(--bg2)}
+
+/* Services */
+.tabs{display:flex;gap:8px;margin-bottom:24px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);font:inherit;font-size:.9rem;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.price-list{list-style:none;display:none}
+.price-list.active{display:block}
+.price-list li{display:flex;align-items:baseline;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
+.price-list li div{flex:1}
+.price-list h3{font-family:Inter,sans-serif;font-size:1.02rem;font-weight:600}
+.price-list small{color:var(--muted);font-size:.85rem}
+.price-list span{font-family:Fraunces,serif;font-size:1.25rem;color:var(--accent);white-space:nowrap}
+
+/* Feature cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.card .ico{width:44px;height:44px;border-radius:12px;background:rgba(217,160,102,.14);color:var(--accent);display:grid;place-items:center;margin-bottom:18px}
+.card h3{font-size:1.3rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tile{aspect-ratio:3/4;border-radius:var(--radius);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;font-weight:600;font-size:.9rem}
+.tile:nth-child(1){background:linear-gradient(160deg,#6b4a32,#2a1d14)}
+.tile:nth-child(2){background:linear-gradient(160deg,#3d3a36,#16130f);aspect-ratio:3/3.2}
+.tile:nth-child(3){background:linear-gradient(160deg,#8a5a3a,#3a2416);aspect-ratio:3/3.2}
+.tile:nth-child(4){background:linear-gradient(160deg,#2f2a26,#4f3b2b)}
+.tile::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 2px,transparent 2px 14px)}
+.tile span{position:relative;z-index:1;background:rgba(20,17,15,.6);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
+@media (min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}.tile{aspect-ratio:3/4!important}}
+
+/* Reviews */
+.reviews{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}
+.reviews::-webkit-scrollbar{display:none}
+.review{flex:0 0 85%;max-width:360px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.stars{color:var(--accent);letter-spacing:3px;margin-bottom:10px}
+.review p{font-size:1rem;margin-bottom:14px}
+.review small{color:var(--muted)}
+
+/* Contact */
+.contact-grid{display:grid;gap:16px}
+@media (min-width:760px){.contact-grid{grid-template-columns:1fr 1fr}}
+.hours{list-style:none}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.hours li.today{color:var(--accent);font-weight:600}
+.hours li .closed{color:var(--muted)}
+.info-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0}
+.info-row svg{flex:none;color:var(--accent);margin-top:3px}
+.info-row small{display:block;color:var(--muted);font-size:.8rem}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;padding:6px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);margin-bottom:16px}
+.dot{width:8px;height:8px;border-radius:50%;background:#7bc47f}
+.dot.off{background:#c96a5a}
+
+footer{padding:40px 0 120px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+/* Mobile sticky action bar */
+.mobile-bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;gap:8px;
+  background:rgba(36,31,27,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:6px}
+.mobile-bar a{flex:1;padding:12px;font-size:.9rem}
+@media (min-width:760px){.mobile-bar{display:none}footer{padding-bottom:40px}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">Leos<span>.</span></a>
+    <ul>
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#salon">Salon</a></li>
+      <li><a href="#stimmen">Stimmen</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:+4957310000000" class="btn btn-primary">Termin</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Friseursalon · Bad Oeynhausen</div>
+      <h1 class="reveal">Haare mit<br><em>Haltung.</em></h1>
+      <p class="reveal">Präzise Schnitte, Farbe mit Gefühl und Beratung, die sich Zeit nimmt. Bei Leos gehst du nicht nur frisch frisiert raus – sondern mit einem Look, der zu dir passt.</p>
+      <div class="cta reveal">
+        <a href="tel:+4957310000000" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          Termin anrufen
+        </a>
+        <a href="#leistungen" class="btn btn-ghost">Preise ansehen</a>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><b>Schnitt</b><small>typgerecht</small></div>
+        <div class="stat"><b>Farbe</b><small>&amp; Balayage</small></div>
+        <div class="stat"><b>Damen</b><small>Herren &amp; Kids</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leistungen" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Leistungen &amp; Preise</div>
+        <h2>Was wir für dich tun</h2>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="damen">Damen</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="herren">Herren</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="farbe">Farbe</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="kids">Kinder</button>
+      </div>
+      <ul class="price-list active" id="damen">
+        <li><div><h3>Waschen, Schneiden, Föhnen</h3><small>inkl. Beratung</small></div><span>ab 45 €</span></li>
+        <li><div><h3>Waschen &amp; Föhnen</h3><small>Styling nach Wunsch</small></div><span>ab 28 €</span></li>
+        <li><div><h3>Hochsteckfrisur</h3><small>Hochzeit, Abschlussball, Events</small></div><span>ab 55 €</span></li>
+        <li><div><h3>Pflegebehandlung</h3><small>Intensivkur fürs Haar</small></div><span>ab 15 €</span></li>
+      </ul>
+      <ul class="price-list" id="herren">
+        <li><div><h3>Herrenschnitt</h3><small>Waschen, Schneiden, Styling</small></div><span>ab 25 €</span></li>
+        <li><div><h3>Maschinenschnitt / Fade</h3><small>Präzise Übergänge</small></div><span>ab 22 €</span></li>
+        <li><div><h3>Bart trimmen &amp; formen</h3><small>mit Konturen</small></div><span>ab 12 €</span></li>
+        <li><div><h3>Schnitt + Bart</h3><small>das Komplettpaket</small></div><span>ab 34 €</span></li>
+      </ul>
+      <ul class="price-list" id="farbe">
+        <li><div><h3>Ansatzfarbe</h3><small>bis 2 cm</small></div><span>ab 39 €</span></li>
+        <li><div><h3>Komplettfarbe</h3><small>je nach Länge</small></div><span>ab 55 €</span></li>
+        <li><div><h3>Strähnen / Foliensträhnen</h3><small>Teil- oder Komplett</small></div><span>ab 49 €</span></li>
+        <li><div><h3>Balayage</h3><small>natürliche Übergänge</small></div><span>ab 95 €</span></li>
+      </ul>
+      <ul class="price-list" id="kids">
+        <li><div><h3>Kinder bis 6 Jahre</h3><small>mit Geduld &amp; Spaß</small></div><span>ab 14 €</span></li>
+        <li><div><h3>Kinder bis 12 Jahre</h3><small>Schneiden &amp; Styling</small></div><span>ab 18 €</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="salon">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Der Salon</div>
+        <h2>Warum Leos?</h2>
+      </div>
+      <div class="cards">
+        <div class="card reveal">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div>
+          <h3>Handwerk mit Präzision</h3>
+          <p>Jeder Schnitt wird auf deine Haarstruktur, Gesichtsform und deinen Alltag abgestimmt.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.7 3 8v8l9 5.3 9-5.3V8z"/><path d="M12 22V12M21 8l-9 4-9-4"/></svg></div>
+          <h3>Hochwertige Produkte</h3>
+          <p>Wir arbeiten mit professioneller Pflege und schonenden Farben – für gesundes, glänzendes Haar.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <h3>Entspannte Atmosphäre</h3>
+          <p>Ein Kaffee, gute Musik, ehrliche Beratung. Bei uns darfst du ankommen und abschalten.</p>
+        </div>
+      </div>
+
+      <div class="gallery" style="margin-top:32px">
+        <div class="tile reveal"><span>Balayage</span></div>
+        <div class="tile reveal"><span>Skin Fade</span></div>
+        <div class="tile reveal"><span>Bob Cut</span></div>
+        <div class="tile reveal"><span>Bartpflege</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stimmen" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Kundenstimmen</div>
+        <h2>Das sagen unsere Gäste</h2>
+      </div>
+      <div class="reviews">
+        <div class="review"><div class="stars">★★★★★</div><p>„Beispieltext: Endlich ein Salon, der wirklich zuhört. Mein Schnitt sitzt perfekt.“</p><small>— Beispielbewertung</small></div>
+        <div class="review"><div class="stars">★★★★★</div><p>„Beispieltext: Super freundliches Team, toller Fade und immer pünktlich dran.“</p><small>— Beispielbewertung</small></div>
+        <div class="review"><div class="stars">★★★★★</div><p>„Beispieltext: Meine Balayage ist genau so geworden, wie ich sie mir vorgestellt habe.“</p><small>— Beispielbewertung</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Kontakt &amp; Öffnungszeiten</div>
+        <h2>Komm vorbei</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="card reveal">
+          <div class="status"><span class="dot" id="dot"></span><span id="status-text">Öffnungsstatus</span></div>
+          <ul class="hours" id="hours">
+            <li data-d="1"><span>Montag</span><span class="closed">Geschlossen</span></li>
+            <li data-d="2"><span>Dienstag</span><span>09:00 – 18:00</span></li>
+            <li data-d="3"><span>Mittwoch</span><span>09:00 – 18:00</span></li>
+            <li data-d="4"><span>Donnerstag</span><span>09:00 – 20:00</span></li>
+            <li data-d="5"><span>Freitag</span><span>09:00 – 18:00</span></li>
+            <li data-d="6"><span>Samstag</span><span>08:00 – 14:00</span></li>
+            <li data-d="0"><span>Sonntag</span><span class="closed">Geschlossen</span></li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="info-row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><small>Adresse</small>Musterstraße 1<br>32545 Bad Oeynhausen</div>
+          </div>
+          <div class="info-row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <div><small>Telefon</small><a href="tel:+4957310000000">05731 / 000 000</a></div>
+          </div>
+          <div class="info-row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            <div><small>Instagram</small>@leos.friseur</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Friseur+Leos+Bad+Oeynhausen" target="_blank" rel="noopener">Route planen</a>
+            <a class="btn btn-ghost" href="https://wa.me/4957310000000" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y"></span> Leos Friseursalon · Bad Oeynhausen</span>
+    <span><a href="#">Impressum</a> · <a href="#">Datenschutz</a></span>
+  </div>
+</footer>
+
+<nav class="mobile-bar">
+  <a href="tel:+4957310000000" class="btn btn-primary">Anrufen</a>
+  <a href="#kontakt" class="btn btn-ghost">Öffnungszeiten</a>
+</nav>
+
+<script>
+// Tabs
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  document.querySelectorAll('.price-list').forEach(x=>x.classList.remove('active'));
+  t.setAttribute('aria-selected','true');
+  document.getElementById(t.dataset.tab).classList.add('active');
+}));
+// Reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Open status
+const now=new Date(), d=now.getDay(), m=now.getHours()*60+now.getMinutes();
+const row=document.querySelector(`#hours li[data-d="${d}"]`); row.classList.add('today');
+const t=row.lastElementChild.textContent.match(/(\d+):(\d+) – (\d+):(\d+)/);
+const open=t && m>=(+t[1]*60+ +t[2]) && m<(+t[3]*60+ +t[4]);
+document.getElementById('status-text').textContent=open?'Jetzt geöffnet':'Gerade geschlossen';
+if(!open)document.getElementById('dot').classList.add('off');
+document.getElementById('y').textContent=now.getFullYear();
+</script>
+</body>
+</html>
