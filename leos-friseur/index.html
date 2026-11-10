@@ -85,6 +85,8 @@ section{padding:72px 0}
 .tile:nth-child(3){background:linear-gradient(160deg,#8a5a3a,#3a2416)}
 .tile:nth-child(4){background:linear-gradient(160deg,#2f2a26,#4f3b2b)}
 .tile .art{position:absolute;inset:0;width:100%;height:100%}
+.tile .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile:has(.photo)::after{background:linear-gradient(to top,rgba(20,17,15,.7),transparent 45%)}
 .tile::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 2px,transparent 2px 14px)}
 .tile span{position:relative;z-index:1;background:rgba(20,17,15,.6);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
 @media (min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}.tile{aspect-ratio:3/4!important}}
@@ -233,7 +235,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <g fill="none" stroke="#f2cf9a" stroke-opacity=".35" stroke-width="3" stroke-linecap="round">
 <path d="M110 110c-14 50 10 90-6 140s-10 80 0 110"/><path d="M135 95c-8 60 14 100 0 160s4 70 6 105"/>
 <path d="M165 95c8 60-14 100 0 160s-4 70-6 105"/><path d="M190 110c14 50-10 90 6 140s10 80 0 110"/></g>
-<g fill="none" stroke="#3a2416" stroke-opacity=".5" stroke-width="2"><path d="M122 100c-10 70 12 110-2 170"/><path d="M178 100c10 70-12 110 2 170"/></g></svg><span>Balayage</span></div>
+<g fill="none" stroke="#3a2416" stroke-opacity=".5" stroke-width="2"><path d="M122 100c-10 70 12 110-2 170"/><path d="M178 100c10 70-12 110 2 170"/></g></svg><img class="photo" src="https://unsplash.com/photos/et_78QkMMQs/download?w=700" alt="Frau mit langem, blondem Balayage-Haar" loading="lazy" onerror="this.remove()"><span>Balayage</span></div>
         <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
 <linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
@@ -245,7 +247,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <path d="M112 140l16 50c4 8 10 14 18 16l2-44-34-30z" fill="url(#fade)"/>
 <g stroke="#1a1310" stroke-opacity=".25" stroke-width="1.5"><path d="M118 168h28"/><path d="M122 180h24"/><path d="M128 192h18"/></g>
 <ellipse cx="155" cy="160" rx="10" ry="14" fill="#d9ad85"/>
-<path d="M150 112c30-12 70-12 112 0" stroke="#d9a066" stroke-width="3" fill="none" stroke-opacity=".7"/></svg><span>Skin Fade</span></div>
+<path d="M150 112c30-12 70-12 112 0" stroke="#d9a066" stroke-width="3" fill="none" stroke-opacity=".7"/></svg><img class="photo" src="https://unsplash.com/photos/FtYpeIRDzaw/download?w=700" alt="Mann beim Haareschneiden im Barbershop" loading="lazy" onerror="this.remove()"><span>Skin Fade</span></div>
         <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
 <linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
@@ -257,7 +259,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <path d="M150 96c-62 0-86 44-86 96 0 30 2 54 10 74h46c-12-30-14-64-6-96 20 4 54-6 70-28 10 30 34 40 40 46 4 26 0 56-8 78h46c8-20 10-44 10-74 0-52-24-96-86-96z" fill="#1a1310"/>
 <path d="M74 266h46M180 266h46" stroke="#d9a066" stroke-width="3"/>
 <g fill="#1a1310"><ellipse cx="130" cy="196" rx="5" ry="3"/><ellipse cx="170" cy="196" rx="5" ry="3"/></g>
-<path d="M138 232c8 6 16 6 24 0" stroke="#a5604a" stroke-width="3" fill="none" stroke-linecap="round"/></svg><span>Bob Cut</span></div>
+<path d="M138 232c8 6 16 6 24 0" stroke="#a5604a" stroke-width="3" fill="none" stroke-linecap="round"/></svg><img class="photo" src="https://unsplash.com/photos/LU2XkVyhf_c/download?w=700" alt="Haarschnitt mit der Schere im Salon" loading="lazy" onerror="this.remove()"><span>Damenschnitt</span></div>
         <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
 <linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
@@ -271,7 +273,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <g transform="translate(222 300) rotate(-35)" stroke="#d9a066" stroke-width="4" fill="none">
 <circle cx="-14" cy="34" r="10"/><circle cx="14" cy="34" r="10"/><path d="M-8 26 10-40M8 26-10-40"/></g>
 <g transform="translate(70 320) rotate(20)"><rect x="-6" y="-44" width="12" height="88" rx="3" fill="#d9a066"/>
-<g stroke="#2f2a26" stroke-width="2"><path d="M0 -38h6"/><path d="M0 -31h6"/><path d="M0 -24h6"/><path d="M0 -17h6"/><path d="M0 -10h6"/><path d="M0 -3h6"/><path d="M0 4h6"/><path d="M0 11h6"/><path d="M0 18h6"/><path d="M0 25h6"/><path d="M0 32h6"/><path d="M0 39h6"/></g></g></svg><span>Bartpflege</span></div>
+<g stroke="#2f2a26" stroke-width="2"><path d="M0 -38h6"/><path d="M0 -31h6"/><path d="M0 -24h6"/><path d="M0 -17h6"/><path d="M0 -10h6"/><path d="M0 -3h6"/><path d="M0 4h6"/><path d="M0 11h6"/><path d="M0 18h6"/><path d="M0 25h6"/><path d="M0 32h6"/><path d="M0 39h6"/></g></g></svg><img class="photo" src="https://unsplash.com/photos/y9xnUFMFGKw/download?w=700" alt="Barbier bei der Rasur eines Kunden" loading="lazy" onerror="this.remove()"><span>Rasur &amp; Bart</span></div>
       </div>
     </div>
   </section>
@@ -335,6 +337,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
 <footer>
   <div class="wrap">
+    <span style="flex-basis:100%">Beispielfotos: <a href="https://unsplash.com" target="_blank" rel="noopener" style="text-decoration:underline">Unsplash</a></span>
     <span>© <span id="y"></span> Leo Hairstyle · Bad Oeynhausen</span>
     <span><a href="#">Impressum</a> · <a href="#">Datenschutz</a></span>
   </div>
