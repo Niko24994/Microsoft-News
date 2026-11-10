@@ -81,9 +81,10 @@ section{padding:72px 0}
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .tile{aspect-ratio:3/4;border-radius:var(--radius);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;font-weight:600;font-size:.9rem}
 .tile:nth-child(1){background:linear-gradient(160deg,#6b4a32,#2a1d14)}
-.tile:nth-child(2){background:linear-gradient(160deg,#3d3a36,#16130f);aspect-ratio:3/3.2}
-.tile:nth-child(3){background:linear-gradient(160deg,#8a5a3a,#3a2416);aspect-ratio:3/3.2}
+.tile:nth-child(2){background:linear-gradient(160deg,#3d3a36,#16130f)}
+.tile:nth-child(3){background:linear-gradient(160deg,#8a5a3a,#3a2416)}
 .tile:nth-child(4){background:linear-gradient(160deg,#2f2a26,#4f3b2b)}
+.tile .art{position:absolute;inset:0;width:100%;height:100%}
 .tile::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 2px,transparent 2px 14px)}
 .tile span{position:relative;z-index:1;background:rgba(20,17,15,.6);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
 @media (min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}.tile{aspect-ratio:3/4!important}}
@@ -143,7 +144,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow reveal">Friseursalon &amp; Barbershop · Bad Oeynhausen</div>
-      <h1 class="reveal">Haare mit<br><em>Haltung.</em></h1>
+      <h1 class="reveal">Fresh Cuts.<br><em>Klare Kante.</em></h1>
       <p class="reveal">Damen- und Herrenfriseur mit Barbershop – mitten in Bad Oeynhausen. Von der Balayage bis zum sauberen Fade: freundliches Team, faire Preise und ein Look, der zu dir passt.</p>
       <div class="cta reveal">
         <a href="tel:+4957314963063" class="btn btn-primary">
@@ -223,10 +224,54 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
 
       <div class="gallery" style="margin-top:32px">
-        <div class="tile reveal"><span>Balayage</span></div>
-        <div class="tile reveal"><span>Skin Fade</span></div>
-        <div class="tile reveal"><span>Bob Cut</span></div>
-        <div class="tile reveal"><span>Bartpflege</span></div>
+        <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#d9a066" stop-opacity=".35"/><stop offset="1" stop-color="#d9a066" stop-opacity="0"/></radialGradient>
+</defs><rect width="300" height="400" fill="#2a1d14"/><rect width="300" height="400" fill="url(#glow)"/>
+<path d="M150 70c-52 0-80 38-80 90 0 40 6 70-4 110-8 32-20 60-8 100h184c12-40 0-68-8-100-10-40-4-70-4-110 0-52-28-90-80-90z" fill="url(#bal)"/>
+<g fill="none" stroke="#f2cf9a" stroke-opacity=".35" stroke-width="3" stroke-linecap="round">
+<path d="M110 110c-14 50 10 90-6 140s-10 80 0 110"/><path d="M135 95c-8 60 14 100 0 160s4 70 6 105"/>
+<path d="M165 95c8 60-14 100 0 160s-4 70-6 105"/><path d="M190 110c14 50-10 90 6 140s10 80 0 110"/></g>
+<g fill="none" stroke="#3a2416" stroke-opacity=".5" stroke-width="2"><path d="M122 100c-10 70 12 110-2 170"/><path d="M178 100c10 70-12 110 2 170"/></g></svg><span>Balayage</span></div>
+        <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#d9a066" stop-opacity=".35"/><stop offset="1" stop-color="#d9a066" stop-opacity="0"/></radialGradient>
+</defs><rect width="300" height="400" fill="#16130f"/><rect width="300" height="400" fill="url(#glow)"/>
+<path d="M95 400v-60c0-20 10-30 25-36l10-24h50l6 30c28 8 44 30 44 90z" fill="#2f2620"/>
+<path d="M118 120c0-45 30-70 72-70 46 0 70 32 70 78 0 22-4 40-10 54l12 26-14 6 2 18c0 14-10 22-26 20l-16-2-4 30h-58l-4-38c-20-14-28-40-28-70z" fill="#e8c4a0"/>
+<path d="M112 140c-4-60 30-98 80-98 52 0 76 36 72 70-30-12-70-14-104-6-10 2-14 14-14 26l-6 40c-10-8-24-14-28-32z" fill="#1a1310"/>
+<path d="M112 140l16 50c4 8 10 14 18 16l2-44-34-30z" fill="url(#fade)"/>
+<g stroke="#1a1310" stroke-opacity=".25" stroke-width="1.5"><path d="M118 168h28"/><path d="M122 180h24"/><path d="M128 192h18"/></g>
+<ellipse cx="155" cy="160" rx="10" ry="14" fill="#d9ad85"/>
+<path d="M150 112c30-12 70-12 112 0" stroke="#d9a066" stroke-width="3" fill="none" stroke-opacity=".7"/></svg><span>Skin Fade</span></div>
+        <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#d9a066" stop-opacity=".35"/><stop offset="1" stop-color="#d9a066" stop-opacity="0"/></radialGradient>
+</defs><rect width="300" height="400" fill="#3a2416"/><rect width="300" height="400" fill="url(#glow)"/>
+<path d="M100 400c0-60 20-90 50-90s50 30 50 90z" fill="#d9a066" fill-opacity=".85"/>
+<rect x="136" y="250" width="28" height="60" fill="#d9ad85"/>
+<ellipse cx="150" cy="190" rx="52" ry="68" fill="#e8c4a0"/>
+<path d="M150 96c-62 0-86 44-86 96 0 30 2 54 10 74h46c-12-30-14-64-6-96 20 4 54-6 70-28 10 30 34 40 40 46 4 26 0 56-8 78h46c8-20 10-44 10-74 0-52-24-96-86-96z" fill="#1a1310"/>
+<path d="M74 266h46M180 266h46" stroke="#d9a066" stroke-width="3"/>
+<g fill="#1a1310"><ellipse cx="130" cy="196" rx="5" ry="3"/><ellipse cx="170" cy="196" rx="5" ry="3"/></g>
+<path d="M138 232c8 6 16 6 24 0" stroke="#a5604a" stroke-width="3" fill="none" stroke-linecap="round"/></svg><span>Bob Cut</span></div>
+        <div class="tile reveal"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+<linearGradient id="bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2416"/><stop offset=".45" stop-color="#7a4a2a"/><stop offset=".8" stop-color="#d9a066"/><stop offset="1" stop-color="#f2cf9a"/></linearGradient>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1310"/><stop offset=".55" stop-color="#1a1310" stop-opacity=".85"/><stop offset="1" stop-color="#1a1310" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#d9a066" stop-opacity=".35"/><stop offset="1" stop-color="#d9a066" stop-opacity="0"/></radialGradient>
+</defs><rect width="300" height="400" fill="#2f2a26"/><rect width="300" height="400" fill="url(#glow)"/>
+<ellipse cx="150" cy="170" rx="66" ry="84" fill="#e8c4a0"/>
+<path d="M84 150c0-70 30-100 66-100s66 30 66 100c-10-30-30-46-66-46s-56 16-66 46z" fill="#1a1310"/>
+<path d="M84 160c0 70 22 130 66 140 44-10 66-70 66-140-6 30-14 44-24 50-14-14-28-18-42-18s-28 4-42 18c-10-6-18-20-24-50z" fill="#241a14"/>
+<path d="M126 222c14-8 34-8 48 0-8 4-40 4-48 0z" fill="#d9ad85"/>
+<g fill="#1a1310"><ellipse cx="126" cy="170" rx="6" ry="3.5"/><ellipse cx="174" cy="170" rx="6" ry="3.5"/></g>
+<g transform="translate(222 300) rotate(-35)" stroke="#d9a066" stroke-width="4" fill="none">
+<circle cx="-14" cy="34" r="10"/><circle cx="14" cy="34" r="10"/><path d="M-8 26 10-40M8 26-10-40"/></g>
+<g transform="translate(70 320) rotate(20)"><rect x="-6" y="-44" width="12" height="88" rx="3" fill="#d9a066"/>
+<g stroke="#2f2a26" stroke-width="2"><path d="M0 -38h6"/><path d="M0 -31h6"/><path d="M0 -24h6"/><path d="M0 -17h6"/><path d="M0 -10h6"/><path d="M0 -3h6"/><path d="M0 4h6"/><path d="M0 11h6"/><path d="M0 18h6"/><path d="M0 25h6"/><path d="M0 32h6"/><path d="M0 39h6"/></g></g></svg><span>Bartpflege</span></div>
       </div>
     </div>
   </section>
